@@ -6,36 +6,61 @@
     <title>Meu Portal de Jogos</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             text-align: center;
-            background-color: #222;
+            background-color: #1a1a1a;
             color: white;
             margin: 0;
-            padding: 20px;
+            padding: 40px 20px;
         }
-        /* Estilo da lista de jogos */
+
+        h1 {
+            margin-bottom: 40px;
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        /* AJUSTE AQUI: Transforma a lista em uma grade flexível */
         .menu-jogos {
             display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 50px;
+            flex-wrap: wrap; /* Permite que os botões pulem de linha */
+            justify-content: center; /* Centraliza os blocos na tela */
+            gap: 20px; /* Espaçamento igual entre cada jogo */
+            max-width: 1200px; /* Não deixa a grade espalhar demais em telas gigantes */
+            margin: 0 auto; /* Centraliza a grade inteira */
         }
+
+        /* AJUSTE AQUI: Transforma os botões em Cards de Jogos */
         .botao-jogo {
-            padding: 20px 40px;
-            font-size: 18px;
+            width: 160px; /* Largura fixa para ficarem simétricos */
+            height: 120px; /* Altura fixa */
+            font-size: 16px;
+            font-weight: bold;
             background-color: #0070f3;
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px; /* Bordas mais arredondadas e modernas */
             cursor: pointer;
-            transition: 0.2s;
+            transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            
+            /* Centraliza o texto do nome do jogo dentro do card */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
         }
+
+        /* Efeito visual ao passar o mouse */
         .botao-jogo:hover {
             background-color: #0051b3;
+            transform: translateY(-5px); /* Dá um leve pulinho para cima */
+            box-shadow: 0 8px 15px rgba(0, 112, 243, 0.4);
         }
-        /* Estilo da área do jogo e do botão voltar */
+
+        /* Área do jogo (mantém igual) */
         #container-jogo {
-            display: none; /* Fica escondido até o usuário escolher um jogo */
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
@@ -43,18 +68,26 @@
             height: 100vh;
             background-color: #000;
         }
+
         #botao-voltar {
             position: absolute;
-            top: 10px;
-            left: 10px;
-            padding: 10px 20px;
+            top: 15px;
+            left: 15px;
+            padding: 12px 24px;
+            font-weight: bold;
             background-color: #ff4040;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
             z-index: 10;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.4);
         }
+
+        #botao-voltar:hover {
+            background-color: #d32f2f;
+        }
+
         iframe {
             width: 100%;
             height: 100%;
