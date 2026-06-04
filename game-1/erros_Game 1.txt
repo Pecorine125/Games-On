@@ -1,0 +1,16 @@
+=== RELATÓRIO DE REPARAÇÃO AUTOMÁTICA: Game 1 ===
+
+Idioma Nativo PT-BR Encontrado: Não
+
+Total de falhas interceptadas: 8
+Total de arquivos salvos com sucesso: 8
+
+📋 LISTA DE ITENS REPARADOS:
+  -> game/images/custom_gui/cursor/hover_text.png
+  -> game/images/custom_gui/lang_but/idle.png
+  -> game/images/custom_gui/cursor/idle.png
+  -> game/images/custom_gui/lang_but/idle_ai.png
+  -> game/images/custom_gui/cursor/hover_but.png
+  -> game/images/custom_gui/lang_but/hover.png
+  -> game/images/custom_gui/lang_but/hover_ai.png
+  -> game/images/custom_gui/cursor/button_menu.png
