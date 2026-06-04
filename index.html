@@ -1,1 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Portal de Jogos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #222;
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+        /* Estilo da lista de jogos */
+        .menu-jogos {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 50px;
+        }
+        .botao-jogo {
+            padding: 20px 40px;
+            font-size: 18px;
+            background-color: #0070f3;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .botao-jogo:hover {
+            background-color: #0051b3;
+        }
+        /* Estilo da área do jogo e do botão voltar */
+        #container-jogo {
+            display: none; /* Fica escondido até o usuário escolher um jogo */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #000;
+        }
+        #botao-voltar {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 10px 20px;
+            background-color: #ff4040;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 10;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
 
+    <!-- TELA INICIAL: MENU DE JOGOS -->
+    <div id="tela-inicial">
+        <h1>Escolha um Jogo para Jogar</h1>
+        <div class="menu-jogos">
+            <!-- Altere o 'data-url' para o nome exato da pasta do seu jogo -->
+            <button class="botao-jogo" data-url="jogo-mario/index.html">Jogo do Mario</button>
+            <button class="botao-jogo" data-url="jogo-tetris/index.html">Jogo do Tetris</button>
+            <button class="botao-jogo" data-url="jogo-corrida/index.html">Jogo de Corrida</button>
+        </div>
+    </div>
+
+    <!-- TELA DO JOGO (IFRAME) -->
+    <div id="container-jogo">
+        <button id="botao-voltar">← Voltar para o Menu</button>
+        <iframe id="janela-jogo" src=""></iframe>
+    </div>
+
+    <script>
+        const botoes = document.querySelectorAll('.botao-jogo');
+        const containerJogo = document.getElementById('container-jogo');
+        const telaInicial = document.getElementById('tela-inicial');
+        const janelaJogo = document.getElementById('janela-jogo');
+        const botaoVoltar = document.getElementById('botao-voltar');
+
+        // Quando clicar em um jogo
+        botoes.forEach(botao => {
+            botao.addEventListener('click', () => {
+                const urlDoJogo = botao.getAttribute('data-url');
+                janelaJogo.src = urlDoJogo; // Coloca o jogo no iframe
+                telaInicial.style.display = 'none'; // Esconde o menu
+                containerJogo.style.display = 'block'; // Mostra o jogo
+            });
+        });
+
+        // Quando clicar no botão Voltar
+        botaoVoltar.addEventListener('click', () => {
+            janelaJogo.src = ""; // Desliga o jogo para parar o som/música
+            containerJogo.style.display = 'none'; // Esconde o jogo
+            telaInicial.style.display = 'block'; // Mostra o menu de volta
+        });
+    </script>
+</body>
+</html>
