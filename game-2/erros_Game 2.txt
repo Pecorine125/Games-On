@@ -1,0 +1,7 @@
+=== RELATÓRIO DE REPARAÇÃO AUTOMÁTICA: Game 2 ===
+
+Idioma Nativo PT-BR Encontrado: Não
+
+Total de falhas interceptadas: 0
+Total de arquivos salvos com sucesso: 0
+
