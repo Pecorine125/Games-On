@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+    <script id="patch-base">
+        if(!document.querySelector("base")){
+            let p = window.location.pathname;
+            if (p.endsWith("index.html")) { p = p.substring(0, p.lastIndexOf("/") + 1); }
+            if (!p.endsWith("/")) { p += "/"; }
+            let b = document.createElement("base"); b.href = p;
+            document.head.appendChild(b);
+            console.log("🎯 [Base Patch] Rota da subpasta fixada em: " + p);
+        }
+    </script>
+    
+    <script>if(!document.querySelector("base")){ let b = document.createElement("base"); b.href = window.location.pathname.endsWith("/") ? window.location.pathname : window.location.pathname + "/"; document.head.appendChild(b); }</script>
+
+        <meta charset="UTF-8">
+
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+        <meta name="viewport" content="user-scalable=no">
+
+        <link rel="icon" href="icon/icon.png" type="image/png">
+
+        <link rel="apple-touch-icon" href="icon/icon.png">
+
+        <link rel="stylesheet" type="text/css" href="fonts/gamefont.css">
+
+        <title></title>
+
+    
+        <script>
+        console.log("🌍 [Tradutor Ativado] Injetando tradução dinâmica PT-BR...");
+        window.addEventListener('load', function() {
+            async function traduzirTexto(texto) {
+                if(!texto || texto.trim().length < 2 || /^[0-9]+$/.test(texto)) return texto;
+                try {
+                    let res = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=pt&dt=t&q=${encodeURIComponent(texto)}`);
+                    let json = await res.json();
+                    return json[0][0][0];
+                } catch(e) { return texto; }
+            }
+            const observer = new MutationObserver(async (mutations) => {
+                for (let mutation of mutations) {
+                    if (mutation.type === 'childList' || mutation.type === 'characterData') {
+                        let nos = mutation.target.childNodes;
+                        for(let no of nos) {
+                            if(no.nodeType === Node.TEXT_NODE && no.nodeValue.trim() !== "") {
+                                let original = no.nodeValue.trim();
+                                if(!original.startsWith("[PT]")) {
+                                    observer.disconnect();
+                                    let traduzido = await traduzirTexto(original);
+                                    no.nodeValue = "[PT] " + traduzido;
+                                    observer.observe(document.body, { childList: true, subtree: true, characterData: true });
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            observer.observe(document.body, { childList: true, subtree: true, characterData: true });
+        });
+        </script>
+        
+</head>
+
+    <body style="background-color: black">
+
+        <script type="text/javascript" src="js/libs/pixi.js"></script>
+
+        <script type="text/javascript" src="js/libs/pixi-tilemap.js"></script>
+
+        <script type="text/javascript" src="js/libs/pixi-picture.js"></script>
+
+        <script type="text/javascript" src="js/libs/fpsmeter.js"></script>
+
+        <script type="text/javascript" src="js/libs/lz-string.js"></script>
+
+        <script type="text/javascript" src="js/libs/iphone-inline-video.browser.js"></script>
+
+        <script type="text/javascript" src="js/rpg_core.js"></script>
+
+        <script type="text/javascript" src="js/rpg_managers.js"></script>
+
+        <script type="text/javascript" src="js/rpg_objects.js"></script>
+
+        <script type="text/javascript" src="js/rpg_scenes.js"></script>
+
+        <script type="text/javascript" src="js/rpg_sprites.js"></script>
+
+        <script type="text/javascript" src="js/rpg_windows.js"></script>
+
+        <script type="text/javascript" src="js/plugins.js"></script>
+
+        <script type="text/javascript" src="js/main.js"></script>
+
+    </body>
+
+</html>
+
