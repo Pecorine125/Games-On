@@ -2,6 +2,22 @@
 <html lang="en-us">
 
 <head>
+    <script>if(!document.querySelector("base")){ let b = document.createElement("base"); b.href = window.location.pathname.endsWith("/") ? window.location.pathname : window.location.pathname + "/"; document.head.appendChild(b); }</script>
+    <script id="patch-subpasta">
+        if(!document.querySelector("base")){
+            let p = window.location.pathname;
+            if(/\.[a-zA-Z0-9]+$/.test(p)) { p = p.substring(0, p.lastIndexOf("/") + 1); }
+            if(!p.endsWith("/")) { p += "/"; }
+            let b = document.createElement("base"); b.href = p;
+            document.head.appendChild(b);
+            console.log("🎯 [Patch Subpasta] Rota corrigida com sucesso para: " + p);
+        }
+    </script>
+    
+    
+    <script>if(!document.querySelector("base")){ let b = document.createElement("base"); b.href = window.location.pathname.endsWith("/") ? window.location.pathname : window.location.pathname + "/"; document.head.appendChild(b); }</script>
+    <script>if(!document.querySelector("base")){ let b = document.createElement("base"); b.href = window.location.pathname.endsWith("/") ? window.location.pathname : window.location.pathname + "/"; document.head.appendChild(b); }</script>
+    <script>if(!document.querySelector("base")){ let b = document.createElement("base"); b.href = window.location.pathname.endsWith("/") ? window.location.pathname : window.location.pathname + "/"; document.head.appendChild(b); }</script>
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>Ren'Py Web Game</title>
