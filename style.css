@@ -72,10 +72,14 @@ header h1 {
     border-color: #ff3e3e;
 }
 
+/* REDIMENSIONAMENTO PERFEITO DA IMAGEM
+   Garante que a imagem preencha o espaço como um quadrado sem distorcer
+*/
 .game-card img {
     width: 100%;
-    height: 140px;
-    object-fit: cover;
+    height: 150px; /* Altura ajustada para aproximar de um quadrado perfeito no celular */
+    object-fit: cover; /* Recorta e centraliza a imagem automaticamente dentro do espaço */
+    object-position: center; /* Garante que o foco do corte seja o meio da imagem */
     border-bottom: 1px solid #22222a;
     filter: brightness(0.85);
 }
