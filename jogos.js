@@ -1,4 +1,4 @@
-// Este arquivo é responsável apenas por guardar a lista de jogos, imagens e URLs
+// Banco de dados dos seus jogos. Já configurado com o proxy para pular o bloqueio de imagens.
 const meusJogos = [
     {
         id: 1,
@@ -39,5 +39,5 @@ const meusJogos = [
     { id: 12, nome: "Game 12", capa: "", url: "" }
 ];
 
-// Exporta a lista para que o arquivo app.js consiga ler
+// Compartilha os dados com o app.js
 window.meusJogos = meusJogos;

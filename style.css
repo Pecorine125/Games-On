@@ -1,6 +1,4 @@
-/* ==========================================================================
-   CONFIGURAÇÃO GERAL (TEMA SOMBRIO)
-   ========================================================================== */
+/* Reset Geral - Otimizado para telas mobile */
 * {
     margin: 0;
     padding: 0;
@@ -13,11 +11,11 @@ body, html {
     width: 100%;
     height: 100%;
     background-color: #0a0a0c; /* Preto profundo */
-    color: #e2e8f0; /* Texto cinza claro para não cansar os olhos */
+    color: #e2e8f0;
     overflow-x: hidden;
 }
 
-/* Sistema de Telas */
+/* Controle de Telas (Esconde/Mostra) */
 .screen {
     display: none;
     width: 100%;
@@ -28,9 +26,7 @@ body, html {
     display: block;
 }
 
-/* ==========================================================================
-   TELA DA GALERIA
-   ========================================================================== */
+/* Configurações da Galeria */
 #gallery-screen {
     padding: 24px 16px;
     overflow-y: auto;
@@ -45,56 +41,49 @@ header h1 {
     font-size: 22px;
     font-weight: 800;
     letter-spacing: 1.5px;
-    color: #ff3e3e; /* Vermelho Neon / Sombrio */
+    color: #ff3e3e; /* Vermelho Neon */
     text-transform: uppercase;
     text-shadow: 0 0 10px rgba(255, 62, 62, 0.3);
 }
 
-/* ORGANIZAÇÃO DOS JOGOS (GRID DO CELULAR)
-   Garante 2 jogos por linha perfeitamente alinhados, sem ficar "de ladinho"
-*/
+/* Organização perfeita em 2 colunas para o celular */
 .games-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Força exatamente 2 colunas no celular */
-    gap: 16px; /* Espaço idêntico entre os cards */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
     max-width: 600px;
     margin: 0 auto;
 }
 
-/* CARD DO JOGO STYLE DARK */
+/* Design Sombrio dos Cards de Jogos */
 .game-card {
-    background: #121216; /* Cinza quase preto */
-    border: 1px solid #22222a; /* Borda sutil */
+    background: #121216;
+    border: 1px solid #22222a;
     border-radius: 14px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    cursor: pointer;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
     transition: transform 0.15s ease, border-color 0.15s ease;
 }
 
-/* Efeito ao clicar no celular */
 .game-card:active {
     transform: scale(0.96);
-    border-color: #ff3e3e; /* Borda acende em vermelho */
+    border-color: #ff3e3e;
 }
 
-/* Imagem da Capa do Jogo */
 .game-card img {
     width: 100%;
-    height: 140px; /* Altura ideal para telas de celular */
+    height: 140px;
     object-fit: cover;
     border-bottom: 1px solid #22222a;
-    filter: brightness(0.85); /* Deixa a imagem levemente mais escura para combinar com o tema */
-    transition: filter 0.2s;
+    filter: brightness(0.85);
 }
 
 .game-card:active img {
-    filter: brightness(1); /* Clarea ao tocar */
+    filter: brightness(1);
 }
 
-/* Nome do Jogo abaixo da foto */
 .game-card span {
     font-size: 13px;
     font-weight: 600;
@@ -103,18 +92,16 @@ header h1 {
     text-align: center;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis; /* Se o nome for muito grande, coloca "..." para não quebrar o layout */
+    text-overflow: ellipsis;
 }
 
-/* ==========================================================================
-   TELA DO JOGO (PLAYER INTERNO)
-   ========================================================================== */
+/* Player do Jogo */
 #player-screen {
     position: relative;
-    background-color: #000000; /* Preto absoluto para foco total no jogo */
+    background-color: #000000;
 }
 
-/* Botão de Voltar estilo Minimalista Sombrio */
+/* Botão de Voltar Minimalista */
 .back-btn {
     position: absolute;
     top: 16px;
@@ -122,7 +109,7 @@ header h1 {
     background: rgba(18, 18, 22, 0.85);
     color: #e2e8f0;
     border: 1px solid #33333f;
-    backdrop-filter: blur(8px); /* Efeito de vidro borrado atrás do botão */
+    backdrop-filter: blur(8px);
     padding: 10px 18px;
     border-radius: 30px;
     font-size: 13px;
