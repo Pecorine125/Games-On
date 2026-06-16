@@ -28,7 +28,7 @@ body, html {
 
 /* Configurações da Galeria */
 #gallery-screen {
-    padding: 24px 12px; /* Margem sutil nas pontas da tela */
+    padding: 24px 16px;
     overflow-y: auto;
 }
 
@@ -46,39 +46,48 @@ header h1 {
     text-shadow: 0 0 10px rgba(255, 62, 62, 0.3);
 }
 
-/* ORGANIZAÇÃO EM 5 COLUNAS (5 JOGOS POR LINHA)
-   Cria linhas automáticas para baixo à medida que você adiciona mais jogos
+/* GRID RESPONSIVO: Se adapta ao tamanho da tela. 
+   No celular exibe 2 colunas para os banners de 400x200 ficarem nítidos.
 */
 .games-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr); /* Força exatamente 5 colunas de tamanho igual */
-    gap: 8px; /* Espaço menor entre os cards para caber tudo no celular */
-    max-width: 800px;
+    grid-template-columns: repeat(2, 1fr); /* 2 colunas no mobile */
+    gap: 16px;
+    max-width: 900px; /* Permite expandir se abrir no PC */
     margin: 0 auto;
 }
 
-/* Design Sombrio dos Cards de Jogos (Estilo Ícone) */
+/* Ajuste para telas maiores (PC/Tablet): Se a tela for grande, mostra 3 colunas */
+@media (min-width: 768px) {
+    .games-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Design Sombrio dos Cards de Jogos (Estilo Banner) */
 .game-card {
     background: #121216;
     border: 1px solid #22222a;
-    border-radius: 8px; /* Cantos um pouco mais nítidos para cards menores */
+    border-radius: 12px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
     transition: transform 0.15s ease, border-color 0.15s ease;
 }
 
 .game-card:active {
-    transform: scale(0.93); /* Efeito de clique levemente mais profundo */
+    transform: scale(0.96);
     border-color: #ff3e3e;
 }
 
-/* Imagem perfeitamente quadrada e adaptável dentro das 5 colunas */
+/* CONFIGURAÇÃO EXTRA-PRECISA DE 400x200 
+   Usamos aspect-ratio para travar a proporção exata de 400 por 200 (que simplifica para 2/1)
+*/
 .game-card img {
     width: 100%;
-    aspect-ratio: 1 / 1; /* Força a foto a ser um quadrado perfeito (ex: 70x70) */
-    object-fit: cover;
+    aspect-ratio: 400 / 200; /* Garante a proporção exata de 400 de largura por 200 de altura */
+    object-fit: cover; /* Recorta as bordas se a imagem original não for 400x200 */
     object-position: center;
     border-bottom: 1px solid #22222a;
     filter: brightness(0.85);
@@ -88,16 +97,15 @@ header h1 {
     filter: brightness(1);
 }
 
-/* Nome do jogo menor para caber embaixo do ícone */
 .game-card span {
-    font-size: 10px; /* Fonte menor para layouts compactos de 5 colunas */
+    font-size: 13px;
     font-weight: 600;
     color: #94a3b8;
-    padding: 6px 4px;
+    padding: 10px 8px;
     text-align: center;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis; /* Corta o nome com "..." se não couber na coluna */
+    text-overflow: ellipsis;
 }
 
 /* Player do Jogo */
