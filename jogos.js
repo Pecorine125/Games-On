@@ -27,9 +27,9 @@ const meusJogos = [
     { id: 25, nome: "Game 25", capa: "https://img.itch.zone/aW1nLzI1NDIxNzIzLmdpZg==/315x250%23c/mNQZgX.gif", url: "https://html-classic.itch.zone/html/17201037/index.html?v=1776456020" },
     { id: 26, nome: "Game 26", capa: "https://img.itch.zone/aW1nLzIzMTY1NTcwLnBuZw==/315x250%23c/BxOWAp.png", url: "https://html-classic.itch.zone/html/13769701-1387936/index.html" },
     { id: 27, nome: "Game 27", capa: "https://img.itch.zone/aW1nLzEyNDA1MDc5LnBuZw==/315x250%23c/RRxzYp.png", url: "https://html-classic.itch.zone/html/8573089/index.html?v=1732313628" },
-    { id: 28, nome: "Game 28", capa: "", url: "" },
-    { id: 29, nome: "Game 29", capa: "", url: "" },
-    { id: 30, nome: "Game 30", capa: "", url: "" },
+    { id: 28, nome: "Game 28", capa: "https://img.itch.zone/aW1nLzIyOTQyNTU5LnBuZw==/315x250%23c/rNGyZq.png", url: "https://html-classic.itch.zone/html/17549462/index.html?v=1778850609" },
+    { id: 29, nome: "Game 29", capa: "https://img.itch.zone/aW1nLzI2MDAwMzQ3LmdpZg==/315x250%23c/ITUi8B.gif", url: "https://html-classic.itch.zone/html/16328428/index.html?v=1769960114" },
+    { id: 30, nome: "Game 30", capa: "https://img.itch.zone/aW1nLzI3NTE0MjY5LnBuZw==/315x250%23c/3pTpT5.png", url: "https://html-classic.itch.zone/html/15360372/MidnightMagic-0.0.12patch2-web/index.html" },
 ];
 
 // Compartilha os dados com o app.js
