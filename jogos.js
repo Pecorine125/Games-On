@@ -21,8 +21,8 @@ const meusJogos = [
     {
         id: 4,
         nome: "Game 4",
-        capa: "",
-        url: ""
+        capa: "https://fgn.cdn.serverable.com/common/flashes/w/m/my_hardcore_harem.webp",
+        url: "https://my_hardcore_harem.fgn.cdn.serverable.com/common/flashes/nf/my_hardcore_harem/index.html?d=20251103002121"
     },
     {
         id: 5,
