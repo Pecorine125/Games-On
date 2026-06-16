@@ -2,9 +2,9 @@
 const meusJogos = [
     {
         id: 1,
-        nome: "",
-        capa: "",
-        url: ""
+        nome: "Game 1",
+        capa: "https://fgn.cdn.serverable.com/common/flashes/w/b/becoming_a_king.webp",
+        url: "https://fgn.cdn.serverable.com/common/flashes/nf/becoming_a_king/index.html?d=20250404182532"
     },
     {
         id: 2,
