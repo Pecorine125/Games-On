@@ -2,151 +2,30 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Portal de Jogos</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            text-align: center;
-            background-color: #1a1a1a;
-            color: white;
-            margin: 0;
-            padding: 40px 20px;
-        }
-
-        h1 {
-            margin-bottom: 40px;
-            font-size: 2rem;
-            font-weight: 600;
-        }
-
-        /* AJUSTE AQUI: Transforma a lista em uma grade flexível */
-        .menu-jogos {
-            display: flex;
-            flex-wrap: wrap; /* Permite que os botões pulem de linha */
-            justify-content: center; /* Centraliza os blocos na tela */
-            gap: 20px; /* Espaçamento igual entre cada jogo */
-            max-width: 1200px; /* Não deixa a grade espalhar demais em telas gigantes */
-            margin: 0 auto; /* Centraliza a grade inteira */
-        }
-
-        /* AJUSTE AQUI: Transforma os botões em Cards de Jogos */
-        .botao-jogo {
-            width: 160px; /* Largura fixa para ficarem simétricos */
-            height: 120px; /* Altura fixa */
-            font-size: 16px;
-            font-weight: bold;
-            background-color: #0070f3;
-            color: white;
-            border: none;
-            border-radius: 12px; /* Bordas mais arredondadas e modernas */
-            cursor: pointer;
-            transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-            
-            /* Centraliza o texto do nome do jogo dentro do card */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 15px;
-        }
-
-        /* Efeito visual ao passar o mouse */
-        .botao-jogo:hover {
-            background-color: #0051b3;
-            transform: translateY(-5px); /* Dá um leve pulinho para cima */
-            box-shadow: 0 8px 15px rgba(0, 112, 243, 0.4);
-        }
-
-        /* Área do jogo (mantém igual) */
-        #container-jogo {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: #000;
-        }
-
-        #botao-voltar {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            padding: 12px 24px;
-            font-weight: bold;
-            background-color: #ff4040;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            z-index: 10;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.4);
-        }
-
-        #botao-voltar:hover {
-            background-color: #d32f2f;
-        }
-
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Minha Galeria de Jogos</title>
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- TELA INICIAL: MENU DE JOGOS -->
-    <div id="tela-inicial">
-        <h1>Escolha um Jogo para Jogar</h1>
-        <div class="menu-jogos">
-            <!-- Altere o 'data-url' para o nome exato da pasta do seu jogo -->
-            <button class="botao-jogo" data-url="game-1/index.html">Game 1</button>
-            <button class="botao-jogo" data-url="game-2/index.html">Game 2</button>
-            <button class="botao-jogo" data-url="game-3/index.html">Game 3</button>
-            <button class="botao-jogo" data-url="game-4/index.html">Game 4</button>
-            <button class="botao-jogo" data-url="game-5/index.html">Game 5</button>
-            <button class="botao-jogo" data-url="game-6/index.html">Game 6</button>
-            <button class="botao-jogo" data-url="game-7/index.html">Game 7</button>
-            <button class="botao-jogo" data-url="game-8/index.html">Game 8</button>
-            <button class="botao-jogo" data-url="game-9/index.html">Game 9</button>
-            <button class="botao-jogo" data-url="game-10/index.html">Game 10</button>
-            <button class="botao-jogo" data-url="game-11/index.html">Game 11</button>
-            <button class="botao-jogo" data-url="game-12/index.html">Game 12</button>
-            
-        </div>
+    <div id="gallery-screen" class="screen active">
+        <header>
+            <h1>Meus Jogos Web</h1>
+        </header>
+        <div class="games-grid" id="games-container"></div>
     </div>
 
-    <!-- TELA DO JOGO (IFRAME) -->
-    <div id="container-jogo">
-        <button id="botao-voltar">← Voltar para o Menu</button>
-        <iframe id="janela-jogo" src=""></iframe>
+    <div id="player-screen" class="screen">
+        <button class="back-btn" onclick="fecharJogo()">⬅ Voltar</button>
+        <iframe id="game-iframe" sandbox="allow-scripts allow-same-origin allow-forms" allow="autoplay; gamepad; fullscreen; accelerometer; gyroscope"></iframe>
     </div>
 
-    <script>
-        const botoes = document.querySelectorAll('.botao-jogo');
-        const containerJogo = document.getElementById('container-jogo');
-        const telaInicial = document.getElementById('tela-inicial');
-        const janelaJogo = document.getElementById('janela-jogo');
-        const botaoVoltar = document.getElementById('botao-voltar');
-
-        // Quando clicar em um jogo
-        botoes.forEach(botao => {
-            botao.addEventListener('click', () => {
-                const urlDoJogo = botao.getAttribute('data-url');
-                janelaJogo.src = urlDoJogo; // Coloca o jogo no iframe
-                telaInicial.style.display = 'none'; // Esconde o menu
-                containerJogo.style.display = 'block'; // Mostra o jogo
-            });
-        });
-
-        // Quando clicar no botão Voltar
-        botaoVoltar.addEventListener('click', () => {
-            janelaJogo.src = ""; // Desliga o jogo para parar o som/música
-            containerJogo.style.display = 'none'; // Esconde o jogo
-            telaInicial.style.display = 'block'; // Mostra o menu de volta
-        });
-    </script>
+    <script src="jogos.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
