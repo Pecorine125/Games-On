@@ -15,8 +15,8 @@ const meusJogos = [
     {
         id: 3,
         nome: "Game 3",
-        capa: "",
-        url: ""
+        capa: "https://fgn.cdn.serverable.com/common/flashes/w/o/orange_smash.webp",
+        url: "https://orange_smash_v_0_9_1.fgn.cdn.serverable.com/common/flashes/nf/orange_smash/v_0.9.1/index.html?d=20260427011752"
     },
     {
         id: 4,
