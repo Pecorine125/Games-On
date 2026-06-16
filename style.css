@@ -1,4 +1,4 @@
-/* Reset Geral */
+/* Reset Geral - Mobile First */
 * {
     margin: 0;
     padding: 0;
@@ -18,13 +18,13 @@ body, html {
 /* CAIXA DE NOTIFICAÇÃO FLUTUANTE */
 .notification {
     position: fixed;
-    top: -150px; /* Começa escondida para fora da tela */
+    top: -150px;
     left: 50%;
     transform: translateX(-50%);
     width: 90%;
     max-width: 450px;
     background: #121216;
-    border: 1px solid #ff3e3e; /* Borda Neon */
+    border: 1px solid #ff3e3e;
     border-radius: 16px;
     padding: 16px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 15px rgba(255, 62, 62, 0.2);
@@ -32,10 +32,9 @@ body, html {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    transition: top 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Animação suave caindo */
+    transition: top 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* Ativa a animação fazendo a caixa descer */
 .notification.show {
     top: 20px;
 }
@@ -77,14 +76,8 @@ body, html {
     cursor: pointer;
     width: 100%;
     text-transform: uppercase;
-    transition: background 0.2s;
 }
 
-.notification-btn:active {
-    background: #b91c1c;
-}
-
-/* Exibição da versão no Header */
 .current-version-display {
     font-size: 11px;
     color: #475569;
@@ -92,7 +85,7 @@ body, html {
     font-weight: 600;
 }
 
-/* Estrutura das Telas */
+/* Telas do Sistema */
 .screen {
     display: none;
     width: 100%;
@@ -122,7 +115,7 @@ header h1 {
     text-shadow: 0 0 10px rgba(255, 62, 62, 0.3);
 }
 
-/* Grid de 2 colunas para o formato 400x200 */
+/* GRID ESTILO STEAM: 2 Colunas Mobile / 3 Colunas PC */
 .games-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -153,6 +146,7 @@ header h1 {
     border-color: #ff3e3e;
 }
 
+/* Bloqueia o tamanho da foto em 400x200 de forma responsiva */
 .game-card img {
     width: 100%;
     aspect-ratio: 400 / 200;
@@ -177,31 +171,52 @@ header h1 {
     text-overflow: ellipsis;
 }
 
+/* PLAYER DO JOGO */
 #player-screen {
     position: relative;
     background-color: #000000;
+    width: 100vw;
+    height: 100vh;
 }
 
-.back-btn {
+/* Painel superior de botões de controle */
+.game-controls {
     position: absolute;
-    top: 16px;
-    left: 16px;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+.control-btn {
+    pointer-events: auto;
     background: rgba(18, 18, 22, 0.85);
     color: #e2e8f0;
     border: 1px solid #33333f;
     backdrop-filter: blur(8px);
-    padding: 10px 18px;
+    padding: 10px 16px;
     border-radius: 30px;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
-    z-index: 9999;
     cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
-.back-btn:active {
+.control-btn:active {
     background: #ff3e3e;
     color: #fff;
     border-color: #ff3e3e;
+}
+
+#player-screen:fullscreen .game-controls {
+    opacity: 0.3;
+    transition: opacity 0.3s;
+}
+#player-screen:fullscreen .game-controls:hover {
+    opacity: 1;
 }
 
 iframe {
