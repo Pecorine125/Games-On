@@ -21,7 +21,7 @@ const meusJogos = [
     { id: 19, nome: "Game 19", capa: "https://img.itch.zone/aW1nLzI3Nzk0NTU4LnBuZw==/315x250%23c/FuuvJo.png", url: "https://html-classic.itch.zone/html/17912121/index.html?v=1781329396" },
     { id: 20, nome: "Game 20", capa: "https://img.itch.zone/aW1nLzI2ODM5NDU2LmdpZg==/315x250%23c/5WOugI.gif", url: "https://html-classic.itch.zone/html/17310493/index.html?v=1777207377" },
     { id: 21, nome: "Game 21", capa: "https://img.itch.zone/aW1nLzE3MzM5ODg0LmpwZw==/315x250%23c/D3UsTM.jpg", url: "https://html-classic.itch.zone/html/14299674/index.html" },
-    { id: 22, nome: "Game 22", capa: "", url: "" },
+    { id: 22, nome: "Game 22", capa: "https://img.itch.zone/aW1nLzI3MTM1NDkyLnBuZw==/315x250%23c/N2Yss%2F.png", url: "https://html-classic.itch.zone/html/17591416/mygirlfriendandmynightmare-0.6.0-web/index.html?v=1779136599" },
     { id: 23, nome: "Game 23", capa: "", url: "" },
 ];
 
