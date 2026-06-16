@@ -6,7 +6,6 @@
     <title>Minha Galeria de Jogos</title>
     
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎮</text></svg>">
-
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="mobile-web-app-capable" content="yes">
@@ -15,9 +14,21 @@
 </head>
 <body>
 
+    <div id="update-notification" class="notification">
+        <div class="notification-content">
+            <span class="notification-icon">🚀</span>
+            <div class="notification-text">
+                <p class="notification-title">Nova atualização disponível!</p>
+                <p class="notification-desc">O app foi atualizado para a versão <strong id="new-version-tag">v0.0</strong>.</p>
+            </div>
+        </div>
+        <button class="notification-btn" onclick="atualizarPagina()">Atualizar Agora</button>
+    </div>
+
     <div id="gallery-screen" class="screen active">
         <header>
             <h1>Meus Jogos Web</h1>
+            <p class="current-version-display">Versão atual: <span id="current-version-tag">Carregando...</span></p>
         </header>
         
         <div class="games-grid" id="games-container"></div>
@@ -25,7 +36,6 @@
 
     <div id="player-screen" class="screen">
         <button class="back-btn" onclick="fecharJogo()">⬅ Voltar</button>
-        
         <iframe 
             id="game-iframe" 
             sandbox="allow-scripts allow-forms allow-same-origin allow-top-navigation-by-user-activation" 
