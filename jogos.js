@@ -16,7 +16,7 @@ const meusJogos = [
     { id: 14, nome: "Game 14", capa: "https://img.itch.zone/aW1nLzE3NzE2Mzg0LnBuZw==/315x250%23c/B6oJgd.png", url: "https://html.itch.zone/html/11543078/html/index.html?v=1732313542" },
     { id: 15, nome: "Game 15", capa: "https://img.itch.zone/aW1nLzI1OTkyNzY2LmdpZg==/315x250%23c/FAI%2FfC.gif", url: "https://html-classic.itch.zone/html/16717086/WebGL-Mother-in-Lust-v1.0-DEMO/index.html?v=1772840227" },
     { id: 16, nome: "Game 16", capa: "https://img.itch.zone/aW1nLzIzOTI1MTM2LnBuZw==/315x250%23c/gR5qwb.png", url: "https://html-classic.itch.zone/html/15440552/MyFluffyNeighborMoonfall-1.2.0-web/index.html" },
-    { id: 17, nome: "Game 17", capa: "", url: "" },
+    { id: 17, nome: "Game 17", capa: "https://img.itch.zone/aW1nLzIyNDM5MzY5LnBuZw==/315x250%23c/UzFBB%2B.png", url: "https://html-classic.itch.zone/html/15251777/index.html" },
     { id: 18, nome: "Game 18", capa: "", url: "" },
     { id: 19, nome: "Game 19", capa: "", url: "" },
     { id: 20, nome: "Game 20", capa: "", url: "" },
