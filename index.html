@@ -6,6 +6,7 @@
     <title>Minha Galeria de Jogos</title>
     
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎮</text></svg>">
+
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="mobile-web-app-capable" content="yes">
@@ -35,7 +36,11 @@
     </div>
 
     <div id="player-screen" class="screen">
-        <button class="back-btn" onclick="fecharJogo()">⬅ Voltar</button>
+        <div class="game-controls">
+            <button class="control-btn back-btn" onclick="fecharJogo()">⬅ Voltar</button>
+            <button class="control-btn fullscreen-btn" onclick="activarTelaCheia()">📺 Tela Cheia</button>
+        </div>
+        
         <iframe 
             id="game-iframe" 
             sandbox="allow-scripts allow-forms allow-same-origin allow-top-navigation-by-user-activation" 
