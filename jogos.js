@@ -8,9 +8,9 @@ const meusJogos = [
     },
     {
         id: 2,
-        nome: "",
-        capa: "",
-        url: ""
+        nome: "Game 2",
+        capa: "https://fgn.cdn.serverable.com/common/flashes/w/b/biological_lust.webp",
+        url: "https://fgn.cdn.serverable.com/common/flashes/nf/biological_lust/index.html?d=20250530005319"
     }
 ];
 
