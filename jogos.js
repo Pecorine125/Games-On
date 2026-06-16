@@ -13,8 +13,14 @@ const meusJogos = [
         url: "https://fgn.cdn.serverable.com/common/flashes/nf/biological_lust/index.html?d=20250530005319"
     },
     {
-        id: 4,
+        id: 3,
         nome: "Game 3",
+        capa: "",
+        url: ""
+    },
+    {
+        id: 4,
+        nome: "Game 4",
         capa: "",
         url: ""
     },
