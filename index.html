@@ -2,54 +2,37 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Minha Galeria de Jogos</title>
-    
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎮</text></svg>">
-
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="mobile-web-app-capable" content="yes">
-    
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Galeria de Jogos HTML5</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #121214; color: #fff; margin: 0; padding: 20px; }
+        h1 { text-align: center; color: #4f46e5; margin-bottom: 10px; }
+        p.subtitle { text-align: center; color: #a1a1aa; margin-bottom: 30px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
+        .card { background: #1f1f23; border-radius: 10px; padding: 15px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.3); border: 1px solid #2e2e35; transition: transform 0.2s; }
+        .card:hover { transform: translateY(-5px); }
+        .capa { width: 100%; height: 150px; object-fit: cover; border-radius: 6px; background-color: #2a2a30; }
+        .nome { font-size: 16px; font-weight: bold; margin: 12px 0; min-height: 40px; display: flex; align-items: center; justify-content: center; }
+        .btn-play { background-color: #10b981; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; width: 100%; font-weight: bold; text-decoration: none; display: block; box-sizing: border-box; transition: background 0.2s; }
+        .btn-play:hover { background-color: #059669; }
+    </style>
 </head>
 <body>
-
-    <div id="update-notification" class="notification">
-        <div class="notification-content">
-            <span class="notification-icon">🚀</span>
-            <div class="notification-text">
-                <p class="notification-title">Nova atualização disponível!</p>
-                <p class="notification-desc">O app foi atualizado para a versão <strong id="new-version-tag">v0.0</strong>.</p>
-            </div>
+    <h1>🎮 Meu Portfólio de Jogos Web</h1>
+    <p class="subtitle">Selecione um jogo abaixo para jogar direto no seu navegador!</p>
+    
+    <div class="grid">
+        <div class="card">
+            <img class="capa" src="https://img.itch.zone/aW1nLzIwNjU2NTY1LmpwZw==/315x250%23c/zqHoJG.jpg" alt="Game 8">
+            <div class="nome">Game 8 (Horny Doctor)</div>
+            <a class="btn-play" href="jogos_baixados/Game 8/index.html" target="_blank">▶ Jogar</a>
         </div>
-        <button class="notification-btn" onclick="atualizarPagina()">Atualizar Agora</button>
-    </div>
 
-    <div id="gallery-screen" class="screen active">
-        <header>
-            <h1>Meus Jogos Web</h1>
-            <p class="current-version-display">Versão atual: <span id="current-version-tag">Carregando...</span></p>
-        </header>
-        
-        <div class="games-grid" id="games-container"></div>
-    </div>
-
-    <div id="player-screen" class="screen">
-        <div class="game-controls">
-            <button class="control-btn back-btn" onclick="fecharJogo()">⬅ Voltar</button>
-            <button class="control-btn fullscreen-btn" onclick="activarTelaCheia()">📺 Tela Cheia</button>
+        <div class="card">
+            <img class="capa" src="https://img.itch.zone/aW1nLzIwNjcyMTc0LmpwZw==/315x250%23c/ua5aDt.jpg" alt="Game 7">
+            <div class="nome">Game 7</div>
+            <a class="btn-play" href="jogos_baixados/Game 7/index.html" target="_blank">▶ Jogar</a>
         </div>
-        
-        <iframe 
-            id="game-iframe" 
-            sandbox="allow-scripts allow-forms allow-same-origin allow-top-navigation-by-user-activation" 
-            allow="autoplay; gamepad; fullscreen; accelerometer; gyroscope"
-            referrerpolicy="no-referrer">
-        </iframe>
     </div>
-
-    <script src="jogos.js"></script>
-    <script src="app.js"></script>
 </body>
 </html>
