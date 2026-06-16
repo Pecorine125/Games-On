@@ -19,8 +19,8 @@ const meusJogos = [
     { id: 17, nome: "Game 17", capa: "https://img.itch.zone/aW1nLzIyNDM5MzY5LnBuZw==/315x250%23c/UzFBB%2B.png", url: "https://html-classic.itch.zone/html/15251777/index.html" },
     { id: 18, nome: "Game 18", capa: "https://img.itch.zone/aW1nLzE2ODk1OTIwLmpwZw==/315x250%23c/qLEIUU.jpg", url: "https://html-classic.itch.zone/html/13258577/index.html" },
     { id: 19, nome: "Game 19", capa: "https://img.itch.zone/aW1nLzI3Nzk0NTU4LnBuZw==/315x250%23c/FuuvJo.png", url: "https://html-classic.itch.zone/html/17912121/index.html?v=1781329396" },
-    { id: 20, nome: "Game 20", capa: "", url: "" },
-    { id: 21, nome: "Game 21", capa: "", url: "" },
+    { id: 20, nome: "Game 20", capa: "https://img.itch.zone/aW1nLzI2ODM5NDU2LmdpZg==/315x250%23c/5WOugI.gif", url: "https://html-classic.itch.zone/html/17310493/index.html?v=1777207377" },
+    { id: 21, nome: "Game 21", capa: "https://img.itch.zone/aW1nLzE3MzM5ODg0LmpwZw==/315x250%23c/D3UsTM.jpg", url: "https://html-classic.itch.zone/html/14299674/index.html" },
     { id: 22, nome: "Game 22", capa: "", url: "" },
     { id: 23, nome: "Game 23", capa: "", url: "" },
 ];
