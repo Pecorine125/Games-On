@@ -2,15 +2,15 @@
 const meusJogos = [
     {
         id: 1,
-        nome: "Jogo Exemplo 1",
-        capa: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=300",
-        url: "COLOQUE_AQUI_O_LINK_DO_IFRAME_1"
+        nome: "",
+        capa: "",
+        url: ""
     },
     {
         id: 2,
-        nome: "Jogo Exemplo 2",
-        capa: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=300",
-        url: "COLOQUE_AQUI_O_LINK_DO_IFRAME_2"
+        nome: "",
+        capa: "",
+        url: ""
     }
 ];
 
