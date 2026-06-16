@@ -1,4 +1,4 @@
-/* Reset Geral - Otimizado para telas mobile */
+/* Reset Geral */
 * {
     margin: 0;
     padding: 0;
@@ -10,12 +10,89 @@
 body, html {
     width: 100%;
     height: 100%;
-    background-color: #0a0a0c; /* Preto profundo */
+    background-color: #0a0a0c;
     color: #e2e8f0;
     overflow-x: hidden;
 }
 
-/* Controle de Telas (Esconde/Mostra) */
+/* CAIXA DE NOTIFICAÇÃO FLUTUANTE */
+.notification {
+    position: fixed;
+    top: -150px; /* Começa escondida para fora da tela */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 450px;
+    background: #121216;
+    border: 1px solid #ff3e3e; /* Borda Neon */
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 15px rgba(255, 62, 62, 0.2);
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: top 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Animação suave caindo */
+}
+
+/* Ativa a animação fazendo a caixa descer */
+.notification.show {
+    top: 20px;
+}
+
+.notification-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.notification-icon {
+    font-size: 24px;
+}
+
+.notification-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.notification-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.notification-desc {
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+.notification-btn {
+    background: #ff3e3e;
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    text-transform: uppercase;
+    transition: background 0.2s;
+}
+
+.notification-btn:active {
+    background: #b91c1c;
+}
+
+/* Exibição da versão no Header */
+.current-version-display {
+    font-size: 11px;
+    color: #475569;
+    margin-top: 4px;
+    font-weight: 600;
+}
+
+/* Estrutura das Telas */
 .screen {
     display: none;
     width: 100%;
@@ -26,7 +103,6 @@ body, html {
     display: block;
 }
 
-/* Configurações da Galeria */
 #gallery-screen {
     padding: 24px 16px;
     overflow-y: auto;
@@ -41,30 +117,26 @@ header h1 {
     font-size: 22px;
     font-weight: 800;
     letter-spacing: 1.5px;
-    color: #ff3e3e; /* Vermelho Neon */
+    color: #ff3e3e;
     text-transform: uppercase;
     text-shadow: 0 0 10px rgba(255, 62, 62, 0.3);
 }
 
-/* GRID RESPONSIVO: Se adapta ao tamanho da tela. 
-   No celular exibe 2 colunas para os banners de 400x200 ficarem nítidos.
-*/
+/* Grid de 2 colunas para o formato 400x200 */
 .games-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 colunas no mobile */
+    grid-template-columns: repeat(2, 1fr);
     gap: 16px;
-    max-width: 900px; /* Permite expandir se abrir no PC */
+    max-width: 900px;
     margin: 0 auto;
 }
 
-/* Ajuste para telas maiores (PC/Tablet): Se a tela for grande, mostra 3 colunas */
 @media (min-width: 768px) {
     .games-grid {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
-/* Design Sombrio dos Cards de Jogos (Estilo Banner) */
 .game-card {
     background: #121216;
     border: 1px solid #22222a;
@@ -81,13 +153,10 @@ header h1 {
     border-color: #ff3e3e;
 }
 
-/* CONFIGURAÇÃO EXTRA-PRECISA DE 400x200 
-   Usamos aspect-ratio para travar a proporção exata de 400 por 200 (que simplifica para 2/1)
-*/
 .game-card img {
     width: 100%;
-    aspect-ratio: 400 / 200; /* Garante a proporção exata de 400 de largura por 200 de altura */
-    object-fit: cover; /* Recorta as bordas se a imagem original não for 400x200 */
+    aspect-ratio: 400 / 200;
+    object-fit: cover;
     object-position: center;
     border-bottom: 1px solid #22222a;
     filter: brightness(0.85);
@@ -108,13 +177,11 @@ header h1 {
     text-overflow: ellipsis;
 }
 
-/* Player do Jogo */
 #player-screen {
     position: relative;
     background-color: #000000;
 }
 
-/* Botão de Voltar Minimalista */
 .back-btn {
     position: absolute;
     top: 16px;
@@ -129,7 +196,6 @@ header h1 {
     font-weight: 700;
     z-index: 9999;
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
 }
 
 .back-btn:active {
