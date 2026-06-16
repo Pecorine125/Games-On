@@ -23,6 +23,13 @@ const meusJogos = [
     { id: 21, nome: "Game 21", capa: "https://img.itch.zone/aW1nLzE3MzM5ODg0LmpwZw==/315x250%23c/D3UsTM.jpg", url: "https://html-classic.itch.zone/html/14299674/index.html" },
     { id: 22, nome: "Game 22", capa: "https://img.itch.zone/aW1nLzI3MTM1NDkyLnBuZw==/315x250%23c/N2Yss%2F.png", url: "https://html-classic.itch.zone/html/17591416/mygirlfriendandmynightmare-0.6.0-web/index.html?v=1779136599" },
     { id: 23, nome: "Game 23", capa: "", url: "" },
+    { id: 23, nome: "Game 23", capa: "", url: "" },
+    { id: 23, nome: "Game 23", capa: "", url: "" },
+    { id: 23, nome: "Game 23", capa: "", url: "" },
+    { id: 23, nome: "Game 23", capa: "", url: "" },
+    { id: 23, nome: "Game 23", capa: "", url: "" },
+    { id: 23, nome: "Game 23", capa: "", url: "" },
+    { id: 23, nome: "Game 23", capa: "", url: "" },
 ];
 
 // Compartilha os dados com o app.js
