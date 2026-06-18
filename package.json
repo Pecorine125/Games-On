@@ -1,0 +1,13 @@
+{
+  "name": "galeria-jogos-html5",
+  "version": "1.0.0",
+  "description": "Galeria de jogos HTML5",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx serve ."
+  },
+  "keywords": ["games", "html5", "portfolio"],
+  "author": "",
+  "license": "MIT"
+}
