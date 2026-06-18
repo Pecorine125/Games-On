@@ -1,9 +1,4 @@
 function baixarJogo(nome, zipUrl) {
-    if (!zipUrl) {
-        alert("Arquivo de download ainda não disponível.");
-        return;
-    }
-
     const link = document.createElement('a');
     link.href = zipUrl;
     link.download = nome + '.zip';
@@ -11,19 +6,17 @@ function baixarJogo(nome, zipUrl) {
     link.click();
     document.body.removeChild(link);
 
-    // Feedback no botão
-    const buttons = document.querySelectorAll('.btn-download');
-    for (let btn of buttons) {
+    // Feedback visual
+    const btns = document.querySelectorAll('.btn-download');
+    btns.forEach(btn => {
         if (btn.getAttribute('onclick').includes(nome)) {
-            const originalText = btn.innerHTML;
-            btn.innerHTML = '✅ Iniciando download...';
+            const original = btn.innerHTML;
+            btn.innerHTML = '✅ Baixando...';
             btn.disabled = true;
-
             setTimeout(() => {
-                btn.innerHTML = originalText;
+                btn.innerHTML = original;
                 btn.disabled = false;
-            }, 2500);
-            break;
+            }, 2000);
         }
-    }
+    });
 }
