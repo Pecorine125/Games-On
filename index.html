@@ -4,114 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minha Galeria de Jogos HTML5</title>
-    <style>
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            background-color: #121214; 
-            color: #fff; 
-            margin: 0; 
-            padding: 20px; 
-        }
-        h1 { 
-            text-align: center; 
-            color: #4f46e5; 
-            margin-bottom: 10px; 
-        }
-        p.subtitle { 
-            text-align: center; 
-            color: #a1a1aa; 
-            margin-bottom: 30px; 
-        }
-        .grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
-            gap: 20px; 
-            max-width: 1200px; 
-            margin: 0 auto; 
-        }
-        .card { 
-            background: #1f1f23; 
-            border-radius: 10px; 
-            padding: 15px; 
-            text-align: center; 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3); 
-            border: 1px solid #2e2e35; 
-            transition: transform 0.2s; 
-        }
-        .card:hover { 
-            transform: translateY(-5px); 
-        }
-        .capa { 
-            width: 100%; 
-            height: 150px; 
-            object-fit: cover; 
-            border-radius: 6px; 
-            background-color: #2a2a30; 
-        }
-        .nome { 
-            font-size: 16px; 
-            font-weight: bold; 
-            margin: 12px 0; 
-            min-height: 40px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-        }
-        .btn-play { 
-            background-color: #10b981; 
-            color: white; 
-            border: none; 
-            padding: 10px 15px; 
-            border-radius: 5px; 
-            cursor: pointer; 
-            width: 100%; 
-            font-weight: bold; 
-            text-decoration: none; 
-            display: block; 
-            box-sizing: border-box; 
-            transition: background 0.2s; 
-            margin-bottom: 8px;
-        }
-        .btn-play:hover { 
-            background-color: #059669; 
-        }
-        .btn-download {
-            background-color: #3b82f6;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-            font-weight: bold;
-            text-decoration: none;
-            display: block;
-            box-sizing: border-box;
-            transition: background 0.2s;
-        }
-        .btn-download:hover {
-            background-color: #2563eb;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>🎮 Meu Portfólio de Jogos Web</h1>
-    <p class="subtitle">Selecione um jogo abaixo para jogar direto no seu navegador!</p>
-   
-    <div class="grid">
+    <header>
+        <h1>🎮 Meu Portfólio de Jogos Web</h1>
+        <p class="subtitle">Selecione um jogo abaixo para jogar direto no navegador!</p>
+    </header>
+
+    <div class="grid" id="game-grid">
+        <!-- Game 1 -->
         <div class="card">
-            <img class="capa" src="https://img.itch.zone/aW1nLzIwNjU2NTY1LmpwZw==/315x250%23c/zqHoJG.jpg" alt="Game 8">
-            <div class="nome">Game 8 (Horny Doctor)</div>
-            <a class="btn-play" href="jogos_baixados/Game 8/index.html" target="_blank">▶ Jogar</a>
-            <button class="btn-download" onclick="baixarJogo('Game 8')">⬇ Baixar</button>
+            <img class="capa" src="" alt="">
+            <div class="nome">Nome do Jogo</div>
+            <div class="buttons">
+                <a class="btn-play" href="" target="_blank">▶ Jogar</a>
+                <button class="btn-download" onclick="baixarJogo('Game 1', 'zips/Game 1.zip')">
+                    ⬇️ Baixar
+                </button>
+            </div>
         </div>
+        <!-- Game 2 -->
         <div class="card">
-            <img class="capa" src="https://img.itch.zone/aW1nLzIwNjcyMTc0LmpwZw==/315x250%23c/ua5aDt.jpg" alt="Game 7">
-            <div class="nome">Game 7</div>
-            <a class="btn-play" href="jogos_baixados/Game 7/index.html" target="_blank">▶ Jogar</a>
-            <button class="btn-download" onclick="baixarJogo('Game 7')">⬇ Baixar</button>
+            <img class="capa" src="" alt="">
+            <div class="nome">Nome do Jogo</div>
+            <div class="buttons">
+                <a class="btn-play" href="" target="_blank">▶ Jogar</a>
+                <button class="btn-download" onclick="baixarJogo('Game 2', 'zips/Game 2.zip')">
+                    ⬇️ Baixar
+                </button>
+            </div>
         </div>
-    </div>
+        <!-- Game 3 -->
+        <div class="card">
+            <img class="capa" src="" alt="">
+            <div class="nome">Nome do Jogo</div>
+            <div class="buttons">
+                <a class="btn-play" href="" target="_blank">▶ Jogar</a>
+                <button class="btn-download" onclick="baixarJogo('Game 3', 'zips/Game 3.zip')">
+                    ⬇️ Baixar
+                </button>
+            </div>
+        </div>
+        <!-- Game 4 -->
+        <div class="card">
+            <img class="capa" src="" alt="">
+            <div class="nome">Nome do Jogo</div>
+            <div class="buttons">
+                <a class="btn-play" href="" target="_blank">▶ Jogar</a>
+                <button class="btn-download" onclick="baixarJogo('Game 4', 'zips/Game 4.zip')">
+                    ⬇️ Baixar
+                </button>
+            </div>
+        </div>
+        <!-- Game 5 -->
+        <div class="card">
+            <img class="capa" src="" alt="">
+            <div class="nome">Nome do Jogo</div>
+            <div class="buttons">
+                <a class="btn-play" href="" target="_blank">▶ Jogar</a>
+                <button class="btn-download" onclick="baixarJogo('Game 5', 'zips/Game 5.zip')">
+                    ⬇️ Baixar
+                </button>
+            </div>
+        </div>
 
     <script src="baixar.js"></script>
 </body>

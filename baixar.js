@@ -1,14 +1,19 @@
-// Função para baixar jogos (simulada por enquanto)
-function baixarJogo(nomeJogo) {
-    const url = `jogos_baixados/${nomeJogo}.zip`;
-    
-    // Cria um link temporário para download
+function baixarJogo(nome, zipUrl) {
     const link = document.createElement('a');
-    link.href = url;
-    link.download = `${nomeJogo}.zip`;
+    link.href = zipUrl;
+    link.download = nome + '.zip';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
     
-    alert(`Iniciando download de ${nomeJogo}... (se o arquivo .zip existir na pasta jogos_baixados)`);
+    // Feedback visual
+    const btn = event.currentTarget;
+    const originalText = btn.textContent;
+    btn.textContent = '✅ Baixando...';
+    btn.disabled = true;
+    
+    setTimeout(() => {
+        btn.textContent = originalText;
+        btn.disabled = false;
+    }, 2000);
 }
