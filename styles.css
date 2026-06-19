@@ -1,9 +1,42 @@
-body { margin: 0; background: #050505; color: #e0e0e0; font-family: sans-serif; }
-#grid-jogos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 12px; }
-.card { background: #121212; padding: 8px; border-radius: 10px; text-align: center; border: 1px solid #222; }
-.card img { width: 100%; height: 100px; object-fit: cover; border-radius: 6px; }
-.card p { margin: 8px 0 0 0; font-size: 0.8rem; }
+body { margin: 0; background: #050505; color: #fff; font-family: sans-serif; overflow-x: hidden; }
+
+/* Grid de 2 Colunas centralizado */
+#grid-jogos { 
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 20px; 
+    padding: 20px; 
+    justify-items: center; 
+}
+
+/* Card ajustado para o formato Retrato */
+.card { 
+    background: #111; 
+    padding: 10px; 
+    border-radius: 12px; 
+    text-align: center; 
+    border: 1px solid #222; 
+    width: 155px; /* Um pouco maior que a imagem para o respiro */
+    cursor: pointer;
+}
+
+/* Imagem 150x300 sem borrar */
+.card img { 
+    width: 150px; 
+    height: 300px; 
+    object-fit: cover; 
+    object-position: center; 
+    border-radius: 8px; 
+    display: block; 
+    margin: 0 auto;
+}
+
+.card p { margin: 10px 0 0 0; font-size: 0.85rem; font-weight: bold; color: #aaa; }
+
+/* Modal do Jogo (Ocupa tudo) */
 .hidden { display: none; }
-#container-jogo { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 1000; }
-iframe { width: 100%; height: 90%; border: none; }
-#btn-fechar { width: 100%; height: 10%; background: #000; color: #ff4757; border: none; font-weight: bold; }
+#container-jogo { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 2000; display: flex; flex-direction: column; }
+#barra-topo { width: 100%; height: 50px; background: #111; display: flex; align-items: center; }
+#btn-fechar { background: none; border: none; color: #ff4757; font-weight: bold; padding-left: 20px; cursor: pointer; font-size: 1rem; }
+#iframe-wrapper { flex-grow: 1; width: 100%; }
+iframe { width: 100%; height: 100%; border: none; }
