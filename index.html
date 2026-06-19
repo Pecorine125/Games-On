@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Games On</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- MENU -->
+  <div id="menu">
+    <h1>🎮 Games On</h1>
+    <div class="grid" id="game-grid"></div>
+  </div>
+
+  <!-- TELA DO JOGO -->
+  <div id="game-screen">
+    <iframe id="game-iframe" allowfullscreen></iframe>
+    
+    <div class="controls">
+      <button onclick="backToMenu()">← Menu</button>
+      <button onclick="toggleFullscreen()">⛶ Tela Cheia</button>
+      <button onclick="closeGame()">✕ Fechar</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

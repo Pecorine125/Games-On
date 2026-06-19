@@ -1,39 +1,13 @@
-ID = 1
+TitleGames = 
 ImageGames = 
 LinkGames = 
 
 ID = 2
+TitleGames = 
 ImageGames = 
 LinkGames = 
 
 ID = 3
-ImageGames = 
-LinkGames = 
-
-ID = 4
-ImageGames = 
-LinkGames = 
-
-ID = 5
-ImageGames = 
-LinkGames = 
-
-ID = 6
-ImageGames = 
-LinkGames = 
-
-ID = 7
-ImageGames = 
-LinkGames = 
-
-ID = 8
-ImageGames = 
-LinkGames = 
-
-ID = 9
-ImageGames = 
-LinkGames = 
-
-ID = 10
+TitleGames = 
 ImageGames = 
 LinkGames = 
