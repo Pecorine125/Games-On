@@ -1,33 +1,28 @@
 async function carregarJogos() {
     const grid = document.getElementById('grid-jogos');
     try {
-        const res = await fetch('jogos.json');
+        // Usamos um caminho relativo simples
+        const res = await fetch('./jogos.json');
         const jogos = await res.json();
         grid.innerHTML = jogos.map(j => `
             <div class="card" onclick="abrirJogo('${j.url}')">
-                <img src="${j.capa}" alt="${j.nome}" loading="lazy">
+                <img src="${j.capa}" alt="${j.nome}">
                 <p>${j.nome}</p>
             </div>
         `).join('');
-    } catch (e) { console.error(e); }
+    } catch (e) { console.error("Erro ao carregar jogos:", e); }
 }
 
 function abrirJogo(url) {
     const wrapper = document.getElementById('iframe-wrapper');
-    // O atributo sandbox COM 'allow-top-navigation-by-user-activation'
-    // mas SEM 'allow-top-navigation' força o jogo a ficar no iframe.
-    wrapper.innerHTML = `
-        <iframe 
-            src="${url}" 
-            allow="autoplay; fullscreen; gamepad" 
-            sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-popups"
-            allowfullscreen>
-        </iframe>`;
+    // Injetamos um iframe simples que o AdBlock não vê como anúncio
+    wrapper.innerHTML = `<iframe src="${url}" allow="fullscreen; autoplay; gamepad"></iframe>`;
     document.getElementById('container-jogo').classList.remove('hidden');
 }
 
 function fecharJogo() {
-    document.getElementById('iframe-wrapper').innerHTML = '';
+    const wrapper = document.getElementById('iframe-wrapper');
+    wrapper.innerHTML = '';
     document.getElementById('container-jogo').classList.add('hidden');
 }
 carregarJogos();
