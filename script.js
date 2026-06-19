@@ -1,7 +1,6 @@
 async function carregarJogos() {
     const grid = document.getElementById('grid-jogos');
     try {
-        // Usamos um caminho relativo simples
         const res = await fetch('./jogos.json');
         const jogos = await res.json();
         grid.innerHTML = jogos.map(j => `
@@ -10,13 +9,17 @@ async function carregarJogos() {
                 <p>${j.nome}</p>
             </div>
         `).join('');
-    } catch (e) { console.error("Erro ao carregar jogos:", e); }
+    } catch (e) { console.error("Erro no JSON:", e); }
 }
 
 function abrirJogo(url) {
     const wrapper = document.getElementById('iframe-wrapper');
-    // Injetamos um iframe simples que o AdBlock não vê como anúncio
-    wrapper.innerHTML = `<iframe src="${url}" allow="fullscreen; autoplay; gamepad"></iframe>`;
+    // Iframe limpo sem scripts de rastreamento
+    wrapper.innerHTML = `<iframe 
+        src="${url}" 
+        style="width:100%; height:100%; border:none;"
+        allow="fullscreen; autoplay; gamepad">
+    </iframe>`;
     document.getElementById('container-jogo').classList.remove('hidden');
 }
 
