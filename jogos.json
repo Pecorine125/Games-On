@@ -1,12 +1,12 @@
 [
   {
-    "nome": "Jogo Radical",
-    "capa": "https://link-da-imagem-1.jpg",
-    "url": "https://link-do-iframe-1.com"
+    "nome": "Super Jogo 1",
+    "capa": "https://exemplo.com/imagem1.jpg",
+    "url": "https://exemplo.com/jogo1"
   },
   {
-    "nome": "Aventura Espacial",
-    "capa": "https://link-da-imagem-2.jpg",
-    "url": "https://link-do-iframe-2.com"
+    "nome": "Aventura 2",
+    "capa": "https://exemplo.com/imagem2.jpg",
+    "url": "https://exemplo.com/jogo2"
   }
 ]
