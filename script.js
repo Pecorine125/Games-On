@@ -1,20 +1,15 @@
 // LISTA DE JOGOS (Preencha os IDs de 2 a 10 alterando as propriedades aqui)
 const gamesList = [
-    {
-        id: 1,
-        image: "https://fgn.cdn.serverable.com/common/flashes/w/b/becoming_a_king.webp",
-        link: "https://fgn.cdn.serverable.com/common/flashes/nf/becoming_a_king/index.html?d=20250404182532",
-        title: "Jogo 1"
-    },
-    { id: 2, image: "https://via.placeholder.com/315x250", link: "", title: "Jogo 2" },
-    { id: 3, image: "https://via.placeholder.com/315x250", link: "", title: "Jogo 3" },
-    { id: 4, image: "https://via.placeholder.com/315x250", link: "", title: "Jogo 4" },
-    { id: 5, image: "https://via.placeholder.com/315x250", link: "", title: "Jogo 5" },
-    { id: 6, image: "https://via.placeholder.com/315x250", link: "", title: "Jogo 6" },
-    { id: 7, image: "https://via.placeholder.com/315x250", link: "", title: "Jogo 7" },
-    { id: 8, image: "https://via.placeholder.com/315x250", link: "", title: "Jogo 8" },
-    { id: 9, image: "https://via.placeholder.com/315x250", link: "", title: "Jogo 9" },
-    { id: 10, image: "https://via.placeholder.com/315x250", link: "", title: "Jogo 10" }
+    { id: 1, image: "", link: "", title: "Jogo 1" },
+    { id: 2, image: "", link: "", title: "Jogo 2" },
+    { id: 3, image: "", link: "", title: "Jogo 3" },
+    { id: 4, image: "", link: "", title: "Jogo 4" },
+    { id: 5, image: "", link: "", title: "Jogo 5" },
+    { id: 6, image: "", link: "", title: "Jogo 6" },
+    { id: 7, image: "", link: "", title: "Jogo 7" },
+    { id: 8, image: "", link: "", title: "Jogo 8" },
+    { id: 9, image: "", link: "", title: "Jogo 9" },
+    { id: 10, image: "", link: "", title: "Jogo 10" }
 ];
 
 const gamesGrid = document.getElementById('gamesGrid');
