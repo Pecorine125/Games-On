@@ -7,15 +7,15 @@ const gamesList = [
         image: "https://img.itch.zone/aW1nLzIwODI0ODA3LnBuZw==/315x250%23c/grufc0.png",
         title: "Jogo 1"
     },
-    { id: 2, image: "https://via.placeholder.com/315x250", link: "", title: "Jogo 2" },
-    { id: 3, image: "https://via.placeholder.com/315x250", link: "", title: "Jogo 3" },
-    { id: 4, image: "https://via.placeholder.com/315x250", link: "", title: "Jogo 4" },
-    { id: 5, image: "https://via.placeholder.com/315x250", link: "", title: "Jogo 5" },
-    { id: 6, image: "https://via.placeholder.com/315x250", link: "", title: "Jogo 6" },
-    { id: 7, image: "https://via.placeholder.com/315x250", link: "", title: "Jogo 7" },
-    { id: 8, image: "https://via.placeholder.com/315x250", link: "", title: "Jogo 8" },
-    { id: 9, image: "https://via.placeholder.com/315x250", link: "", title: "Jogo 9" },
-    { id: 10, image: "https://via.placeholder.com/315x250", link: "", title: "Jogo 10" }
+    { id: 2, image: "", link: "", title: "Jogo 2" },
+    { id: 3, image: "", link: "", title: "Jogo 3" },
+    { id: 4, image: "", link: "", title: "Jogo 4" },
+    { id: 5, image: "", link: "", title: "Jogo 5" },
+    { id: 6, image: "", link: "", title: "Jogo 6" },
+    { id: 7, image: "", link: "", title: "Jogo 7" },
+    { id: 8, image: "", link: "", title: "Jogo 8" },
+    { id: 9, image: "", link: "", title: "Jogo 9" },
+    { id: 10, image: "", link: "", title: "Jogo 10" }
 ];
 
 const gamesGrid = document.getElementById('gamesGrid');
