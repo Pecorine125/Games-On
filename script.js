@@ -42,7 +42,7 @@ function renderGames() {
       <img src="${game.image}" alt="${game.title}" loading="lazy">
       <p>${game.title}</p>
     `;
-    card.onclick = () => openGame(game.link);
+    card.onclick = () => openGame(game);
     grid.appendChild(card);
   });
 }
@@ -57,12 +57,13 @@ function filterGames() {
     const card = document.createElement('div');
     card.className = 'game-card';
     card.innerHTML = `<img src="${game.image}" loading="lazy"><p>${game.title}</p>`;
-    card.onclick = () => openGame(game.link);
+    card.onclick = () => openGame(game);
     grid.appendChild(card);
   });
 }
 
-function openGame(url) {
+// ==================== OPEN GAME COM FALLBACK ====================
+function openGame(game) {
   document.getElementById('menu').classList.remove('active');
   const screen = document.getElementById('game-screen');
   const iframe = document.getElementById('game-iframe');
@@ -70,25 +71,32 @@ function openGame(url) {
 
   screen.classList.add('active');
   loading.style.display = 'block';
-  
-  // Aplica as permissões e politicas de recursos recomendadas para jogos HTML5 no itch.io
-  iframe.setAttribute("sandbox", "allow-scripts allow-popups allow-forms allow-modals");
-  iframe.setAttribute("allow", "fullscreen; autoplay; gamepad; midi");
-  iframe.src = url;
+  iframe.src = game.link;
+
+  // Timeout de segurança - se demorar muito, abre em nova aba
+  const timeout = setTimeout(() => {
+    if (loading.style.display !== 'none') {
+      window.open(game.link, '_blank');
+      backToMenu();
+    }
+  }, 6000); // 6 segundos
 
   iframe.onload = () => {
+    clearTimeout(timeout);
     loading.style.display = 'none';
+  };
+
+  // Detecta erro de carregamento (X-Frame-Options)
+  iframe.onerror = () => {
+    clearTimeout(timeout);
+    window.open(game.link, '_blank');
+    backToMenu();
   };
 }
 
 function backToMenu() {
   const iframe = document.getElementById('game-iframe');
-  
-  // Limpa os atributos para interromper os processos do jogo anterior em segundo plano
   iframe.src = '';
-  iframe.removeAttribute("sandbox");
-  iframe.removeAttribute("allow");
-  
   document.getElementById('game-screen').classList.remove('active');
   document.getElementById('menu').classList.add('active');
 }
@@ -98,9 +106,9 @@ function closeGame() {
 }
 
 function toggleFullscreen() {
-  const elem = document.getElementById('game-screen');
+  const screen = document.getElementById('game-screen');
   if (!document.fullscreenElement) {
-    elem.requestFullscreen().catch(() => {});
+    screen.requestFullscreen().catch(() => {});
   } else {
     document.exitFullscreen();
   }
