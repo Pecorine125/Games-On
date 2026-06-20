@@ -77,16 +77,47 @@ button {
   cursor: pointer;
 }
 
+/* ===================== CARDS MAIORES ===================== */
 .game-card {
   border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
   background: #1a1a2e;
+  transition: all 0.3s;
+  height: 220px;           /* altura total do card */
+  display: flex;
+  flex-direction: column;
 }
 
-.game-card:hover { transform: scale(1.05); }
+.game-card:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
+}
 
 .game-card img {
   width: 100%;
-  height: auto;
+  height: 160px;           /* imagem maior */
+  object-fit: fill;        /* preenche todo o espaço */
+  display: block;
+}
+
+.game-card p {
+  text-align: center;
+  padding: 12px 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Grid responsivo */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
 }
