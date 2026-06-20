@@ -25,7 +25,9 @@ const gameIframe = document.getElementById('gameIframe');
 // Evita o menu de clique direito nativo dentro da área do jogo
 gameScreen.oncontextmenu = function () { return false; };
 
+// Renderiza a lista de jogos na tela em formato Grid
 function renderGames() {
+    gamesGrid.innerHTML = ""; // Limpa o grid antes de renderizar
     gamesList.forEach(game => {
         // Exibe o card no grid apenas se houver link configurado
         if(game.link !== "") {
@@ -41,20 +43,24 @@ function renderGames() {
     });
 }
 
+// Abre o jogo tentando usar uma requisição limpa para o iframe
 function openGame(link) {
+    // Definimos o link direto no iframe
     gameIframe.src = link;
+    
+    // Esconde o menu e mostra a tela do jogo
     menuContainer.style.display = 'none';
     gameScreen.style.display = 'flex';
 }
 
-// Botão Back Menu
+// Botão Back Menu (Voltar)
 document.getElementById('btnBack').addEventListener('click', () => {
-    gameIframe.src = ""; 
+    gameIframe.src = ""; // Reseta o iframe para parar o som do jogo ao fundo
     gameScreen.style.display = 'none';
     menuContainer.style.display = 'block';
 });
 
-// Botão Tela Cheia
+// Botão Tela Cheia (Usa a API do Navegador)
 document.getElementById('btnFullscreen').addEventListener('click', () => {
     if (!document.fullscreenElement) {
         gameScreen.requestFullscreen().catch(err => {
@@ -68,7 +74,8 @@ document.getElementById('btnFullscreen').addEventListener('click', () => {
 // Botão Close Web
 document.getElementById('btnCloseWeb').addEventListener('click', () => {
     window.close();
-    window.location.href = "about:blank"; 
+    window.location.href = "about:blank"; // Fallback caso o navegador bloqueie o window.close()
 });
 
+// Inicializa o script renderizando os jogos na tela
 renderGames();
