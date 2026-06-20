@@ -2,8 +2,8 @@
 const gamesList = [
     {
         id: 1,
-        image: "https://img.itch.zone/aW1nLzIwODI0ODA3LnBuZw==/315x250%23c/grufc0.png",
-        link: "https://html-classic.itch.zone/html/17151144/index.html?v=1776086364",
+        image: "https://fgn.cdn.serverable.com/common/flashes/w/b/becoming_a_king.webp",
+        link: "https://fgn.cdn.serverable.com/common/flashes/nf/becoming_a_king/index.html?d=20250404182532",
         title: "Jogo 1"
     },
     { id: 2, image: "https://via.placeholder.com/315x250", link: "", title: "Jogo 2" },
