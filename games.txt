@@ -1,4 +1,4 @@
 ID = 1
 TitleGames = Games 1
 ImageGames = https://img.itch.zone/aW1nLzIwODI0ODA3LnBuZw==/315x250%23c/grufc0.png
-LinkGames = https://html-classic.itch.zone/html/17151144/index.html?v=1776086364
+LinkGames = https://html-classic.itch.zone/html/17151144/index.html
