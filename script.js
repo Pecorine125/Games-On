@@ -2,9 +2,10 @@ let games = [];
 let filteredGames = [];
 let lastGamesHash = '';
 
+// ==================== CARREGA JOGOS ====================
 async function loadGames(silent = false) {
   try {
-    const response = await fetch('games.txt?' + new Date().getTime());
+    const response = await fetch('games.txt?' + Date.now());
     const text = await response.text();
     
     const currentHash = hashCode(text);
@@ -16,40 +17,37 @@ async function loadGames(silent = false) {
     renderGames();
     
     if (!silent) showUpdateMessage();
-  } catch (error) {
-    console.error("Erro ao carregar games.txt:", error);
+  } catch (e) {
+    console.error("Erro ao carregar games.txt", e);
   }
 }
 
 function hashCode(str) {
   let hash = 0;
   for (let i = 0; i < str.length; i++) {
-    hash = ((hash << 5) - hash) + str.charCodeAt(i);
-    hash |= 0;
+    hash = ((hash << 5) - hash) + str.charCodeAt(i) | 0;
   }
   return hash.toString();
 }
 
 function parseGames(text) {
-  const gamesList = [];
-  const blocks = text.split(/ID\s*=\s*\d+/i).filter(b => b.trim() !== '');
-
-  blocks.forEach((block, index) => {
-    const titleMatch = block.match(/TitleGames\s*=\s*(.+)/i);
-    const imageMatch = block.match(/ImageGames\s*=\s*(.+)/i);
-    const linkMatch  = block.match(/LinkGames\s*=\s*(.+)/i);
+  const list = [];
+  const blocks = text.split(/ID\s*=\s*\d+/i).filter(b => b.trim());
+  
+  blocks.forEach((block, i) => {
+    const title = block.match(/TitleGames\s*=\s*(.+)/i);
+    const image = block.match(/ImageGames\s*=\s*(.+)/i);
+    const link  = block.match(/LinkGames\s*=\s*(.+)/i);
 
     const game = {
-      id: index + 1,
-      title: titleMatch ? titleMatch[1].trim() : `Jogo ${index + 1}`,
-      image: imageMatch ? imageMatch[1].trim() : '',
-      link: linkMatch ? linkMatch[1].trim() : ''
+      id: i + 1,
+      title: title ? title[1].trim() : `Jogo ${i+1}`,
+      image: image ? image[1].trim() : '',
+      link: link ? link[1].trim() : ''
     };
-
-    if (game.image && game.link) gamesList.push(game);
+    if (game.image && game.link) list.push(game);
   });
-
-  return gamesList;
+  return list;
 }
 
 function renderGames() {
@@ -59,53 +57,45 @@ function renderGames() {
   filteredGames.forEach(game => {
     const card = document.createElement('div');
     card.className = 'game-card';
-    card.innerHTML = `
-      <img src="${game.image}" alt="${game.title}" loading="lazy">
-      <p>${game.title}</p>
-    `;
+    card.innerHTML = `<img src="${game.image}" alt="${game.title}" loading="lazy"><p>${game.title}</p>`;
     card.onclick = () => openGame(game);
     grid.appendChild(card);
   });
 }
 
 function filterGames() {
-  const searchTerm = document.getElementById('search-input').value.toLowerCase();
-  filteredGames = games.filter(game => game.title.toLowerCase().includes(searchTerm));
+  const term = document.getElementById('search-input').value.toLowerCase();
+  filteredGames = games.filter(g => g.title.toLowerCase().includes(term));
   renderGames();
 }
 
-// Abre o jogo
+// ==================== ABRIR JOGO ====================
 function openGame(game) {
-  const menu = document.getElementById('menu');
-  const gameScreen = document.getElementById('game-screen');
+  document.getElementById('menu').classList.remove('active');
+  const screen = document.getElementById('game-screen');
   const iframe = document.getElementById('game-iframe');
   const loading = document.getElementById('loading');
 
-  menu.classList.remove('active');
-  gameScreen.classList.add('active');
-  
+  screen.classList.add('active');
   loading.style.display = 'block';
   iframe.style.opacity = '0';
   iframe.src = game.link;
 
   iframe.onload = () => {
     loading.style.display = 'none';
-    iframe.style.transition = 'opacity 0.6s';
     iframe.style.opacity = '1';
   };
 }
 
 function backToMenu() {
-  const iframe = document.getElementById('game-iframe');
   if (document.fullscreenElement) document.exitFullscreen();
-  
-  iframe.src = '';
+  document.getElementById('game-iframe').src = '';
   document.getElementById('game-screen').classList.remove('active');
   document.getElementById('menu').classList.add('active');
 }
 
 function closeGame() {
-  if (confirm("Deseja fechar o jogo?")) backToMenu();
+  if (confirm("Fechar o jogo?")) backToMenu();
 }
 
 function toggleFullscreen() {
@@ -113,22 +103,17 @@ function toggleFullscreen() {
   if (document.fullscreenElement) {
     document.exitFullscreen();
   } else {
-    iframe.requestFullscreen?.().catch(() => {
-      document.documentElement.requestFullscreen?.().catch(() => {});
-    });
+    iframe.requestFullscreen?.().catch(() => document.documentElement.requestFullscreen?.());
   }
 }
 
 function showUpdateMessage() {
   const status = document.getElementById('status');
-  status.textContent = "✅ Jogos atualizados!";
-  status.classList.add('updating');
-  setTimeout(() => {
-    status.textContent = "Atualizando automaticamente...";
-    status.classList.remove('updating');
-  }, 3000);
+  status.textContent = "✅ Atualizado!";
+  setTimeout(() => status.textContent = "Atualizando automaticamente...", 2500);
 }
 
+// Auto Update
 function startAutoUpdate() {
   loadGames(true);
   setInterval(() => loadGames(true), 5000);
