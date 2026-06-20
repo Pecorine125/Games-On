@@ -21,12 +21,13 @@ function parseGames(text) {
     const image = block.match(/ImageGames\s*=\s*(.+)/i);
     const link  = block.match(/LinkGames\s*=\s*(.+)/i);
 
-    const game = {
-      title: title ? title[1].trim() : `Jogo ${i+1}`,
-      image: image ? image[1].trim() : '',
-      link: link ? link[1].trim() : ''
-    };
-    if (game.image && game.link) list.push(game);
+    if (title && image && link) {
+      list.push({
+        title: title[1].trim(),
+        image: image[1].trim(),
+        link: link[1].trim()
+      });
+    }
   });
   return list;
 }
@@ -63,6 +64,8 @@ function openGame(url) {
   screen.classList.add('active');
   loading.style.display = 'block';
   
+  // Adiciona permissões essenciais exigidas por embeds de jogos do itch.io
+  iframe.setAttribute("sandbox", "allow-same-origin allow-scripts allow-popups allow-forms");
   iframe.src = url;
 
   iframe.onload = () => {
@@ -77,6 +80,7 @@ function backToMenu() {
 
   screen.classList.remove('active');
   menu.classList.add('active');
+  iframe.removeAttribute("sandbox");
   iframe.src = '';
 }
 
