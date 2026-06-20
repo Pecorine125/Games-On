@@ -2,28 +2,23 @@ let games = [];
 let filteredGames = [];
 let lastGamesHash = '';
 
-// Carrega jogos do games.txt
+// Carrega jogos do games.txt com auto-update
 async function loadGames(silent = false) {
   try {
-    const response = await fetch('games.txt?' + new Date().getTime()); // Evita cache
+    const response = await fetch('games.txt?' + new Date().getTime());
     const text = await response.text();
     
     const currentHash = hashCode(text);
-    
-    if (currentHash === lastGamesHash) return; // Não mudou
+    if (currentHash === lastGamesHash) return;
 
     lastGamesHash = currentHash;
     games = parseGames(text);
     filteredGames = [...games];
-    
     renderGames();
     
-    if (!silent) {
-      showUpdateMessage();
-    }
+    if (!silent) showUpdateMessage();
   } catch (error) {
     console.error("Erro ao carregar games.txt:", error);
-    if (!silent) alert("❌ Não foi possível carregar os jogos!");
   }
 }
 
@@ -81,23 +76,11 @@ function renderGames() {
 
 function filterGames() {
   const searchTerm = document.getElementById('search-input').value.toLowerCase();
-  filteredGames = games.filter(game => 
-    game.title.toLowerCase().includes(searchTerm)
-  );
+  filteredGames = games.filter(game => game.title.toLowerCase().includes(searchTerm));
   renderGames();
 }
 
-function showUpdateMessage() {
-  const status = document.getElementById('status');
-  status.textContent = "✅ Jogos atualizados!";
-  status.classList.add('updating');
-  setTimeout(() => {
-    status.textContent = "Atualizando automaticamente...";
-    status.classList.remove('updating');
-  }, 3000);
-}
-
-// Abre o jogo
+// ==================== ABRE O JOGO ====================
 function openGame(game) {
   const menu = document.getElementById('menu');
   const gameScreen = document.getElementById('game-screen');
@@ -115,38 +98,80 @@ function openGame(game) {
     loading.style.display = 'none';
     iframe.style.transition = 'opacity 0.6s';
     iframe.style.opacity = '1';
-    
-    if (window.innerWidth > window.innerHeight) {
-      setTimeout(() => document.documentElement.requestFullscreen().catch(() => {}), 600);
-    }
+
+    // Tenta colocar o iframe em tela cheia (melhor para jogos)
+    setTimeout(() => {
+      tryFullscreenOnIframe(iframe);
+    }, 800);
   };
 }
 
-function backToMenu() {
-  document.getElementById('game-iframe').src = '';
-  document.getElementById('game-screen').classList.remove('active');
-  document.getElementById('menu').classList.add('active');
-}
-
-function closeGame() {
-  if (confirm("Deseja fechar o jogo e voltar ao menu?")) backToMenu();
-}
-
-function toggleFullscreen() {
-  if (!document.fullscreenElement) {
-    document.documentElement.requestFullscreen();
-  } else {
-    document.exitFullscreen();
+async function tryFullscreenOnIframe(iframe) {
+  if (iframe.requestFullscreen) {
+    try {
+      await iframe.requestFullscreen();
+    } catch (e) {
+      // Fallback: tela cheia no documento inteiro
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      }
+    }
   }
 }
 
-// Atualização automática a cada 5 segundos
-function startAutoUpdate() {
-  loadGames(true); // primeira carga
-  setInterval(() => {
-    loadGames(true); // silent = true (não mostra alerta)
-  }, 5000); // 5 segundos
+// ==================== CONTROLES ====================
+function backToMenu() {
+  const iframe = document.getElementById('game-iframe');
+  const gameScreen = document.getElementById('game-screen');
+  const menu = document.getElementById('menu');
+
+  // Sai da tela cheia antes de voltar
+  if (document.fullscreenElement) {
+    document.exitFullscreen();
+  }
+
+  iframe.src = '';
+  gameScreen.classList.remove('active');
+  menu.classList.add('active');
 }
 
-// Inicia tudo
+function closeGame() {
+  if (confirm("Deseja fechar o jogo e voltar ao menu?")) {
+    backToMenu();
+  }
+}
+
+function toggleFullscreen() {
+  const iframe = document.getElementById('game-iframe');
+  
+  if (document.fullscreenElement) {
+    document.exitFullscreen();
+  } else {
+    // Tenta primeiro no iframe, depois no documento
+    if (iframe.requestFullscreen) {
+      iframe.requestFullscreen().catch(() => {
+        document.documentElement.requestFullscreen().catch(() => {});
+      });
+    } else {
+      document.documentElement.requestFullscreen().catch(() => {});
+    }
+  }
+}
+
+function showUpdateMessage() {
+  const status = document.getElementById('status');
+  status.textContent = "✅ Jogos atualizados!";
+  status.classList.add('updating');
+  setTimeout(() => {
+    status.textContent = "Atualizando automaticamente...";
+    status.classList.remove('updating');
+  }, 3000);
+}
+
+// Auto Update
+function startAutoUpdate() {
+  loadGames(true);
+  setInterval(() => loadGames(true), 5000);
+}
+
 window.onload = startAutoUpdate;
