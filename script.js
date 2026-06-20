@@ -1,18 +1,39 @@
 let games = [];
 let filteredGames = [];
+let lastGamesHash = '';
 
 // Carrega jogos do games.txt
-async function loadGames() {
+async function loadGames(silent = false) {
   try {
-    const response = await fetch('games.txt');
+    const response = await fetch('games.txt?' + new Date().getTime()); // Evita cache
     const text = await response.text();
+    
+    const currentHash = hashCode(text);
+    
+    if (currentHash === lastGamesHash) return; // Não mudou
+
+    lastGamesHash = currentHash;
     games = parseGames(text);
     filteredGames = [...games];
+    
     renderGames();
+    
+    if (!silent) {
+      showUpdateMessage();
+    }
   } catch (error) {
     console.error("Erro ao carregar games.txt:", error);
-    alert("❌ Não foi possível carregar o arquivo games.txt!");
+    if (!silent) alert("❌ Não foi possível carregar os jogos!");
   }
+}
+
+function hashCode(str) {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = ((hash << 5) - hash) + str.charCodeAt(i);
+    hash |= 0;
+  }
+  return hash.toString();
 }
 
 function parseGames(text) {
@@ -37,13 +58,12 @@ function parseGames(text) {
   return gamesList;
 }
 
-// Renderiza os jogos
 function renderGames() {
   const grid = document.getElementById('game-grid');
   grid.innerHTML = '';
 
   if (filteredGames.length === 0) {
-    grid.innerHTML = `<p style="text-align:center; grid-column:1/-1; padding:40px;">Nenhum jogo encontrado 😢</p>`;
+    grid.innerHTML = `<p style="text-align:center; grid-column:1/-1; padding:40px; color:#888;">Nenhum jogo encontrado 😢</p>`;
     return;
   }
 
@@ -59,7 +79,6 @@ function renderGames() {
   });
 }
 
-// Filtra jogos pela busca
 function filterGames() {
   const searchTerm = document.getElementById('search-input').value.toLowerCase();
   filteredGames = games.filter(game => 
@@ -68,7 +87,17 @@ function filterGames() {
   renderGames();
 }
 
-// Abre o jogo com animações
+function showUpdateMessage() {
+  const status = document.getElementById('status');
+  status.textContent = "✅ Jogos atualizados!";
+  status.classList.add('updating');
+  setTimeout(() => {
+    status.textContent = "Atualizando automaticamente...";
+    status.classList.remove('updating');
+  }, 3000);
+}
+
+// Abre o jogo
 function openGame(game) {
   const menu = document.getElementById('menu');
   const gameScreen = document.getElementById('game-screen');
@@ -80,7 +109,6 @@ function openGame(game) {
   
   loading.style.display = 'block';
   iframe.style.opacity = '0';
-
   iframe.src = game.link;
 
   iframe.onload = () => {
@@ -88,30 +116,20 @@ function openGame(game) {
     iframe.style.transition = 'opacity 0.6s';
     iframe.style.opacity = '1';
     
-    // Tenta tela cheia em landscape
     if (window.innerWidth > window.innerHeight) {
-      setTimeout(() => {
-        document.documentElement.requestFullscreen().catch(() => {});
-      }, 600);
+      setTimeout(() => document.documentElement.requestFullscreen().catch(() => {}), 600);
     }
   };
 }
 
-// Volta ao menu
 function backToMenu() {
-  const iframe = document.getElementById('game-iframe');
-  const gameScreen = document.getElementById('game-screen');
-  const menu = document.getElementById('menu');
-
-  iframe.src = '';
-  gameScreen.classList.remove('active');
-  menu.classList.add('active');
+  document.getElementById('game-iframe').src = '';
+  document.getElementById('game-screen').classList.remove('active');
+  document.getElementById('menu').classList.add('active');
 }
 
 function closeGame() {
-  if (confirm("Deseja fechar o jogo e voltar ao menu?")) {
-    backToMenu();
-  }
+  if (confirm("Deseja fechar o jogo e voltar ao menu?")) backToMenu();
 }
 
 function toggleFullscreen() {
@@ -122,5 +140,13 @@ function toggleFullscreen() {
   }
 }
 
-// Inicializa
-window.onload = loadGames;
+// Atualização automática a cada 5 segundos
+function startAutoUpdate() {
+  loadGames(true); // primeira carga
+  setInterval(() => {
+    loadGames(true); // silent = true (não mostra alerta)
+  }, 5000); // 5 segundos
+}
+
+// Inicia tudo
+window.onload = startAutoUpdate;
