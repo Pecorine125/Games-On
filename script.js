@@ -80,7 +80,7 @@ function filterGames() {
   renderGames();
 }
 
-// ==================== ABRE O JOGO ====================
+// Abre o jogo (SEM tela cheia automática)
 function openGame(game) {
   const menu = document.getElementById('menu');
   const gameScreen = document.getElementById('game-screen');
@@ -98,25 +98,7 @@ function openGame(game) {
     loading.style.display = 'none';
     iframe.style.transition = 'opacity 0.6s';
     iframe.style.opacity = '1';
-
-    // Tenta colocar o iframe em tela cheia (melhor para jogos)
-    setTimeout(() => {
-      tryFullscreenOnIframe(iframe);
-    }, 800);
   };
-}
-
-async function tryFullscreenOnIframe(iframe) {
-  if (iframe.requestFullscreen) {
-    try {
-      await iframe.requestFullscreen();
-    } catch (e) {
-      // Fallback: tela cheia no documento inteiro
-      if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen().catch(() => {});
-      }
-    }
-  }
 }
 
 // ==================== CONTROLES ====================
@@ -125,10 +107,7 @@ function backToMenu() {
   const gameScreen = document.getElementById('game-screen');
   const menu = document.getElementById('menu');
 
-  // Sai da tela cheia antes de voltar
-  if (document.fullscreenElement) {
-    document.exitFullscreen();
-  }
+  if (document.fullscreenElement) document.exitFullscreen();
 
   iframe.src = '';
   gameScreen.classList.remove('active');
@@ -136,9 +115,7 @@ function backToMenu() {
 }
 
 function closeGame() {
-  if (confirm("Deseja fechar o jogo e voltar ao menu?")) {
-    backToMenu();
-  }
+  if (confirm("Deseja fechar o jogo e voltar ao menu?")) backToMenu();
 }
 
 function toggleFullscreen() {
@@ -147,7 +124,7 @@ function toggleFullscreen() {
   if (document.fullscreenElement) {
     document.exitFullscreen();
   } else {
-    // Tenta primeiro no iframe, depois no documento
+    // Tenta no iframe primeiro
     if (iframe.requestFullscreen) {
       iframe.requestFullscreen().catch(() => {
         document.documentElement.requestFullscreen().catch(() => {});
