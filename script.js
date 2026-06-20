@@ -2,10 +2,10 @@ let games = [];
 
 async function loadGames() {
   try {
-    const res = await fetch('games.txt?' + Date.now());
-    const text = await res.text();
+    const response = await fetch('games.txt?' + Date.now());
+    const text = await response.text();
     games = parseGames(text);
-    renderGames(games);
+    renderGames();
   } catch (e) {
     console.error(e);
     document.getElementById('game-grid').innerHTML = `<p style="color:orange;text-align:center;padding:60px;">Erro ao carregar games.txt</p>`;
@@ -17,30 +17,29 @@ function parseGames(text) {
   const blocks = text.split(/ID\s*=\s*\d+/i).filter(b => b.trim() !== '');
 
   blocks.forEach((block, i) => {
-    const title = block.match(/TitleGames\s*=\s*(.+)/i);
-    const image = block.match(/ImageGames\s*=\s*(.+)/i);
-    const link  = block.match(/LinkGames\s*=\s*(.+)/i);
+    const titleMatch = block.match(/TitleGames\s*=\s*(.+)/i);
+    const imageMatch = block.match(/ImageGames\s*=\s*(.+)/i);
+    const linkMatch  = block.match(/LinkGames\s*=\s*(.+)/i);
 
-    if (title && image && link) {
-      list.push({
-        title: title[1].trim(),
-        image: image[1].trim(),
-        link: link[1].trim()
-      });
-    }
+    const game = {
+      title: titleMatch ? titleMatch[1].trim() : `Jogo ${i+1}`,
+      image: imageMatch ? imageMatch[1].trim() : '',
+      link: linkMatch ? linkMatch[1].trim() : ''
+    };
+    if (game.image && game.link) list.push(game);
   });
   return list;
 }
 
-function renderGames(gamesList) {
+function renderGames() {
   const grid = document.getElementById('game-grid');
   grid.innerHTML = '';
 
-  gamesList.forEach(game => {
+  games.forEach(game => {
     const card = document.createElement('div');
     card.className = 'game-card';
     card.innerHTML = `
-      <img src="${game.image}" loading="lazy">
+      <img src="${game.image}" alt="${game.title}" loading="lazy">
       <p>${game.title}</p>
     `;
     card.onclick = () => openGame(game.link);
@@ -51,21 +50,26 @@ function renderGames(gamesList) {
 function filterGames() {
   const term = document.getElementById('search-input').value.toLowerCase();
   const filtered = games.filter(g => g.title.toLowerCase().includes(term));
-  renderGames(filtered);
+  const grid = document.getElementById('game-grid');
+  grid.innerHTML = '';
+
+  filtered.forEach(game => {
+    const card = document.createElement('div');
+    card.className = 'game-card';
+    card.innerHTML = `<img src="${game.image}" loading="lazy"><p>${game.title}</p>`;
+    card.onclick = () => openGame(game.link);
+    grid.appendChild(card);
+  });
 }
 
 function openGame(url) {
-  const menu = document.getElementById('menu');
+  document.getElementById('menu').classList.remove('active');
   const screen = document.getElementById('game-screen');
   const iframe = document.getElementById('game-iframe');
   const loading = document.getElementById('loading');
 
-  menu.classList.remove('active');
   screen.classList.add('active');
   loading.style.display = 'block';
-  
-  // Adiciona permissões essenciais exigidas por embeds de jogos do itch.io
-  iframe.setAttribute("sandbox", "allow-same-origin allow-scripts allow-popups allow-forms");
   iframe.src = url;
 
   iframe.onload = () => {
@@ -74,26 +78,20 @@ function openGame(url) {
 }
 
 function backToMenu() {
-  const menu = document.getElementById('menu');
-  const screen = document.getElementById('game-screen');
   const iframe = document.getElementById('game-iframe');
-
-  screen.classList.remove('active');
-  menu.classList.add('active');
-  iframe.removeAttribute("sandbox");
   iframe.src = '';
+  document.getElementById('game-screen').classList.remove('active');
+  document.getElementById('menu').classList.add('active');
 }
 
 function closeGame() {
-  backToMenu();
+  if (confirm("Deseja fechar o jogo?")) backToMenu();
 }
 
 function toggleFullscreen() {
-  const screen = document.getElementById('game-screen');
+  const elem = document.getElementById('game-screen');
   if (!document.fullscreenElement) {
-    screen.requestFullscreen().catch(err => {
-      console.error(`Erro ao ativar tela cheia: ${err.message}`);
-    });
+    elem.requestFullscreen().catch(() => {});
   } else {
     document.exitFullscreen();
   }
