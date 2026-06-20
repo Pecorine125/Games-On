@@ -1,117 +1,78 @@
-let games = [];
+// LISTA DE JOGOS (Modifique os dados abaixo para atualizar o site)
+const gamesList = [
+    {
+        id: 1,
+        image: "https://img.itch.zone/aW1nLzIwODI0ODA3LnBuZw==/315x250%23c/grufc0.png",
+        link: "https://html-classic.itch.zone/html/17151144/index.html",
+        title: "Jogo 1"
+    },
+    {
+        id: 2,
+        image: "https://via.placeholder.com/315x250", 
+        link: "", 
+        title: "Jogo 2"
+    },
+    { id: 3, image: "https://via.placeholder.com/315x250", link: "", title: "Jogo 3" },
+    { id: 4, image: "https://via.placeholder.com/315x250", link: "", title: "Jogo 4" },
+    { id: 5, image: "https://via.placeholder.com/315x250", link: "", title: "Jogo 5" },
+    { id: 6, image: "https://via.placeholder.com/315x250", link: "", title: "Jogo 6" },
+    { id: 7, image: "https://via.placeholder.com/315x250", link: "", title: "Jogo 7" },
+    { id: 8, image: "https://via.placeholder.com/315x250", link: "", title: "Jogo 8" },
+    { id: 9, image: "https://via.placeholder.com/315x250", link: "", title: "Jogo 9" },
+    { id: 10, image: "https://via.placeholder.com/315x250", link: "", title: "Jogo 10" }
+];
 
-async function loadGames() {
-  try {
-    const response = await fetch('games.txt?' + Date.now());
-    const text = await response.text();
-    games = parseGames(text);
-    renderGames();
-  } catch (e) {
-    console.error(e);
-    document.getElementById('game-grid').innerHTML = `<p style="color:orange;text-align:center;padding:60px;">Erro ao carregar games.txt</p>`;
-  }
-}
+const gamesGrid = document.getElementById('gamesGrid');
+const menuContainer = document.getElementById('menuContainer');
+const gameScreen = document.getElementById('gameScreen');
+const gameIframe = document.getElementById('gameIframe');
 
-function parseGames(text) {
-  const list = [];
-  const blocks = text.split(/ID\s*=\s*\d+/i).filter(b => b.trim() !== '');
-
-  blocks.forEach((block, i) => {
-    const titleMatch = block.match(/TitleGames\s*=\s*(.+)/i);
-    const imageMatch = block.match(/ImageGames\s*=\s*(.+)/i);
-    const linkMatch  = block.match(/LinkGames\s*=\s*(.+)/i);
-
-    const game = {
-      title: titleMatch ? titleMatch[1].trim() : `Jogo ${i+1}`,
-      image: imageMatch ? imageMatch[1].trim() : '',
-      link: linkMatch ? linkMatch[1].trim() : ''
-    };
-    if (game.image && game.link) list.push(game);
-  });
-  return list;
-}
-
+// Renderiza apenas os jogos que já possuem Link configurado
 function renderGames() {
-  const grid = document.getElementById('game-grid');
-  grid.innerHTML = '';
-
-  games.forEach(game => {
-    const card = document.createElement('div');
-    card.className = 'game-card';
-    card.innerHTML = `
-      <img src="${game.image}" alt="${game.title}" loading="lazy">
-      <p>${game.title}</p>
-    `;
-    card.onclick = () => openGame(game);
-    grid.appendChild(card);
-  });
+    gamesList.forEach(game => {
+        if(game.link !== "") {
+            const card = document.createElement('div');
+            card.className = 'game-card';
+            card.innerHTML = `
+                <img src="${game.image}" alt="${game.title}">
+                <div class="game-title">${game.title}</div>
+            `;
+            card.addEventListener('click', () => openGame(game.link));
+            gamesGrid.appendChild(card);
+        }
+    });
 }
 
-function filterGames() {
-  const term = document.getElementById('search-input').value.toLowerCase();
-  const filtered = games.filter(g => g.title.toLowerCase().includes(term));
-  const grid = document.getElementById('game-grid');
-  grid.innerHTML = '';
-
-  filtered.forEach(game => {
-    const card = document.createElement('div');
-    card.className = 'game-card';
-    card.innerHTML = `<img src="${game.image}" loading="lazy"><p>${game.title}</p>`;
-    card.onclick = () => openGame(game);
-    grid.appendChild(card);
-  });
+// Abre o jogo e esconde o menu principal
+function openGame(link) {
+    gameIframe.src = link;
+    menuContainer.style.display = 'none';
+    gameScreen.style.display = 'flex';
 }
 
-// ==================== OPEN GAME COM FALLBACK ====================
-function openGame(game) {
-  document.getElementById('menu').classList.remove('active');
-  const screen = document.getElementById('game-screen');
-  const iframe = document.getElementById('game-iframe');
-  const loading = document.getElementById('loading');
+// Botão: Back Menu
+document.getElementById('btnBack').addEventListener('click', () => {
+    gameIframe.src = ""; // Corta o link para o jogo parar de rodar áudio ao fundo
+    gameScreen.style.display = 'none';
+    menuContainer.style.display = 'block';
+});
 
-  screen.classList.add('active');
-  loading.style.display = 'block';
-  iframe.src = game.link;
-
-  // Timeout de segurança - se demorar muito, abre em nova aba
-  const timeout = setTimeout(() => {
-    if (loading.style.display !== 'none') {
-      window.open(game.link, '_blank');
-      backToMenu();
+// Botão: Tela Cheia
+document.getElementById('btnFullscreen').addEventListener('click', () => {
+    if (!document.fullscreenElement) {
+        gameScreen.requestFullscreen().catch(err => {
+            alert(`Não foi possível ativar tela cheia: ${err.message}`);
+        });
+    } else {
+        document.exitFullscreen();
     }
-  }, 6000); // 6 segundos
+});
 
-  iframe.onload = () => {
-    clearTimeout(timeout);
-    loading.style.display = 'none';
-  };
+// Botão: Close Web
+document.getElementById('btnCloseWeb').addEventListener('click', () => {
+    window.close();
+    window.location.href = "about:blank"; // Fallback caso o navegador bloqueie o fechamento direto
+});
 
-  // Detecta erro de carregamento (X-Frame-Options)
-  iframe.onerror = () => {
-    clearTimeout(timeout);
-    window.open(game.link, '_blank');
-    backToMenu();
-  };
-}
-
-function backToMenu() {
-  const iframe = document.getElementById('game-iframe');
-  iframe.src = '';
-  document.getElementById('game-screen').classList.remove('active');
-  document.getElementById('menu').classList.add('active');
-}
-
-function closeGame() {
-  if (confirm("Deseja fechar o jogo?")) backToMenu();
-}
-
-function toggleFullscreen() {
-  const screen = document.getElementById('game-screen');
-  if (!document.fullscreenElement) {
-    screen.requestFullscreen().catch(() => {});
-  } else {
-    document.exitFullscreen();
-  }
-}
-
-window.onload = loadGames;
+// Executa a função ao carregar a página
+renderGames();

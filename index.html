@@ -1,46 +1,30 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Games On</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="data:;base64,=">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games On</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- MENU -->
-  <div id="menu" class="active">
-    <h1>🎮 Games On</h1>
-    
-    <div class="search-container">
-      <input type="text" id="search-input" placeholder="🔎 Buscar jogo..." onkeyup="filterGames()">
-      <div class="status" id="status">Atualizando automaticamente...</div>
+    <div class="menu-container" id="menuContainer">
+        <h1>Games On</h1>
+        <div class="games-grid" id="gamesGrid">
+            </div>
     </div>
 
-    <div class="grid" id="game-grid"></div>
-  </div>
-
-  <!-- TELA DO JOGO -->
-  <div id="game-screen">
-    <div id="loading" class="loading">
-      <div class="spinner"></div>
-      <p>Carregando jogo...</p>
+    <div class="game-screen" id="gameScreen">
+        <div class="control-bar">
+            <button class="btn" id="btnBack">Back Menu</button>
+            <button class="btn" id="btnFullscreen">Tela Cheia</button>
+            <button class="btn btn-close" id="btnCloseWeb">Close Web</button>
+        </div>
+        <div class="iframe-container">
+            <iframe id="gameIframe" src="" allowfullscreen></iframe>
+        </div>
     </div>
-    
-    <iframe id="game-iframe" 
-            allowfullscreen 
-            sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
-            allow="fullscreen">
-    </iframe>
-    
-    <div class="controls">
-      <button onclick="backToMenu()">← Menu</button>
-      <button onclick="toggleFullscreen()">⛶ Tela Cheia</button>
-      <button onclick="closeGame()">✕ Fechar</button>
-    </div>
-  </div>
 
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

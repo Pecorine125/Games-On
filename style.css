@@ -1,154 +1,134 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #0a0a0f;
-  color: #e0e0ff;
-  height: 100vh;
-  overflow: hidden;
+    background-color: #121212;
+    color: #ffffff;
+    overflow-x: hidden;
 }
 
-#menu {
-  padding: 20px;
-  height: 100vh;
-  overflow-y: auto;
+/* Container do Menu */
+.menu-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
-
-#menu:not(.active) { display: none; }
 
 h1 {
-  text-align: center;
-  margin-bottom: 25px;
-  font-size: 2.8rem;
-  background: linear-gradient(90deg, #00ffff, #ff00ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #ff2a74;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
-.search-container {
-  max-width: 520px;
-  margin: 0 auto 30px;
+/* Grid 2x2 que aumenta conforme a quantidade de jogos */
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
 }
 
-#search-input {
-  width: 100%;
-  padding: 16px 24px;
-  border: 2px solid #1f1f2e;
-  border-radius: 50px;
-  background: #12121b;
-  color: white;
-  font-size: 1.1rem;
+@media (max-width: 600px) {
+    .games-grid {
+        grid-template-columns: 1fr; /* Fica em 1 coluna se for celular */
+    }
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 24px;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 15px;
-}
-
+/* Cartão do Jogo */
 .game-card {
-  height: 220px;
-  border-radius: 12px;
-  overflow: hidden;
-  cursor: pointer;
-  background: #161622;
-  border: 1px solid #25253a;
-  transition: all 0.4s ease;
-  display: flex;
-  flex-direction: column;
+    background: #1e1e1e;
+    border: 3px solid #333;
+    border-radius: 8px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .game-card:hover {
-  transform: scale(1.08);
-  box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
-  border-color: #00ffff;
+    transform: scale(1.02);
+    border-color: #ff2a74;
 }
 
+/* Mantém o tamanho original/proporção da imagem fornecida (315x250) */
 .game-card img {
-  width: 100%;
-  height: 160px;
-  object-fit: fill;
-  display: block;
+    width: 100%;
+    height: auto;
+    max-width: 315px; 
+    display: block;
 }
 
-.game-card p {
-  text-align: center;
-  padding: 12px 8px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  flex-grow: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.game-title {
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
 }
 
-#game-screen {
-  display: none;
-  height: 100vh;
-  position: relative;
-  background: #000;
+/* Tela do Jogo em execução */
+.game-screen {
+    display: none; /* Começa escondida */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    z-index: 9999;
+    flex-direction: column;
 }
 
-#game-screen.active {
-  display: block;
+/* Barra de ferramentas */
+.control-bar {
+    background-color: #1a1a1a;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 10px;
+    border-bottom: 2px solid #333;
+}
+
+/* Botões */
+.btn {
+    background-color: #ff2a74;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+    text-transform: uppercase;
+}
+
+.btn:hover {
+    background-color: #d61f5d;
+}
+
+.btn-close {
+    background-color: #cc0000;
+}
+.btn-close:hover {
+    background-color: #990000;
+}
+
+/* Área do Jogo */
+.iframe-container {
+    flex: 1;
+    width: 100%;
+    height: 100%;
 }
 
 iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-  background: #000;
-}
-
-.loading {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  z-index: 10;
-  color: #aaa;
-}
-
-.spinner {
-  width: 60px;
-  height: 60px;
-  border: 6px solid #222;
-  border-top: 6px solid #00ffff;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin: 0 auto 15px;
-}
-
-@keyframes spin { to { transform: rotate(360deg); } }
-
-.controls {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  z-index: 100;
-  display: flex;
-  gap: 12px;
-}
-
-button {
-  padding: 12px 22px;
-  border: none;
-  border-radius: 50px;
-  background: rgba(0,0,0,0.85);
-  color: white;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-button:hover {
-  background: #00ffff;
-  color: black;
+    width: 100%;
+    height: 100%;
+    border: none;
 }
