@@ -7,8 +7,8 @@ async function loadGames() {
     games = parseGames(text);
     renderGames();
   } catch (e) {
-    console.error("Erro ao carregar games.txt", e);
-    document.getElementById('game-grid').innerHTML = "<p style='color:red; text-align:center; padding:50px;'>Erro ao carregar jogos. Verifique o games.txt</p>";
+    console.error(e);
+    document.getElementById('game-grid').innerHTML = "<p style='color:red;text-align:center;padding:50px;'>Erro ao carregar games.txt</p>";
   }
 }
 
@@ -35,11 +35,6 @@ function renderGames() {
   const grid = document.getElementById('game-grid');
   grid.innerHTML = '';
 
-  if (games.length === 0) {
-    grid.innerHTML = `<p style="text-align:center; padding:40px; color:#888;">Nenhum jogo encontrado</p>`;
-    return;
-  }
-
   games.forEach(game => {
     const card = document.createElement('div');
     card.className = 'game-card';
@@ -57,7 +52,6 @@ function filterGames() {
   const filtered = games.filter(g => g.title.toLowerCase().includes(term));
   const grid = document.getElementById('game-grid');
   grid.innerHTML = '';
-
   filtered.forEach(game => {
     const card = document.createElement('div');
     card.className = 'game-card';
@@ -67,37 +61,26 @@ function filterGames() {
   });
 }
 
+// Abre em NOVA ABA (melhor para itch.io)
 function openGame(game) {
-  document.getElementById('menu').classList.remove('active');
-  const screen = document.getElementById('game-screen');
-  const iframe = document.getElementById('game-iframe');
-  const loading = document.getElementById('loading');
-
-  screen.classList.add('active');
-  loading.style.display = 'block';
-  iframe.src = game.link;
-
-  iframe.onload = () => {
-    loading.style.display = 'none';
-  };
+  window.open(game.link, '_blank');
 }
 
+// Controles (mantidos para quando voltar)
 function backToMenu() {
-  document.getElementById('game-iframe').src = '';
   document.getElementById('game-screen').classList.remove('active');
   document.getElementById('menu').classList.add('active');
 }
 
 function closeGame() {
-  if (confirm("Fechar o jogo?")) backToMenu();
+  if (confirm("Fechar?")) backToMenu();
 }
 
 function toggleFullscreen() {
-  const iframe = document.getElementById('game-iframe');
-  if (document.fullscreenElement) {
-    document.exitFullscreen();
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen();
   } else {
-    iframe.requestFullscreen?.().catch(() => document.documentElement.requestFullscreen?.());
+    document.exitFullscreen();
   }
 }
 
