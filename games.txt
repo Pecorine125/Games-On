@@ -1,22 +1,22 @@
 ID = 1
 TitleGames = Games 1
-ImageGames = 
-LinkGames = 
+ImageGames = https://images.alphacoders.com/134/thumbbig-1349794.webp
+LinkGames = https://images.alphacoders.com/134/thumbbig-1349794.webp
 
 ID = 2
 TitleGames = Games 2
-ImageGames = 
-LinkGames = 
+ImageGames = https://images5.alphacoders.com/120/thumbbig-1202241.webp
+LinkGames = https://images5.alphacoders.com/120/thumbbig-1202241.webp
 
 ID = 3
 TitleGames = Games 3
-ImageGames = 
-LinkGames = 
+ImageGames = https://images3.alphacoders.com/120/thumbbig-1203398.webp
+LinkGames = https://images3.alphacoders.com/120/thumbbig-1203398.webp
 
 ID = 4
 TitleGames = Games 4
-ImageGames = 
-LinkGames = 
+ImageGames = https://images5.alphacoders.com/135/thumbbig-1356760.webp
+LinkGames = https://images5.alphacoders.com/135/thumbbig-1356760.webp
 
 ID = 5
 TitleGames = Games 5
