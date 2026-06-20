@@ -70,6 +70,10 @@ function openGame(url) {
 
   screen.classList.add('active');
   loading.style.display = 'block';
+  
+  // Aplica as permissões e politicas de recursos recomendadas para jogos HTML5 no itch.io
+  iframe.setAttribute("sandbox", "allow-scripts allow-popups allow-forms allow-modals");
+  iframe.setAttribute("allow", "fullscreen; autoplay; gamepad; midi");
   iframe.src = url;
 
   iframe.onload = () => {
@@ -79,7 +83,12 @@ function openGame(url) {
 
 function backToMenu() {
   const iframe = document.getElementById('game-iframe');
+  
+  // Limpa os atributos para interromper os processos do jogo anterior em segundo plano
   iframe.src = '';
+  iframe.removeAttribute("sandbox");
+  iframe.removeAttribute("allow");
+  
   document.getElementById('game-screen').classList.remove('active');
   document.getElementById('menu').classList.add('active');
 }
