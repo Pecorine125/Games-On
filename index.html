@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Games On</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:;base64,=">
 </head>
 <body>
 
@@ -14,6 +15,7 @@
     
     <div class="search-container">
       <input type="text" id="search-input" placeholder="🔎 Buscar jogo..." onkeyup="filterGames()">
+      <div class="status" id="status">Atualizando automaticamente...</div>
     </div>
 
     <div class="grid" id="game-grid"></div>
@@ -26,7 +28,7 @@
       <p>Carregando jogo...</p>
     </div>
     
-    <iframe id="game-iframe" allowfullscreen></iframe>
+    <iframe id="game-iframe" allowfullscreen allow="fullscreen"></iframe>
     
     <div class="controls">
       <button onclick="backToMenu()">← Menu</button>
