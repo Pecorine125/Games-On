@@ -2,7 +2,6 @@ let games = [];
 let filteredGames = [];
 let lastGamesHash = '';
 
-// Carrega jogos do games.txt com auto-update
 async function loadGames(silent = false) {
   try {
     const response = await fetch('games.txt?' + new Date().getTime());
@@ -57,11 +56,6 @@ function renderGames() {
   const grid = document.getElementById('game-grid');
   grid.innerHTML = '';
 
-  if (filteredGames.length === 0) {
-    grid.innerHTML = `<p style="text-align:center; grid-column:1/-1; padding:40px; color:#888;">Nenhum jogo encontrado 😢</p>`;
-    return;
-  }
-
   filteredGames.forEach(game => {
     const card = document.createElement('div');
     card.className = 'game-card';
@@ -80,7 +74,7 @@ function filterGames() {
   renderGames();
 }
 
-// Abre o jogo na mesma janela (sem fullscreen automático)
+// Abre o jogo
 function openGame(game) {
   const menu = document.getElementById('menu');
   const gameScreen = document.getElementById('game-screen');
@@ -99,46 +93,29 @@ function openGame(game) {
     iframe.style.transition = 'opacity 0.6s';
     iframe.style.opacity = '1';
   };
-
-  // Se o iframe falhar (bloqueado pelo itch), abre em nova aba após 4 segundos
-  setTimeout(() => {
-    if (iframe.style.opacity === '0') {
-      window.open(game.link, '_blank');
-      backToMenu();
-    }
-  }, 4000);
 }
 
-// ==================== CONTROLES ====================
 function backToMenu() {
   const iframe = document.getElementById('game-iframe');
-  const gameScreen = document.getElementById('game-screen');
-  const menu = document.getElementById('menu');
-
   if (document.fullscreenElement) document.exitFullscreen();
-
+  
   iframe.src = '';
-  gameScreen.classList.remove('active');
-  menu.classList.add('active');
+  document.getElementById('game-screen').classList.remove('active');
+  document.getElementById('menu').classList.add('active');
 }
 
 function closeGame() {
-  if (confirm("Deseja fechar o jogo e voltar ao menu?")) backToMenu();
+  if (confirm("Deseja fechar o jogo?")) backToMenu();
 }
 
 function toggleFullscreen() {
   const iframe = document.getElementById('game-iframe');
-  
   if (document.fullscreenElement) {
     document.exitFullscreen();
   } else {
-    if (iframe.requestFullscreen) {
-      iframe.requestFullscreen().catch(() => {
-        document.documentElement.requestFullscreen().catch(() => {});
-      });
-    } else {
-      document.documentElement.requestFullscreen().catch(() => {});
-    }
+    iframe.requestFullscreen?.().catch(() => {
+      document.documentElement.requestFullscreen?.().catch(() => {});
+    });
   }
 }
 
@@ -152,7 +129,6 @@ function showUpdateMessage() {
   }, 3000);
 }
 
-// Auto Update
 function startAutoUpdate() {
   loadGames(true);
   setInterval(() => loadGames(true), 5000);
