@@ -1,17 +1,13 @@
-// LISTA DE JOGOS (Modifique os dados abaixo para atualizar o site)
+// LISTA DE JOGOS
 const gamesList = [
     {
         id: 1,
+        // Usando o link completo com a versão exata que você extraiu
+        link: "https://html-classic.itch.zone/html/17151144/index.html?v=1776086364",
         image: "https://img.itch.zone/aW1nLzIwODI0ODA3LnBuZw==/315x250%23c/grufc0.png",
-        link: "https://html-classic.itch.zone/html/17151144/index.html",
         title: "Jogo 1"
     },
-    {
-        id: 2,
-        image: "https://via.placeholder.com/315x250", 
-        link: "", 
-        title: "Jogo 2"
-    },
+    { id: 2, image: "https://via.placeholder.com/315x250", link: "", title: "Jogo 2" },
     { id: 3, image: "https://via.placeholder.com/315x250", link: "", title: "Jogo 3" },
     { id: 4, image: "https://via.placeholder.com/315x250", link: "", title: "Jogo 4" },
     { id: 5, image: "https://via.placeholder.com/315x250", link: "", title: "Jogo 5" },
@@ -27,7 +23,9 @@ const menuContainer = document.getElementById('menuContainer');
 const gameScreen = document.getElementById('gameScreen');
 const gameIframe = document.getElementById('gameIframe');
 
-// Renderiza apenas os jogos que já possuem Link configurado
+// Desativa o clique direito na tela do jogo para não atrapalhar os controles
+gameScreen.oncontextmenu = function () { return false; };
+
 function renderGames() {
     gamesList.forEach(game => {
         if(game.link !== "") {
@@ -43,21 +41,18 @@ function renderGames() {
     });
 }
 
-// Abre o jogo e esconde o menu principal
 function openGame(link) {
     gameIframe.src = link;
     menuContainer.style.display = 'none';
     gameScreen.style.display = 'flex';
 }
 
-// Botão: Back Menu
 document.getElementById('btnBack').addEventListener('click', () => {
-    gameIframe.src = ""; // Corta o link para o jogo parar de rodar áudio ao fundo
+    gameIframe.src = ""; 
     gameScreen.style.display = 'none';
     menuContainer.style.display = 'block';
 });
 
-// Botão: Tela Cheia
 document.getElementById('btnFullscreen').addEventListener('click', () => {
     if (!document.fullscreenElement) {
         gameScreen.requestFullscreen().catch(err => {
@@ -68,11 +63,9 @@ document.getElementById('btnFullscreen').addEventListener('click', () => {
     }
 });
 
-// Botão: Close Web
 document.getElementById('btnCloseWeb').addEventListener('click', () => {
     window.close();
-    window.location.href = "about:blank"; // Fallback caso o navegador bloqueie o fechamento direto
+    window.location.href = "about:blank"; 
 });
 
-// Executa a função ao carregar a página
 renderGames();

@@ -10,8 +10,7 @@
 
     <div class="menu-container" id="menuContainer">
         <h1>Games On</h1>
-        <div class="games-grid" id="gamesGrid">
-            </div>
+        <div class="games-grid" id="gamesGrid"></div>
     </div>
 
     <div class="game-screen" id="gameScreen">
@@ -21,7 +20,18 @@
             <button class="btn btn-close" id="btnCloseWeb">Close Web</button>
         </div>
         <div class="iframe-container">
-            <iframe id="gameIframe" src="" allowfullscreen></iframe>
+            <iframe 
+                id="gameIframe" 
+                src="" 
+                scrolling="no"
+                allowtransparency="true"
+                allowfullscreen="true"
+                webkitallowfullscreen="true" 
+                mozallowfullscreen="true" 
+                msallowfullscreen="true"
+                frameborder="0"
+                allow="autoplay; fullscreen *; geolocation; microphone; camera; midi; monetization; xr-spatial-tracking; gamepad; gyroscope; accelerometer; xr; cross-origin-isolated; web-share">
+            </iframe>
         </div>
     </div>
 
