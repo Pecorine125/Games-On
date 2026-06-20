@@ -189,3 +189,21 @@ button:hover {
     grid-template-columns: repeat(1, 1fr);
   }
 }
+
+.status {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #00ff9d;
+  margin-top: 8px;
+  opacity: 0.8;
+}
+
+.status.updating {
+  color: #ffcc00;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
