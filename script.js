@@ -1,21 +1,20 @@
-// LISTA DE JOGOS
+// LISTA DE JOGOS (Preencha os IDs de 2 a 10 alterando as propriedades aqui)
 const gamesList = [
     {
         id: 1,
-        // Usando o link completo com a versão exata que você extraiu
-        link: "https://html-classic.itch.zone/html/17151144/index.html?v=1776086364",
         image: "https://img.itch.zone/aW1nLzIwODI0ODA3LnBuZw==/315x250%23c/grufc0.png",
+        link: "https://html-classic.itch.zone/html/17151144/index.html?v=1776086364",
         title: "Jogo 1"
     },
-    { id: 2, image: "", link: "", title: "Jogo 2" },
-    { id: 3, image: "", link: "", title: "Jogo 3" },
-    { id: 4, image: "", link: "", title: "Jogo 4" },
-    { id: 5, image: "", link: "", title: "Jogo 5" },
-    { id: 6, image: "", link: "", title: "Jogo 6" },
-    { id: 7, image: "", link: "", title: "Jogo 7" },
-    { id: 8, image: "", link: "", title: "Jogo 8" },
-    { id: 9, image: "", link: "", title: "Jogo 9" },
-    { id: 10, image: "", link: "", title: "Jogo 10" }
+    { id: 2, image: "https://via.placeholder.com/315x250", link: "", title: "Jogo 2" },
+    { id: 3, image: "https://via.placeholder.com/315x250", link: "", title: "Jogo 3" },
+    { id: 4, image: "https://via.placeholder.com/315x250", link: "", title: "Jogo 4" },
+    { id: 5, image: "https://via.placeholder.com/315x250", link: "", title: "Jogo 5" },
+    { id: 6, image: "https://via.placeholder.com/315x250", link: "", title: "Jogo 6" },
+    { id: 7, image: "https://via.placeholder.com/315x250", link: "", title: "Jogo 7" },
+    { id: 8, image: "https://via.placeholder.com/315x250", link: "", title: "Jogo 8" },
+    { id: 9, image: "https://via.placeholder.com/315x250", link: "", title: "Jogo 9" },
+    { id: 10, image: "https://via.placeholder.com/315x250", link: "", title: "Jogo 10" }
 ];
 
 const gamesGrid = document.getElementById('gamesGrid');
@@ -23,11 +22,12 @@ const menuContainer = document.getElementById('menuContainer');
 const gameScreen = document.getElementById('gameScreen');
 const gameIframe = document.getElementById('gameIframe');
 
-// Desativa o clique direito na tela do jogo para não atrapalhar os controles
+// Evita o menu de clique direito nativo dentro da área do jogo
 gameScreen.oncontextmenu = function () { return false; };
 
 function renderGames() {
     gamesList.forEach(game => {
+        // Exibe o card no grid apenas se houver link configurado
         if(game.link !== "") {
             const card = document.createElement('div');
             card.className = 'game-card';
@@ -47,12 +47,14 @@ function openGame(link) {
     gameScreen.style.display = 'flex';
 }
 
+// Botão Back Menu
 document.getElementById('btnBack').addEventListener('click', () => {
     gameIframe.src = ""; 
     gameScreen.style.display = 'none';
     menuContainer.style.display = 'block';
 });
 
+// Botão Tela Cheia
 document.getElementById('btnFullscreen').addEventListener('click', () => {
     if (!document.fullscreenElement) {
         gameScreen.requestFullscreen().catch(err => {
@@ -63,6 +65,7 @@ document.getElementById('btnFullscreen').addEventListener('click', () => {
     }
 });
 
+// Botão Close Web
 document.getElementById('btnCloseWeb').addEventListener('click', () => {
     window.close();
     window.location.href = "about:blank"; 
