@@ -80,7 +80,7 @@ function filterGames() {
   renderGames();
 }
 
-// Abre o jogo (SEM tela cheia automática)
+// Abre o jogo na mesma janela (sem fullscreen automático)
 function openGame(game) {
   const menu = document.getElementById('menu');
   const gameScreen = document.getElementById('game-screen');
@@ -99,6 +99,14 @@ function openGame(game) {
     iframe.style.transition = 'opacity 0.6s';
     iframe.style.opacity = '1';
   };
+
+  // Se o iframe falhar (bloqueado pelo itch), abre em nova aba após 4 segundos
+  setTimeout(() => {
+    if (iframe.style.opacity === '0') {
+      window.open(game.link, '_blank');
+      backToMenu();
+    }
+  }, 4000);
 }
 
 // ==================== CONTROLES ====================
@@ -124,7 +132,6 @@ function toggleFullscreen() {
   if (document.fullscreenElement) {
     document.exitFullscreen();
   } else {
-    // Tenta no iframe primeiro
     if (iframe.requestFullscreen) {
       iframe.requestFullscreen().catch(() => {
         document.documentElement.requestFullscreen().catch(() => {});
