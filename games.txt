@@ -1,4 +1,4 @@
 ID = 1
 TitleGames = Games 1
 ImageGames = https://itch.zone
-LinkGames = https://itch.io
+LinkGames = https://itch.io/embed-frame/2267583
