@@ -1,9 +1,0 @@
-ID = 1
-TitleGames = Celeste Classic
-ImageGames = https://itch.zone
-LinkGames = https://itch.io/embed-frame/2267583
-
-ID = 2
-TitleGames = Jogo de Teste Aberto
-ImageGames = https://itch.zone
-LinkGames = https://itch.io
