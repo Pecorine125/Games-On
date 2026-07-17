@@ -1,6 +1,6 @@
 // LISTA DE JOGOS (Preencha os IDs de 2 a 10 alterando as propriedades aqui)
 const gamesList = [
-    { id: 1, image: "https://img.itch.zone/aW1nLzI3OTY4Njk3LmdpZg==/315x250%23c/0E2dBb.gif", link: "https://html-classic.itch.zone/html/13491748/index.html", title: "Jogo 1" },
+    { id: 1, image: "", link: "", title: "Jogo 1" },
     { id: 2, image: "", link: "", title: "Jogo 2" },
     { id: 3, image: "", link: "", title: "Jogo 3" },
     { id: 4, image: "", link: "", title: "Jogo 4" },
