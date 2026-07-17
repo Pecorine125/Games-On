@@ -1,89 +1,121 @@
-// LISTA DE JOGOS (Ajustado para caminhos locais de imagem corretos)
+// LISTA DE JOGOS (Filtra automaticamente os que têm link configurado)
 const gamesList = [
-    { id: 1, image: "./games/1.png", link: "https://exemplo.com/jogo1", title: "Jogo 1" }, // Exemplo com link ativo
-    { id: 2, image: "./games/2.png", link: "", title: "Jogo 2" },
+    { id: 1, image: "./games/1.png", link: "https://exemplo.com/jogo1", title: "Jogo 1" },
+    { id: 2, image: "./games/2.png", link: "https://exemplo.com/jogo2", title: "Jogo 2" }, // Coloque links válidos aqui
     { id: 3, image: "./games/3.png", link: "", title: "Jogo 3" },
     { id: 4, image: "./games/4.png", link: "", title: "Jogo 4" },
-    { id: 5, image: "./games/5.png", link: "", title: "Jogo 5" },
-    { id: 6, image: "./games/6.png", link: "", title: "Jogo 6" },
-    { id: 7, image: "./games/7.png", link: "", title: "Jogo 7" },
-    { id: 8, image: "./games/8.png", link: "", title: "Jogo 8" },
-    { id: 9, image: "./games/9.png", link: "", title: "Jogo 9" },
-    { id: 10, image: "./games/10.png", link: "", title: "Jogo 10" }
+    { id: 5, image: "./games/5.png", link: "", title: "Jogo 5" }
 ];
 
-const gamesGrid = document.getElementById('gamesGrid');
+// Filtra apenas os jogos válidos que possuem link preenchido
+const activeGames = gamesList.filter(game => game.link.trim() !== "");
+
+let currentIndex = 0; // Controla qual jogo está ativo na tela
+
+const gamesSlider = document.getElementById('gamesSlider');
 const menuContainer = document.getElementById('menuContainer');
 const gameScreen = document.getElementById('gameScreen');
 const gameIframe = document.getElementById('gameIframe');
 const btnFullscreen = document.getElementById('btnFullscreen');
 
-// Desativa o clique direito dentro da tela do jogo
+// Evita clique direito na tela do jogo
 gameScreen.oncontextmenu = function () { return false; };
 
-// Renderiza a lista de jogos na tela
-function renderGames() {
-    gamesGrid.innerHTML = ""; 
-    gamesList.forEach(game => {
-        // Exibe apenas se houver link configurado
-        if(game.link.trim() !== "") {
-            const card = document.createElement('div');
-            card.className = 'game-card';
-            card.innerHTML = `
-                <img src="${game.image}" alt="${game.title}">
-                <div class="game-title">${game.title}</div>
-            `;
-            card.addEventListener('click', () => openGame(game.link));
-            gamesGrid.appendChild(card);
-        }
-    });
+// Renderiza apenas o jogo do índice atual
+function updateCarousel() {
+    gamesSlider.innerHTML = "";
+    
+    if (activeGames.length === 0) {
+        gamesSlider.innerHTML = "<p>Nenhum jogo configurado.</p>";
+        return;
+    }
+
+    const game = activeGames[currentIndex];
+    const card = document.createElement('div');
+    card.className = 'game-card';
+    card.innerHTML = `
+        <img src="${game.image}" alt="${game.title}">
+        <div class="game-title">${game.title}</div>
+    `;
+    
+    // Clica na imagem e o jogo roda na própria página sem sair do site
+    card.addEventListener('click', () => openGame(game.link));
+    gamesSlider.appendChild(card);
 }
 
-// Abre o jogo com animação fade
+// Passar para o próximo jogo
+document.getElementById('nextBtn').addEventListener('click', () => {
+    if (activeGames.length === 0) return;
+    currentIndex = (currentIndex + 1) % activeGames.length;
+    updateCarousel();
+});
+
+// Voltar para o jogo anterior
+document.getElementById('prevBtn').addEventListener('click', () => {
+    if (activeGames.length === 0) return;
+    currentIndex = (currentIndex - 1 + activeGames.length) % activeGames.length;
+    updateCarousel();
+});
+
+// Abre o jogo (Troca de tela com animação)
 function openGame(link) {
     gameIframe.src = link;
     menuContainer.classList.add('hidden');
     gameScreen.classList.remove('hidden');
 }
 
-// Botão Back Menu com delay estratégico para suavizar a transição do som/imagem
+// Botão Back Menu (Voltar para o menu se enjoar)
 document.getElementById('btnBack').addEventListener('click', () => {
     gameScreen.classList.add('hidden');
     menuContainer.classList.remove('hidden');
-    
-    // Aguarda o término da animação do CSS (400ms) para limpar o iframe
-    setTimeout(() => {
-        gameIframe.src = ""; 
-    }, 400);
+    setTimeout(() => { gameIframe.src = ""; }, 400); // Desliga o som do iframe após a animação
 });
 
-// Controle de Tela Cheia
+/* ================= LÓGICA DE SAVE / LOAD ================= */
+
+// Salva o progresso (Guarda qual jogo estava selecionado no carrossel)
+document.getElementById('btnSave').addEventListener('click', () => {
+    if (activeGames.length === 0) return;
+    const currentGame = activeGames[currentIndex];
+    
+    // Salva o ID no armazenamento interno do navegador
+    localStorage.setItem('gamesOn_savedIndex', currentIndex);
+    alert(`Progresso salvo! Jogo atual: ${currentGame.title}`);
+});
+
+// Carrega o progresso salvo
+document.getElementById('btnLoad').addEventListener('click', () => {
+    const savedIndex = localStorage.getItem('gamesOn_savedIndex');
+    
+    if (savedIndex !== null) {
+        currentIndex = parseInt(savedIndex, 10);
+        updateCarousel();
+        alert(`Save carregado com sucesso!`);
+    } else {
+        alert("Nenhum save encontrado no sistema.");
+    }
+});
+
+/* ================= CONTROLES EXTRAS ================= */
+
 btnFullscreen.addEventListener('click', () => {
     if (!document.fullscreenElement) {
-        gameScreen.requestFullscreen()
-            .then(() => {
-                btnFullscreen.textContent = "Sair da Tela Cheia";
-            })
-            .catch(err => {
-                alert(`Não foi possível ativar tela cheia: ${err.message}`);
-            });
+        gameScreen.requestFullscreen().then(() => {
+            btnFullscreen.textContent = "Sair da Tela Cheia";
+        }).catch(err => alert(`Erro ao ativar tela cheia: ${err.message}`));
     } else {
         document.exitFullscreen();
     }
 });
 
-// Sincroniza o texto do botão caso o usuário saia pelo botão ESC do teclado
 document.addEventListener('fullscreenchange', () => {
-    if (!document.fullscreenElement) {
-        btnFullscreen.textContent = "Tela Cheia";
-    }
+    if (!document.fullscreenElement) btnFullscreen.textContent = "Tela Cheia";
 });
 
-// Botão Fechar Web
 document.getElementById('btnCloseWeb').addEventListener('click', () => {
     window.close();
     window.location.href = "about:blank"; 
 });
 
-// Inicialização
-renderGames();
+// Inicialização do Carrossel
+updateCarousel();

@@ -13,27 +13,59 @@ body {
 
 .menu-container {
     padding: 20px;
-    max-width: 1200px;
+    max-width: 600px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 h1 {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     color: #ff2a74;
     text-transform: uppercase;
     letter-spacing: 2px;
 }
 
-/* Grid que se adapta ao tamanho dos cards fixos de 300px */
-.games-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    justify-items: center;
+/* Barra de Save e Load acima do Carrossel */
+.save-load-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
 }
 
-/* Card com tamanho fixo de 300x150 */
+.btn-save { background-color: #28a745; }
+.btn-save:hover { background-color: #218838; }
+.btn-load { background-color: #007bff; }
+.btn-load:hover { background-color: #0069d9; }
+
+/* Container do Carrossel */
+.carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+}
+
+/* Estilo das Setas de Navegação */
+.arrow-btn {
+    background: transparent;
+    border: none;
+    color: #ff2a74;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: transform 0.2s, color 0.2s;
+    padding: 10px;
+}
+
+.arrow-btn:hover {
+    transform: scale(1.2);
+    color: #d61f5d;
+}
+
+/* Card Fixo de 300x150 */
 .game-card {
     background: #1e1e1e;
     border: 3px solid #333;
@@ -48,7 +80,7 @@ h1 {
     
     width: 300px;
     height: 150px;
-    position: relative; /* Permite que o título fique fixo na base */
+    position: relative;
 }
 
 .game-card:hover {
@@ -56,7 +88,6 @@ h1 {
     border-color: #ff2a74;
 }
 
-/* Redimensiona qualquer imagem para preencher os 300x150 perfeitamente */
 .game-card img {
     width: 100%;
     height: 100%; 
@@ -64,7 +95,6 @@ h1 {
     display: block;
 }
 
-/* Faixa escura estilizada para o título sobre a imagem */
 .game-title {
     position: absolute;
     bottom: 0;
@@ -78,7 +108,7 @@ h1 {
     font-size: 14px;
 }
 
-/* Tela cheia do Jogo */
+/* Tela do Jogo Interna */
 .game-screen {
     position: fixed;
     top: 0;
@@ -113,16 +143,9 @@ h1 {
     text-transform: uppercase;
 }
 
-.btn:hover {
-    background-color: #d61f5d;
-}
-
-.btn-close {
-    background-color: #cc0000;
-}
-.btn-close:hover {
-    background-color: #990000;
-}
+.btn:hover { background-color: #d61f5d; }
+.btn-close { background-color: #cc0000; }
+.btn-close:hover { background-color: #990000; }
 
 .iframe-container {
     flex: 1;
@@ -136,7 +159,7 @@ iframe {
     border: none;
 }
 
-/* Classes para o efeito Fade-in e Fade-out */
+/* Efeito Fade */
 .fade-element {
     opacity: 1;
     visibility: visible;

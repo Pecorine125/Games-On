@@ -8,13 +8,29 @@
 </head>
 <body>
 
-    <!-- Menu principal com classe de transição suave -->
+    <!-- Menu Principal com o Carrossel e Controles de Save -->
     <div class="menu-container fade-element" id="menuContainer">
         <h1>Games On</h1>
-        <div class="games-grid" id="gamesGrid"></div>
+        
+        <!-- Controles de Save/Load globais -->
+        <div class="save-load-bar">
+            <button class="btn btn-save" id="btnSave">Salvar Progresso</button>
+            <button class="btn btn-load" id="btnLoad">Carregar Save</button>
+        </div>
+
+        <!-- Estrutura do Carrossel (Uma imagem com duas setas) -->
+        <div class="carousel-container">
+            <button class="arrow-btn" id="prevBtn">&#10094;</button>
+            
+            <div class="games-slider" id="gamesSlider">
+                <!-- O card do jogo atual será gerado dinamicamente aqui pelo JS -->
+            </div>
+            
+            <button class="arrow-btn" id="nextBtn">&#10095;</button>
+        </div>
     </div>
 
-    <!-- Tela do jogo (começa escondida com a classe 'hidden') -->
+    <!-- Tela do jogo dentro do próprio site -->
     <div class="game-screen fade-element hidden" id="gameScreen">
         <div class="control-bar">
             <button class="btn" id="btnBack">Back Menu</button>
