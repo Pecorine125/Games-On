@@ -25,19 +25,15 @@ h1 {
     letter-spacing: 2px;
 }
 
-/* Grid responsivo */
+/* Grid que se adapta ao tamanho dos cards fixos de 300px */
 .games-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
+    justify-items: center;
 }
 
-@media (max-width: 600px) {
-    .games-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
+/* Card com tamanho fixo de 300x150 */
 .game-card {
     background: #1e1e1e;
     border: 3px solid #333;
@@ -48,8 +44,11 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    width: 100%;
+    justify-content: flex-start;
+    
+    width: 300px;
+    height: 150px;
+    position: relative; /* Permite que o título fique fixo na base */
 }
 
 .game-card:hover {
@@ -57,20 +56,29 @@ h1 {
     border-color: #ff2a74;
 }
 
+/* Redimensiona qualquer imagem para preencher os 300x150 perfeitamente */
 .game-card img {
     width: 100%;
-    height: auto;
-    max-width: 315px; 
+    height: 100%; 
+    object-fit: cover; 
     display: block;
 }
 
+/* Faixa escura estilizada para o título sobre a imagem */
 .game-title {
-    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8); 
+    color: #fff;
+    padding: 8px 10px;
     text-align: center;
     font-weight: bold;
+    font-size: 14px;
 }
 
-/* Tela do Jogo ajustada para as transições CSS */
+/* Tela cheia do Jogo */
 .game-screen {
     position: fixed;
     top: 0;
@@ -128,7 +136,7 @@ iframe {
     border: none;
 }
 
-/* --- CLASSES DE TRANSIÇÃO SUAVE (FADE) --- */
+/* Classes para o efeito Fade-in e Fade-out */
 .fade-element {
     opacity: 1;
     visibility: visible;

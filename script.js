@@ -1,4 +1,4 @@
-// LISTA DE JOGOS (Preencha as propriedades link para os jogos aparecerem)
+// LISTA DE JOGOS (Ajustado para caminhos locais de imagem corretos)
 const gamesList = [
     { id: 1, image: "./games/1.png", link: "https://exemplo.com/jogo1", title: "Jogo 1" }, // Exemplo com link ativo
     { id: 2, image: "./games/2.png", link: "", title: "Jogo 2" },
@@ -18,14 +18,14 @@ const gameScreen = document.getElementById('gameScreen');
 const gameIframe = document.getElementById('gameIframe');
 const btnFullscreen = document.getElementById('btnFullscreen');
 
-// Evita o menu de clique direito nativo dentro da área do jogo
+// Desativa o clique direito dentro da tela do jogo
 gameScreen.oncontextmenu = function () { return false; };
 
-// Renderiza a lista de jogos na tela em formato Grid
+// Renderiza a lista de jogos na tela
 function renderGames() {
-    gamesGrid.innerHTML = ""; // Limpa o grid antes de renderizar
+    gamesGrid.innerHTML = ""; 
     gamesList.forEach(game => {
-        // Exibe o card no grid apenas se houver link configurado (evita links em branco)
+        // Exibe apenas se houver link configurado
         if(game.link.trim() !== "") {
             const card = document.createElement('div');
             card.className = 'game-card';
@@ -39,28 +39,25 @@ function renderGames() {
     });
 }
 
-// Abre o jogo com transição suave
+// Abre o jogo com animação fade
 function openGame(link) {
     gameIframe.src = link;
-    
-    // Alterna as classes para iniciar o fade-in / fade-out
     menuContainer.classList.add('hidden');
     gameScreen.classList.remove('hidden');
 }
 
-// Botão Back Menu (Voltar) com tratamento de delay para a animação acabar
+// Botão Back Menu com delay estratégico para suavizar a transição do som/imagem
 document.getElementById('btnBack').addEventListener('click', () => {
     gameScreen.classList.add('hidden');
     menuContainer.classList.remove('hidden');
     
-    // Espera os 400ms da animação do CSS terminarem para limpar o iframe.
-    // Isso evita um flash branco feio na tela enquanto o jogo some.
+    // Aguarda o término da animação do CSS (400ms) para limpar o iframe
     setTimeout(() => {
         gameIframe.src = ""; 
     }, 400);
 });
 
-// Botão Tela Cheia (Usa a API do Navegador e altera o texto do botão)
+// Controle de Tela Cheia
 btnFullscreen.addEventListener('click', () => {
     if (!document.fullscreenElement) {
         gameScreen.requestFullscreen()
@@ -75,18 +72,18 @@ btnFullscreen.addEventListener('click', () => {
     }
 });
 
-// Sincroniza o texto do botão se o usuário sair do fullscreen usando a tecla 'ESC'
+// Sincroniza o texto do botão caso o usuário saia pelo botão ESC do teclado
 document.addEventListener('fullscreenchange', () => {
     if (!document.fullscreenElement) {
         btnFullscreen.textContent = "Tela Cheia";
     }
 });
 
-// Botão Close Web
+// Botão Fechar Web
 document.getElementById('btnCloseWeb').addEventListener('click', () => {
     window.close();
-    window.location.href = "about:blank"; // Fallback para limpar a tela caso o navegador bloqueie o fechamento
+    window.location.href = "about:blank"; 
 });
 
-// Inicializa o script renderizando os jogos na tela
+// Inicialização
 renderGames();
