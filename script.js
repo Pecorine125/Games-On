@@ -30,6 +30,16 @@ const gamesList = [
     { id: 28, link: "", title: "Games 28" },
     { id: 29, link: "", title: "Games 29" },
     { id: 30, link: "", title: "Games 30" },
+    { id: 31, link: "", title: "Games 31" },
+    { id: 32, link: "", title: "Games 32" },
+    { id: 33, link: "", title: "Games 33" },
+    { id: 34, link: "", title: "Games 34" },
+    { id: 35, link: "", title: "Games 35" },
+    { id: 36, link: "", title: "Games 36" },
+    { id: 37, link: "", title: "Games 37" },
+    { id: 38, link: "", title: "Games 38" },
+    { id: 39, link: "", title: "Games 39" },
+    { id: 40, link: "", title: "Games 40" },
 ];
 
 // Filtra apenas os jogos válidos que possuem link preenchido
