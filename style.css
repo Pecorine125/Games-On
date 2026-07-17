@@ -13,7 +13,7 @@ body {
 
 .menu-container {
     padding: 20px;
-    max-width: 600px;
+    max-width: 800px; /* Aumentado para acomodar o card de 600px confortavelmente */
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -45,7 +45,7 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15px;
+    gap: 20px;
     width: 100%;
 }
 
@@ -54,7 +54,7 @@ h1 {
     background: transparent;
     border: none;
     color: #ff2a74;
-    font-size: 2rem;
+    font-size: 2.5rem; /* Aumentado o tamanho da seta para combinar com o card maior */
     cursor: pointer;
     transition: transform 0.2s, color 0.2s;
     padding: 10px;
@@ -65,7 +65,7 @@ h1 {
     color: #d61f5d;
 }
 
-/* Card Fixo de 300x150 */
+/* Card Fixo Ajustado para 600x300 */
 .game-card {
     background: #1e1e1e;
     border: 3px solid #333;
@@ -78,9 +78,21 @@ h1 {
     align-items: center;
     justify-content: flex-start;
     
-    width: 300px;
-    height: 150px;
+    /* Configuração exata de tamanho solicitada */
+    width: 600px;
+    height: 300px;
     position: relative;
+}
+
+/* Responsividade simples para telas de celular menores que 640px */
+@media (max-width: 640px) {
+    .game-card {
+        width: 300px;
+        height: 150px;
+    }
+    .carousel-container {
+        gap: 5px;
+    }
 }
 
 .game-card:hover {
@@ -91,7 +103,7 @@ h1 {
 .game-card img {
     width: 100%;
     height: 100%; 
-    object-fit: cover; 
+    object-fit: cover; /* Mantém a imagem esticando sem distorcer */
     display: block;
 }
 
@@ -102,10 +114,10 @@ h1 {
     width: 100%;
     background: rgba(0, 0, 0, 0.8); 
     color: #fff;
-    padding: 8px 10px;
+    padding: 12px 15px; /* Aumentado o padding para telas maiores */
     text-align: center;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 16px; /* Fonte levemente maior */
 }
 
 /* Tela do Jogo Interna */

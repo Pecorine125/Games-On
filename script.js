@@ -1,7 +1,7 @@
 // LISTA DE JOGOS (Filtra automaticamente os que têm link configurado)
 const gamesList = [
     { id: 1, image: "./games/1.png", link: "https://exemplo.com/jogo1", title: "Jogo 1" },
-    { id: 2, image: "./games/2.png", link: "https://exemplo.com/jogo2", title: "Jogo 2" }, // Coloque links válidos aqui
+    { id: 2, image: "./games/2.png", link: "https://exemplo.com/jogo2", title: "Jogo 2" }, 
     { id: 3, image: "./games/3.png", link: "", title: "Jogo 3" },
     { id: 4, image: "./games/4.png", link: "", title: "Jogo 4" },
     { id: 5, image: "./games/5.png", link: "", title: "Jogo 5" }
@@ -26,7 +26,7 @@ function updateCarousel() {
     gamesSlider.innerHTML = "";
     
     if (activeGames.length === 0) {
-        gamesSlider.innerHTML = "<p>Nenhum jogo configurado.</p>";
+        gamesSlider.innerHTML = "<p>Nenhum jogo configurado com link.</p>";
         return;
     }
 
@@ -57,28 +57,27 @@ document.getElementById('prevBtn').addEventListener('click', () => {
     updateCarousel();
 });
 
-// Abre o jogo (Troca de tela com animação)
+// Abre o jogo (Troca de tela com animação suave)
 function openGame(link) {
     gameIframe.src = link;
     menuContainer.classList.add('hidden');
     gameScreen.classList.remove('hidden');
 }
 
-// Botão Back Menu (Voltar para o menu se enjoar)
+// Botão Back Menu (Voltar para o menu caso enjoe)
 document.getElementById('btnBack').addEventListener('click', () => {
     gameScreen.classList.add('hidden');
     menuContainer.classList.remove('hidden');
-    setTimeout(() => { gameIframe.src = ""; }, 400); // Desliga o som do iframe após a animação
+    setTimeout(() => { gameIframe.src = ""; }, 400); // Para o som do iframe
 });
 
 /* ================= LÓGICA DE SAVE / LOAD ================= */
 
-// Salva o progresso (Guarda qual jogo estava selecionado no carrossel)
+// Salva o progresso no armazenamento interno do navegador
 document.getElementById('btnSave').addEventListener('click', () => {
     if (activeGames.length === 0) return;
     const currentGame = activeGames[currentIndex];
     
-    // Salva o ID no armazenamento interno do navegador
     localStorage.setItem('gamesOn_savedIndex', currentIndex);
     alert(`Progresso salvo! Jogo atual: ${currentGame.title}`);
 });
