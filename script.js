@@ -17,9 +17,10 @@ const gamesList = [
     { id: 15, image: "./games/15.png", link: "https://cdn77.gamesofdesire.com/files/html5_new/welcome-to-nicest-0-4/index.html", title: "Jogo 15" },
     { id: 16, image: "./games/16.png", link: "https://cdn77.gamesofdesire.com/files/html5_new/headpats-handholding-completed/index.html", title: "Jogo 16" },
     { id: 17, image: "./games/17.png", link: "https://cdn77.gamesofdesire.com/files/html5_new/milf-busters-0-5/index.html", title: "Jogo 17" },
-    { id: 18, image: "./games/18.png", link: "", title: "Jogo 18" },
-    { id: 19, image: "./games/19.png", link: "", title: "Jogo 19" },
-    { id: 20, image: "./games/20.png", link: "", title: "Jogo 20" },
+    { id: 18, image: "./games/18.png", link: "https://cdn77.gamesofdesire.com/files/html5_new/my-harem-saga/index.html", title: "Jogo 18" },
+    { id: 19, image: "./games/19.png", link: "https://cdn77.gamesofdesire.com/files/html5_new/isekai-incubus-1-3/index.html", title: "Jogo 19" },
+    { id: 20, image: "./games/20.png", link: "https://cdn77.gamesofdesire.com/files/html5_new/delicious-business-v0-25-1/index.html", title: "Jogo 20" },
+    { id: 21, image: "./games/21.png", link: "", title: "Jogo 21" }
     
 ];
 
