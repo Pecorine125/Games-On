@@ -1,15 +1,9 @@
-// LISTA DE JOGOS (Preencha os IDs de 2 a 10 alterando as propriedades aqui)
+// LISTA DE JOGOS
 const gamesList = [
-    { id: 1, image: "Pecorine125/Games-On/games/1.png", link: "", title: "Jogo 1" },
+    { id: 1, image: "Pecorine125/Games-On/games/1.png", link: "https://exemplo.com/jogo1", title: "Jogo 1" }, // Coloquei um link de teste
     { id: 2, image: "Pecorine125/Games-On/games/2.png", link: "", title: "Jogo 2" },
     { id: 3, image: "Pecorine125/Games-On/games/3.png", link: "", title: "Jogo 3" },
-    { id: 4, image: "Pecorine125/Games-On/games/4.png", link: "", title: "Jogo 4" },
-    { id: 5, image: "Pecorine125/Games-On/games/5.png", link: "", title: "Jogo 5" },
-    { id: 6, image: "Pecorine125/Games-On/games/6.png", link: "", title: "Jogo 6" },
-    { id: 7, image: "Pecorine125/Games-On/games/7.png", link: "", title: "Jogo 7" },
-    { id: 8, image: "Pecorine125/Games-On/games/8.png", link: "", title: "Jogo 8" },
-    { id: 9, image: "Pecorine125/Games-On/games/9.png", link: "", title: "Jogo 9" },
-    { id: 10, image: "Pecorine125/Games-On/games/10.png", link: "", title: "Jogo 10" }
+    { id: 4, image: "Pecorine125/Games-On/games/4.png", link: "", title: "Jogo 4" }
 ];
 
 const gamesGrid = document.getElementById('gamesGrid');
@@ -22,10 +16,10 @@ gameScreen.oncontextmenu = function () { return false; };
 
 // Renderiza a lista de jogos na tela em formato Grid
 function renderGames() {
-    gamesGrid.innerHTML = ""; // Limpa o grid antes de renderizar
+    gamesGrid.innerHTML = ""; 
     gamesList.forEach(game => {
-        // Exibe o card no grid apenas se houver link configurado
-        if(game.link !== "") {
+        // Exibe apenas se houver link configurado
+        if(game.link.trim() !== "") {
             const card = document.createElement('div');
             card.className = 'game-card';
             card.innerHTML = `
@@ -38,39 +32,50 @@ function renderGames() {
     });
 }
 
-// Abre o jogo tentando usar uma requisição limpa para o iframe
+// Abre o jogo
 function openGame(link) {
-    // Definimos o link direto no iframe
     gameIframe.src = link;
     
-    // Esconde o menu e mostra a tela do jogo
+    // Melhores práticas: usando propriedades nativas de exibição em vez de adivinhar o display anterior
     menuContainer.style.display = 'none';
     gameScreen.style.display = 'flex';
 }
 
 // Botão Back Menu (Voltar)
 document.getElementById('btnBack').addEventListener('click', () => {
-    gameIframe.src = ""; // Reseta o iframe para parar o som do jogo ao fundo
+    gameIframe.src = ""; // Para o som do jogo
     gameScreen.style.display = 'none';
-    menuContainer.style.display = 'block';
+    menuContainer.style.display = ''; // Efeito "reset": remove o 'none' e volta ao que estava no CSS nativamente
 });
 
-// Botão Tela Cheia (Usa a API do Navegador)
-document.getElementById('btnFullscreen').addEventListener('click', () => {
+// Botão Tela Cheia (Com suporte atualizado e tratamento de saída)
+const btnFullscreen = document.getElementById('btnFullscreen');
+btnFullscreen.addEventListener('click', () => {
     if (!document.fullscreenElement) {
-        gameScreen.requestFullscreen().catch(err => {
-            alert(`Não foi possível ativar tela cheia: ${err.message}`);
-        });
+        gameScreen.requestFullscreen()
+            .then(() => {
+                btnFullscreen.textContent = "Sair da Tela Cheia";
+            })
+            .catch(err => {
+                alert(`Não foi possível ativar tela cheia: ${err.message}`);
+            });
     } else {
         document.exitFullscreen();
+    }
+});
+
+// Atualiza o texto do botão caso o usuário saia da tela cheia apertando 'ESC' no teclado
+document.addEventListener('fullscreenchange', () => {
+    if (!document.fullscreenElement) {
+        btnFullscreen.textContent = "Tela Cheia";
     }
 });
 
 // Botão Close Web
 document.getElementById('btnCloseWeb').addEventListener('click', () => {
     window.close();
-    window.location.href = "about:blank"; // Fallback caso o navegador bloqueie o window.close()
+    window.location.href = "about:blank"; 
 });
 
-// Inicializa o script renderizando os jogos na tela
+// Inicializa o script
 renderGames();
