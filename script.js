@@ -1,15 +1,15 @@
 // LISTA DE JOGOS (Preencha as propriedades link para os jogos aparecerem)
 const gamesList = [
-    { id: 1, image: "Pecorine125/Games-On/games/1.png", link: "https://exemplo.com/jogo1", title: "Jogo 1" }, // Exemplo com link ativo
-    { id: 2, image: "Pecorine125/Games-On/games/2.png", link: "", title: "Jogo 2" },
-    { id: 3, image: "Pecorine125/Games-On/games/3.png", link: "", title: "Jogo 3" },
-    { id: 4, image: "Pecorine125/Games-On/games/4.png", link: "", title: "Jogo 4" },
-    { id: 5, image: "Pecorine125/Games-On/games/5.png", link: "", title: "Jogo 5" },
-    { id: 6, image: "Pecorine125/Games-On/games/6.png", link: "", title: "Jogo 6" },
-    { id: 7, image: "Pecorine125/Games-On/games/7.png", link: "", title: "Jogo 7" },
-    { id: 8, image: "Pecorine125/Games-On/games/8.png", link: "", title: "Jogo 8" },
-    { id: 9, image: "Pecorine125/Games-On/games/9.png", link: "", title: "Jogo 9" },
-    { id: 10, image: "Pecorine125/Games-On/games/10.png", link: "", title: "Jogo 10" }
+    { id: 1, image: "./games/1.png", link: "https://exemplo.com/jogo1", title: "Jogo 1" }, // Exemplo com link ativo
+    { id: 2, image: "./games/2.png", link: "", title: "Jogo 2" },
+    { id: 3, image: "./games/3.png", link: "", title: "Jogo 3" },
+    { id: 4, image: "./games/4.png", link: "", title: "Jogo 4" },
+    { id: 5, image: "./games/5.png", link: "", title: "Jogo 5" },
+    { id: 6, image: "./games/6.png", link: "", title: "Jogo 6" },
+    { id: 7, image: "./games/7.png", link: "", title: "Jogo 7" },
+    { id: 8, image: "./games/8.png", link: "", title: "Jogo 8" },
+    { id: 9, image: "./games/9.png", link: "", title: "Jogo 9" },
+    { id: 10, image: "./games/10.png", link: "", title: "Jogo 10" }
 ];
 
 const gamesGrid = document.getElementById('gamesGrid');
