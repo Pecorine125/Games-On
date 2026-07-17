@@ -2,9 +2,9 @@
 const gamesList = [
     { id: 1, image: "./games/1.png", link: "https://exemplo.com/jogo1", title: "Jogo 1" },
     { id: 2, image: "./games/2.png", link: "https://exemplo.com/jogo2", title: "Jogo 2" }, 
-    { id: 3, image: "./games/3.png", link: "", title: "Jogo 3" },
-    { id: 4, image: "./games/4.png", link: "", title: "Jogo 4" },
-    { id: 5, image: "./games/5.png", link: "", title: "Jogo 5" }
+    { id: 3, image: "./games/3.png", link: "https://exemplo.com/jogo3", title: "Jogo 3" },
+    { id: 4, image: "./games/4.png", link: "https://exemplo.com/jogo4", title: "Jogo 4" },
+    { id: 5, image: "./games/5.png", link: "https://exemplo.com/jogo5", title: "Jogo 5" }
 ];
 
 // Filtra apenas os jogos válidos que possuem link preenchido
