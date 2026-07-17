@@ -1,15 +1,26 @@
 // LISTA DE JOGOS (Filtra automaticamente os que têm link configurado)
 const gamesList = [
-    { id: 1, image: "./games/1.png", link: "https://exemplo.com/jogo1", title: "Jogo 1" },
-    { id: 2, image: "./games/2.png", link: "https://exemplo.com/jogo2", title: "Jogo 2" }, 
-    { id: 3, image: "./games/3.png", link: "https://exemplo.com/jogo3", title: "Jogo 3" },
-    { id: 4, image: "./games/4.png", link: "https://exemplo.com/jogo4", title: "Jogo 4" },
-    { id: 5, image: "./games/5.png", link: "https://exemplo.com/jogo5", title: "Jogo 5" },
-    { id: 6, image: "./games/6.png", link: "https://exemplo.com/jogo6", title: "Jogo 6" },
-    { id: 7, image: "./games/7.png", link: "https://exemplo.com/jogo7", title: "Jogo 7" }, 
-    { id: 8, image: "./games/8.png", link: "https://exemplo.com/jogo8", title: "Jogo 8" },
-    { id: 9, image: "./games/9.png", link: "https://exemplo.com/jogo9", title: "Jogo 9" },
-    { id: 10, image: "./games/10.png", link: "https://exemplo.com/jogo10", title: "Jogo 10" }
+    { id: 1, image: "./games/1.png", link: "https://cdn77.gamesofdesire.com/files/html5_new/klee-prank-adventure-1-15/index.html", title: "Jogo 1" },
+    { id: 2, image: "./games/2.png", link: "https://cdn77.gamesofdesire.com/files/html5_new/shogun-trainer/index.html", title: "Jogo 2" }, 
+    { id: 3, image: "./games/3.png", link: "https://cdn77.gamesofdesire.com/files/html5_new/tales-of-divinity-the-lewdest-journey-of-rodinka-called-squirrel-v0-07/index.html", title: "Jogo 3" },
+    { id: 4, image: "./games/4.png", link: "https://cdn77.gamesofdesire.com/files/html5_new/my-state-sponsored-catgirl-0-97/index.html", title: "Jogo 4" },
+    { id: 5, image: "./games/5.png", link: "https://cdn77.gamesofdesire.com/files/html5_new/mongirl-conquest-0-9-3/index.html", title: "Jogo 5" },
+    { id: 6, image: "./games/6.png", link: "https://cdn77.gamesofdesire.com/files/html5_new/isekai-brothel-0-80/index.html", title: "Jogo 6" },
+    { id: 7, image: "./games/7.png", link: "https://cdn77.gamesofdesire.com/files/html5_new/fnaf-lustful-shift-0-02/index.html", title: "Jogo 7" }, 
+    { id: 8, image: "./games/8.png", link: "https://cdn77.gamesofdesire.com/files/html5_new/salacious-sakura/index.html", title: "Jogo 8" },
+    { id: 9, image: "./games/9.png", link: "https://cdn77.gamesofdesire.com/files/html5_new/ochako-s-secret-full-version/index.html", title: "Jogo 9" },
+    { id: 10, image: "./games/10.png", link: "https://cdn77.gamesofdesire.com/files/html5_new/from-wife-to-wench-ch-5/index.html", title: "Jogo 10" },
+    { id: 1, image: "./games/11.png", link: "", title: "Jogo 11" },
+    { id: 1, image: "./games/12.png", link: "", title: "Jogo 12" },
+    { id: 1, image: "./games/13.png", link: "", title: "Jogo 13" },
+    { id: 1, image: "./games/14.png", link: "", title: "Jogo 14" },
+    { id: 1, image: "./games/15.png", link: "", title: "Jogo 15" },
+    { id: 1, image: "./games/16.png", link: "", title: "Jogo 16" },
+    { id: 1, image: "./games/17.png", link: "", title: "Jogo 17" },
+    { id: 1, image: "./games/18.png", link: "", title: "Jogo 18" },
+    { id: 1, image: "./games/19.png", link: "", title: "Jogo 19" },
+    { id: 1, image: "./games/20.png", link: "", title: "Jogo 20" },
+    
 ];
 
 // Filtra apenas os jogos válidos que possuem link preenchido
