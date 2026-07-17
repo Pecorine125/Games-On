@@ -1,6 +1,6 @@
 // LISTA DE JOGOS (Preencha os IDs de 2 a 10 alterando as propriedades aqui)
 const gamesList = [
-    { id: 1, image: "", link: "", title: "Jogo 1" },
+    { id: 1, image: "Pecorine125/Games-On/games/1.png", link: "", title: "Jogo 1" },
     { id: 2, image: "", link: "", title: "Jogo 2" },
     { id: 3, image: "", link: "", title: "Jogo 3" },
     { id: 4, image: "", link: "", title: "Jogo 4" },
