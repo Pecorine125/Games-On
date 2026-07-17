@@ -46,26 +46,25 @@ const btnFullscreen = document.getElementById('btnFullscreen');
 // Evita clique direito na tela do jogo
 gameScreen.oncontextmenu = function () { return false; };
 
-// Renderiza apenas o jogo do índice atual
+// Renderiza apenas o botão do jogo do índice atual
 function updateCarousel() {
     gamesSlider.innerHTML = "";
     
     if (activeGames.length === 0) {
-        gamesSlider.innerHTML = "<p>Nenhum jogo configurado com link.</p>";
+        gamesSlider.innerHTML = "<p>Nenhum jogo ativo configurado.</p>";
         return;
     }
 
     const game = activeGames[currentIndex];
-    const card = document.createElement('div');
-    card.className = 'game-card';
-    card.innerHTML = `
-        <img src="${game.image}" alt="${game.title}">
-        <div class="game-title">${game.title}</div>
-    `;
     
-    // Clica na imagem e o jogo roda na própria página sem sair do site
-    card.addEventListener('click', () => openGame(game.link));
-    gamesSlider.appendChild(card);
+    // Cria o elemento como um botão interativo de texto puro
+    const gameButton = document.createElement('button');
+    gameButton.className = 'game-button-card';
+    gameButton.textContent = game.title;
+    
+    // Ao clicar no botão, roda o jogo na própria página
+    gameButton.addEventListener('click', () => openGame(game.link));
+    gamesSlider.appendChild(gameButton);
 }
 
 // Passar para o próximo jogo
@@ -89,7 +88,7 @@ function openGame(link) {
     gameScreen.classList.remove('hidden');
 }
 
-// Botão Back Menu (Voltar para o menu caso enjoe)
+// Botão Back Menu (Voltar para o menu)
 document.getElementById('btnBack').addEventListener('click', () => {
     gameScreen.classList.add('hidden');
     menuContainer.classList.remove('hidden');
