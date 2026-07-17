@@ -19,7 +19,8 @@ const gamesList = [
     { id: 17, link: "https://cdn77.gamesofdesire.com/files/html5_new/milf-busters-0-5/index.html", title: "Jogo 17" },
     { id: 18, link: "https://cdn77.gamesofdesire.com/files/html5_new/my-harem-saga/index.html", title: "Jogo 18" },
     { id: 19, link: "https://cdn77.gamesofdesire.com/files/html5_new/isekai-incubus-1-3/index.html", title: "Jogo 19" },
-    { id: 20, link: "https://cdn77.gamesofdesire.com/files/html5_new/delicious-business-v0-25-1/index.html", title: "Jogo 20" }
+    { id: 20, link: "https://cdn77.gamesofdesire.com/files/html5_new/delicious-business-v0-25-1/index.html", title: "Jogo 20" },
+    { id: 21, link: "", title: "Games 22" },
 ];
 
 // Filtra apenas os jogos válidos que possuem link preenchido
