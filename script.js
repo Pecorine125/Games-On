@@ -7,8 +7,8 @@ const gamesList = [
     { id: 5, image: "./games/5.png", link: "https://exemplo.com/jogo5", title: "Jogo 5" },
     { id: 6, image: "./games/6.png", link: "https://exemplo.com/jogo6", title: "Jogo 6" },
     { id: 7, image: "./games/7.png", link: "https://exemplo.com/jogo7", title: "Jogo 7" }, 
-    { id: 8, image: "./games//.png", link: "https://exemplo.com/jogo8", title: "Jogo 8" },
-    { id: 9, image: "./games/8.png", link: "https://exemplo.com/jogo9", title: "Jogo 9" },
+    { id: 8, image: "./games/8.png", link: "https://exemplo.com/jogo8", title: "Jogo 8" },
+    { id: 9, image: "./games/9.png", link: "https://exemplo.com/jogo9", title: "Jogo 9" },
     { id: 10, image: "./games/10.png", link: "https://exemplo.com/jogo10", title: "Jogo 10" }
 ];
 
