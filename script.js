@@ -1,9 +1,9 @@
 // LISTA DE JOGOS (Filtra automaticamente os que têm link configurado)
 const gamesList = [
-    { id: 1, link: "https://cdn77.gamesofdesire.com/files/html5_new/klee-prank-adventure-1-15/index.html", title: "Jogo 1" },
-    { id: 2, link: "https://cdn77.gamesofdesire.com/files/html5_new/shogun-trainer/index.html", title: "Jogo 2" }, 
-    { id: 3, link: "https://cdn77.gamesofdesire.com/files/html5_new/tales-of-divinity-the-lewdest-journey-of-rodinka-called-squirrel-v0-07/index.html", title: "Jogo 3" },
-    { id: 4, link: "https://cdn77.gamesofdesire.com/files/html5_new/my-state-sponsored-catgirl-0-97/index.html", title: "Jogo 4" },
+    { id: 1, link: "https://cdn77.gamesofdesire.com/files/html5_new/klee-prank-adventure-1-15/index.html", title: "Game Genshin 1" },
+    { id: 2, link: "https://cdn77.gamesofdesire.com/files/html5_new/shogun-trainer/index.html", title: "Game Genshin 2" }, 
+    { id: 3, link: "https://cdn77.gamesofdesire.com/files/html5_new/tales-of-divinity-the-lewdest-journey-of-rodinka-called-squirrel-v0-07/index.html", title: "Tales of Divinity: A Jornada Mais Lasciva de Rodinka, a Esquilo" },
+    { id: 4, link: "https://cdn77.gamesofdesire.com/files/html5_new/my-state-sponsored-catgirl-0-97/index.html", title: "Game Girl Cat" },
     { id: 5, link: "https://cdn77.gamesofdesire.com/files/html5_new/mongirl-conquest-0-9-3/index.html", title: "Jogo 5" },
     { id: 6, link: "https://cdn77.gamesofdesire.com/files/html5_new/isekai-brothel-0-80/index.html", title: "Jogo 6" },
     { id: 7, link: "https://cdn77.gamesofdesire.com/files/html5_new/fnaf-lustful-shift-0-02/index.html", title: "Jogo 7" }, 
