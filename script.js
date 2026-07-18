@@ -39,7 +39,7 @@ const gamesList = [
     { id: 37, link: "https://lwdbase2.com/heiss-ward-14-20260707/", title: "Games 37" }
 ];
 
-// CORREÇÃO 1: Adicionado o parâmetro 'game' na função filter
+// Filtra apenas os jogos válidos que possuem link preenchido
 const activeGames = gamesList.filter(game => game.link.trim() !== "");
 
 let currentIndex = 0; // Controla qual jogo está ativo na tela
@@ -50,10 +50,15 @@ const gameScreen = document.getElementById('gameScreen');
 const gameIframe = document.getElementById('gameIframe');
 const btnFullscreen = document.getElementById('btnFullscreen');
 
+// Otimizações iniciais de segurança e performance no Iframe
+// O sandbox impede popups, scripts maliciosos de redirecionamento ou download automático por fora do jogo
+gameIframe.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-forms allow-pointer-lock');
+gameIframe.setAttribute('loading', 'eager'); // Força o navegador a carregar o jogo com prioridade máxima
+
 // Evita clique direito na tela do jogo
 gameScreen.oncontextmenu = function () { return false; };
 
-// Renderiza apenas o botão do jogo do índice atual
+// Renderiza a imagem e o nome do jogo do índice atual
 function updateCarousel() {
     gamesSlider.innerHTML = "";
     
@@ -62,17 +67,49 @@ function updateCarousel() {
         return;
     }
 
-    // CORREÇÃO 2: Adicionado o nome da variável 'game'
     const game = activeGames[currentIndex];
     
-    // Cria o elemento como um botão interativo de texto puro
-    const gameButton = document.createElement('button');
-    gameButton.className = 'game-button-card';
-    gameButton.textContent = game.title;
+    // Container do card (segura a foto e o texto juntos)
+    const gameContainer = document.createElement('div');
+    gameContainer.className = 'game-card-container';
+    gameContainer.style.cursor = 'pointer';
+    gameContainer.style.textAlign = 'center';
+    gameContainer.style.display = 'inline-block';
+
+    // Criação dinâmica da imagem usando o ID
+    const gameImg = document.createElement('img');
+    gameImg.src = `./games/${game.id}.png`; 
+    gameImg.alt = game.title;
+    gameImg.className = 'game-image-preview';
     
-    // Ao clicar no botão, roda o jogo na própria página
-    gameButton.addEventListener('click', () => openGame(game.link));
-    gamesSlider.appendChild(gameButton);
+    // Estilos Inline básicos (Substitua ou complemente no seu arquivo CSS)
+    gameImg.style.width = '200px'; 
+    gameImg.style.height = 'auto';
+    gameImg.style.display = 'block';
+    gameImg.style.marginBottom = '10px';
+    gameImg.style.borderRadius = '8px';
+    gameImg.style.boxShadow = '0 4px 8px rgba(0,0,0,0.2)';
+
+    // Fallback: Se a imagem por ID não existir, exibe um placeholder ou caixa vazia estilizada
+    gameImg.onerror = function() {
+        this.src = 'https://via.placeholder.com/200x120/222/fff?text=Sem+Imagem';
+    };
+
+    // Criação do texto com o nome do jogo
+    const gameTitle = document.createElement('div');
+    gameTitle.className = 'game-card-title';
+    gameTitle.textContent = game.title;
+    gameTitle.style.fontWeight = 'bold';
+    gameTitle.style.color = '#fff'; // Altere conforme o esquema de cores do seu app
+
+    // Monta o elemento agrupando imagem e texto
+    gameContainer.appendChild(gameImg);
+    gameContainer.appendChild(gameTitle);
+    
+    // O clique no card inteiro abre a gameplay
+    gameContainer.addEventListener('click', () => openGame(game.link));
+    
+    gamesSlider.appendChild(gameContainer);
 }
 
 // Passar para o próximo jogo
@@ -89,8 +126,10 @@ document.getElementById('prevBtn').addEventListener('click', () => {
     updateCarousel();
 });
 
-// Abre o jogo (Troca de tela com animação suave)
+// Abre o jogo (Melhorado para evitar perdas de foco ou travamentos de memória)
 function openGame(link) {
+    // Garante foco na janela para controles de teclado funcionarem de primeira no jogo
+    window.focus(); 
     gameIframe.src = link;
     menuContainer.classList.add('hidden');
     gameScreen.classList.remove('hidden');
@@ -100,7 +139,12 @@ function openGame(link) {
 document.getElementById('btnBack').addEventListener('click', () => {
     gameScreen.classList.add('hidden');
     menuContainer.classList.remove('hidden');
-    setTimeout(() => { gameIframe.src = ""; }, 400); // Para o som do iframe
+    
+    // Liberar a memória consumida pelo jogo imediatamente ao sair
+    // Isso evita que múltiplos jogos abertos em sequência travem o navegador
+    setTimeout(() => { 
+        gameIframe.src = "about:blank"; 
+    }, 400); 
 });
 
 /* ================= LÓGICA DE SAVE / LOAD ================= */
@@ -108,7 +152,6 @@ document.getElementById('btnBack').addEventListener('click', () => {
 // Salva o progresso no armazenamento interno do navegador
 document.getElementById('btnSave').addEventListener('click', () => {
     if (activeGames.length === 0) return;
-    // CORREÇÃO 3: Corrigido de 'current=' para 'currentGame =' para bater com a linha de baixo
     const currentGame = activeGames[currentIndex];
     
     localStorage.setItem('gamesOn_savedIndex', currentIndex);
@@ -134,6 +177,8 @@ btnFullscreen.addEventListener('click', () => {
     if (!document.fullscreenElement) {
         gameScreen.requestFullscreen().then(() => {
             btnFullscreen.textContent = "Sair da Tela Cheia";
+            // Força o foco de volta para o iframe após mudar para tela cheia
+            gameIframe.focus(); 
         }).catch(err => alert(`Erro ao ativar tela cheia: ${err.message}`));
     } else {
         document.exitFullscreen();
@@ -141,7 +186,10 @@ btnFullscreen.addEventListener('click', () => {
 });
 
 document.addEventListener('fullscreenchange', () => {
-    if (!document.fullscreenElement) btnFullscreen.textContent = "Tela Cheia";
+    if (!document.fullscreenElement) {
+        btnFullscreen.textContent = "Tela Cheia";
+        gameIframe.focus();
+    }
 });
 
 document.getElementById('btnCloseWeb').addEventListener('click', () => {
