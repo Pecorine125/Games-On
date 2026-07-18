@@ -1,8 +1,15 @@
 // BANCO DE DADOS LOCAL DOS JOGOS
 const gamesData = [
-    { title: "Visual Novel 1", image: "https://via.placeholder.com/600x300/202024/ffffff?text=Jogo+1", url: "https://exemplo.com/jogo1" },
-    { title: "Visual Novel 2", image: "https://via.placeholder.com/600x300/202024/ffffff?text=Jogo+2", url: "https://exemplo.com/jogo2" },
-    { title: "Visual Novel 3", image: "https://via.placeholder.com/600x300/202024/ffffff?text=Jogo+3", url: "https://exemplo.com/jogo3" }
+    { title: "", image: "", url: "" },
+    { title: "", image: "", url: "" },
+    { title: "", image: "", url: "" },
+    { title: "", image: "", url: "" },
+    { title: "", image: "", url: "" },
+    { title: "", image: "", url: "" },
+    { title: "", image: "", url: "" },
+    { title: "", image: "", url: "" },
+    { title: "", image: "", url: "" },
+    { title: "", image: "", url: "" },
 ];
 
 let currentIndex = 0;
