@@ -1,15 +1,15 @@
 // LISTA DE JOGOS (Filtra automaticamente os que têm link configurado)
 const gamesList = [
-    { id: 1, link: "https://cdn77.gamesofdesire.com/files/html5_new/klee-prank-adventure-1-15/index.html", title: "Game Genshin 1" },
-    { id: 2, link: "https://cdn77.gamesofdesire.com/files/html5_new/shogun-trainer/index.html", title: "Game Genshin 2" }, 
+    { id: 1, link: "https://cdn77.gamesofdesire.com/files/html5_new/klee-prank-adventure-1-15/index.html", title: "Genshin 1" },
+    { id: 2, link: "https://cdn77.gamesofdesire.com/files/html5_new/shogun-trainer/index.html", title: "Genshin 2" }, 
     { id: 3, link: "https://cdn77.gamesofdesire.com/files/html5_new/tales-of-divinity-the-lewdest-journey-of-rodinka-called-squirrel-v0-07/index.html", title: "Tales of Divinity: A Jornada Mais Lasciva de Rodinka, a Esquilo" },
-    { id: 4, link: "https://cdn77.gamesofdesire.com/files/html5_new/my-state-sponsored-catgirl-0-97/index.html", title: "Game Girl Cat" },
-    { id: 5, link: "https://cdn77.gamesofdesire.com/files/html5_new/mongirl-conquest-0-9-3/index.html", title: "Game Mongirl Conquest" },
-    { id: 6, link: "https://cdn77.gamesofdesire.com/files/html5_new/isekai-brothel-0-80/index.html", title: "Game Isekai Brothel" },
-    { id: 7, link: "https://cdn77.gamesofdesire.com/files/html5_new/fnaf-lustful-shift-0-02/index.html", title: "Game FNAF Lustful Shift" }, 
+    { id: 4, link: "https://cdn77.gamesofdesire.com/files/html5_new/my-state-sponsored-catgirl-0-97/index.html", title: "Girl Cat" },
+    { id: 5, link: "https://cdn77.gamesofdesire.com/files/html5_new/mongirl-conquest-0-9-3/index.html", title: "Mongirl Conquest" },
+    { id: 6, link: "https://cdn77.gamesofdesire.com/files/html5_new/isekai-brothel-0-80/index.html", title: "Isekai Brothel" },
+    { id: 7, link: "https://cdn77.gamesofdesire.com/files/html5_new/fnaf-lustful-shift-0-02/index.html", title: "FNAF Lustful Shift" }, 
     { id: 8, link: "https://cdn77.gamesofdesire.com/files/html5_new/salacious-sakura/index.html", title: "Jogo 8" },
-    { id: 9, link: "https://cdn77.gamesofdesire.com/files/html5_new/ochako-s-secret-full-version/index.html", title: "Game Ochaco Uraraka" },
-    { id: 10, link: "https://cdn77.gamesofdesire.com/files/html5_new/from-wife-to-wench-ch-5/index.html", title: "Jogo 10" },
+    { id: 9, link: "https://cdn77.gamesofdesire.com/files/html5_new/ochako-s-secret-full-version/index.html", title: "Ochaco Uraraka" },
+    { id: 10, link: "https://cdn77.gamesofdesire.com/files/html5_new/from-wife-to-wench-ch-5/index.html", title: "De esposa a mulher de vida fácil" },
     { id: 11, link: "https://cdn77.gamesofdesire.com/files/html5_new/step-sis-is-kinda-horny/index.html", title: "Jogo 11" },
     { id: 12, link: "https://cdn77.gamesofdesire.com/files/html5_new/orange-smash-0-8-2/index.html", title: "Jogo 12" },
     { id: 13, link: "https://cdn77.gamesofdesire.com/files/html5_new/milfust/index.html", title: "Jogo 13" },
@@ -40,7 +40,7 @@ const gamesList = [
 ];
 
 // Filtra apenas os jogos válidos que possuem link preenchido
-const activeGames = gamesList.filter(game => game.link.trim() !== "");
+const activeGames = gamesList.filter(=> game.link.trim() !== "");
 
 let currentIndex = 0; // Controla qual jogo está ativo na tela
 
@@ -62,7 +62,7 @@ function updateCarousel() {
         return;
     }
 
-    const game = activeGames[currentIndex];
+    const = activeGames[currentIndex];
     
     // Cria o elemento como um botão interativo de texto puro
     const gameButton = document.createElement('button');
@@ -107,7 +107,7 @@ document.getElementById('btnBack').addEventListener('click', () => {
 // Salva o progresso no armazenamento interno do navegador
 document.getElementById('btnSave').addEventListener('click', () => {
     if (activeGames.length === 0) return;
-    const currentGame = activeGames[currentIndex];
+    const current= activeGames[currentIndex];
     
     localStorage.setItem('gamesOn_savedIndex', currentIndex);
     alert(`Progresso salvo! Jogo atual: ${currentGame.title}`);
