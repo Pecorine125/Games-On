@@ -1,3 +1,6 @@
+/* ==========================================================================
+   CONFIGURAÇÕES GERAIS / RESET
+   ========================================================================== */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -28,11 +31,15 @@ h1 {
     letter-spacing: 2px;
 }
 
-/* Barra de Save e Load */
+/* ==========================================================================
+   BARRA DE SAVE E LOAD
+   ========================================================================== */
 .save-load-bar {
     display: flex;
     gap: 10px;
     margin-bottom: 25px;
+    width: 100%;
+    justify-content: center;
 }
 
 .btn-save { background-color: #28a745; }
@@ -40,7 +47,9 @@ h1 {
 .btn-load { background-color: #007bff; }
 .btn-load:hover { background-color: #0069d9; }
 
-/* Container do Carrossel */
+/* ==========================================================================
+   CONTAINER DO CARROSSEL E SETAS
+   ========================================================================== */
 .carousel-container {
     display: flex;
     align-items: center;
@@ -49,7 +58,6 @@ h1 {
     width: 100%;
 }
 
-/* Setas de Navegação */
 .arrow-btn {
     background: transparent;
     border: none;
@@ -58,6 +66,7 @@ h1 {
     cursor: pointer;
     transition: transform 0.2s, color 0.2s;
     padding: 10px;
+    flex-shrink: 0; /* Impede que a seta esmague no mobile */
 }
 
 .arrow-btn:hover {
@@ -65,7 +74,9 @@ h1 {
     color: #d61f5d;
 }
 
-/* O Card agora se transformou em um grande botão de texto interativo */
+/* ==========================================================================
+   CARD PRINCIPAL (BOTÃO INTERATIVO)
+   ========================================================================== */
 .game-button-card {
     background: #1e1e1e;
     border: 3px solid #333;
@@ -78,14 +89,17 @@ h1 {
     letter-spacing: 1px;
     transition: transform 0.2s, border-color 0.2s, background-color 0.2s;
     
-    /* Centralização perfeita do texto dentro do botão */
+    /* Centralização e quebra automática de textos longos */
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
+    padding: 20px; 
     
-    /* Tamanho exato pedido */
-    width: 600px;
-    height: 300px;
+    /* Adaptabilidade: Substituído width/height fixos por min/max */
+    width: 100%;
+    max-width: 600px;
+    min-height: 300px; 
 }
 
 .game-button-card:hover {
@@ -94,19 +108,36 @@ h1 {
     background-color: #252525;
 }
 
-/* Responsividade para telas menores */
-@media (max-width: 640px) {
-    .game-button-card {
-        width: 300px;
-        height: 150px;
-        font-size: 1.3rem;
-    }
-    .carousel-container {
-        gap: 5px;
-    }
+/* ==========================================================================
+   BOTÕES GERAIS (.BTN)
+   ========================================================================== */
+.btn {
+    background-color: #ff2a74;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+    text-transform: uppercase;
+    
+    /* Garante boa exibição caso o texto interno seja grande */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    max-width: 100%;
 }
 
-/* Tela do Jogo Interna */
+.btn:hover { background-color: #d61f5d; }
+.btn-close { background-color: #cc0000; }
+.btn-close:hover { background-color: #990000; }
+
+/* ==========================================================================
+   TELA INTERNA DO JOGO E IFRAME
+   ========================================================================== */
 .game-screen {
     position: fixed;
     top: 0;
@@ -128,23 +159,6 @@ h1 {
     border-bottom: 2px solid #333;
 }
 
-.btn {
-    background-color: #ff2a74;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 14px;
-    font-weight: bold;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background 0.2s;
-    text-transform: uppercase;
-}
-
-.btn:hover { background-color: #d61f5d; }
-.btn-close { background-color: #cc0000; }
-.btn-close:hover { background-color: #990000; }
-
 .iframe-container {
     flex: 1;
     width: 100%;
@@ -157,7 +171,9 @@ iframe {
     border: none;
 }
 
-/* Efeito Fade */
+/* ==========================================================================
+   EFEITO FADE
+   ========================================================================== */
 .fade-element {
     opacity: 1;
     visibility: visible;
@@ -169,4 +185,31 @@ iframe {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE (CELULARES E TELAS MENORES)
+   ========================================================================== */
+@media (max-width: 640px) {
+    .game-button-card {
+        min-height: 160px;   /* Altura mínima confortável para o dedão */
+        font-size: 1.2rem;   /* Reduz o tamanho da fonte para textos longos caberem melhor */
+        padding: 15px;       /* Evita que o texto encoste nas bordas do botão */
+    }
+    
+    .carousel-container {
+        gap: 8px;
+    }
+    
+    .arrow-btn {
+        font-size: 2rem;     /* Diminui levemente as setas no celular */
+    }
+
+    .save-load-bar {
+        flex-wrap: wrap;     /* Permite que os botões quebrem linha se faltar espaço */
+    }
+    
+    .save-load-bar .btn {
+        flex: 1;             /* Faz os botões dividirem o espaço mobile de forma igual */
+    }
 }
