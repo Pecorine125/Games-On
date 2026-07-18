@@ -17,7 +17,7 @@ const gamesData = [
     { title: "My Life With 4 Succubus", image: "https://data.lewdspot.com/img/thumbs/my-life-with-4-succubus.webp", url: "https://lwdbase3.com/my-life-with-4-succubus/" },
     { title: "Shogun Trainer", image: "https://data.lewdspot.com/img/thumbs/shogun-trainer.webp", url: "https://lwdbase2.com/shogun-trainer/" },
     { title: "Klee Prank Adventure", image: "https://img.itch.zone/aW1hZ2UvMTIyODUzMy83MTY1MDU2LnBuZw==/347x500/%2Fr3FJ7.png", url: "https://cdn77.gamesofdesire.com/files/html5_new/klee-prank-adventure-1-15/index.html" },
-    { title: "", image: "", url: "" },
+    { title: "Ochakos Secret", image: "https://gamcore.com/f/w/o/ochakos_secret-4.webp", url: "https://ochakos_secret.fgn.cdn.serverable.com/common/flashes/nf/ochakos_secret/index.html?d=20251123012330" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" },
