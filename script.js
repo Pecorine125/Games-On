@@ -1,4 +1,4 @@
-// BANCO DE DADOS LOCAL DOS JOGOS (Exemplo - Substitua pelos seus links reais)
+// BANCO DE DADOS LOCAL DOS JOGOS
 const gamesData = [
     { title: "Visual Novel 1", image: "https://via.placeholder.com/600x300/202024/ffffff?text=Jogo+1", url: "https://exemplo.com/jogo1" },
     { title: "Visual Novel 2", image: "https://via.placeholder.com/600x300/202024/ffffff?text=Jogo+2", url: "https://exemplo.com/jogo2" },
@@ -17,12 +17,14 @@ const gameIframe = document.getElementById('gameIframe');
 const btnBack = document.getElementById('btnBack');
 const btnFullscreen = document.getElementById('btnFullscreen');
 
-// Inicializar e Renderizar o Carrossel
+// Renderizar o card do Carrossel com estrutura atualizada
 function renderCard(index) {
     const game = gamesData[index];
     gamesSlider.innerHTML = `
         <div class="game-card-container">
-            <img src="${game.image}" alt="${game.title}" class="game-image-preview" onclick="openGame('${game.url}')">
+            <div class="game-image-wrapper" onclick="openGame('${game.url}')">
+                <img src="${game.image}" alt="${game.title}" class="game-image-preview">
+            </div>
             <div class="game-card-title">${game.title}</div>
         </div>
     `;
@@ -46,7 +48,6 @@ function openGame(link) {
     menuContainer.classList.add('hidden');
     gameScreen.classList.remove('hidden');
     
-    // Tenta travar em horizontal se o navegador der permissão imediata
     if (screen.orientation && screen.orientation.lock) {
         screen.orientation.lock('landscape').catch(() => {
             console.log("Nota: Trava rígida de rotação aguardando tela cheia.");
@@ -54,9 +55,9 @@ function openGame(link) {
     }
 }
 
-// Botão de voltar (Limpeza de RAM essencial para o A05)
+// Botão de voltar (Limpeza de RAM essencial)
 btnBack.addEventListener('click', () => {
-    gameIframe.src = "about:blank"; // Limpa o jogo da memória RAM imediatamente
+    gameIframe.src = "about:blank"; 
     gameScreen.classList.add('hidden');
     menuContainer.classList.remove('hidden');
     
