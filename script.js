@@ -1,8 +1,7 @@
-// LISTA DE JOGOS (Filtra automaticamente os que têm link configurado)
 const gamesList = [
     { id: 1, link: "https://cdn77.gamesofdesire.com/files/html5_new/klee-prank-adventure-1-15/index.html", title: "Genshin 1" },
     { id: 2, link: "https://cdn77.gamesofdesire.com/files/html5_new/shogun-trainer/index.html", title: "Genshin 2" }, 
-    { id: 3, link: "https://cdn77.gamesofdesire.com/files/html5_new/tales-of-divinity-the-lewdest-journey-of-rodinka-called-squirrel-v0-07/index.html", title: "Tales of Divinity: A Jornada Mais Lasciva de Rodinka, a Esquilo" },
+    { id: 3, link: "https://cdn77.gamesofdesire.com/files/html5_new/tales-of-divinity-the-lewdest-journey-of-rodinka-called-squirrel-v0-07/index.html", title: "Tales of Divinity" },
     { id: 4, link: "https://cdn77.gamesofdesire.com/files/html5_new/my-state-sponsored-catgirl-0-97/index.html", title: "Girl Cat" },
     { id: 5, link: "https://cdn77.gamesofdesire.com/files/html5_new/mongirl-conquest-0-9-3/index.html", title: "Mongirl Conquest" },
     { id: 6, link: "https://cdn77.gamesofdesire.com/files/html5_new/isekai-brothel-0-80/index.html", title: "Isekai Brothel" },
@@ -10,9 +9,9 @@ const gamesList = [
     { id: 8, link: "https://cdn77.gamesofdesire.com/files/html5_new/salacious-sakura/index.html", title: "Jogo 8" },
     { id: 9, link: "https://cdn77.gamesofdesire.com/files/html5_new/ochako-s-secret-full-version/index.html", title: "Ochaco Uraraka" },
     { id: 10, link: "https://cdn77.gamesofdesire.com/files/html5_new/from-wife-to-wench-ch-5/index.html", title: "De esposa a mulher de vida fácil" },
-    { id: 11, link: "https://cdn77.gamesofdesire.com/files/html5_new/step-sis-is-kinda-horny/index.html", title: "minha meia-irmã está meio excitada" },
+    { id: 11, link: "https://cdn77.gamesofdesire.com/files/html5_new/step-sis-is-kinda-horny/index.html", title: "Minha meia-irmã" },
     { id: 12, link: "https://cdn77.gamesofdesire.com/files/html5_new/orange-smash-0-8-2/index.html", title: "Orange Smash" },
-    { id: 13, link: "https://cdn77.gamesofdesire.com/files/html5_new/milfust/index.html", title: "milfst" },
+    { id: 13, link: "https://cdn77.gamesofdesire.com/files/html5_new/milfust/index.html", title: "Milfst" },
     { id: 14, link: "https://cdn77.gamesofdesire.com/files/html5_new/perfect-family-a-family-of-perverts/index.html", title: "Jogo 14" },
     { id: 15, link: "https://cdn77.gamesofdesire.com/files/html5_new/welcome-to-nicest-0-4/index.html", title: "Jogo 15" },
     { id: 16, link: "https://cdn77.gamesofdesire.com/files/html5_new/headpats-handholding-completed/index.html", title: "Jogo 16" },
@@ -39,10 +38,8 @@ const gamesList = [
     { id: 37, link: "https://lwdbase2.com/heiss-ward-14-20260707/", title: "Games 37" }
 ];
 
-// Filtra apenas os jogos válidos que possuem link preenchido
 const activeGames = gamesList.filter(game => game.link.trim() !== "");
-
-let currentIndex = 0; // Controla qual jogo está ativo na tela
+let currentIndex = 0;
 
 const gamesSlider = document.getElementById('gamesSlider');
 const menuContainer = document.getElementById('menuContainer');
@@ -50,18 +47,14 @@ const gameScreen = document.getElementById('gameScreen');
 const gameIframe = document.getElementById('gameIframe');
 const btnFullscreen = document.getElementById('btnFullscreen');
 
-// Otimizações iniciais de segurança e performance no Iframe
-// O sandbox impede popups, scripts maliciosos de redirecionamento ou download automático por fora do jogo
+// Proteções contra saídas e anúncios invasivos
 gameIframe.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-forms allow-pointer-lock');
-gameIframe.setAttribute('loading', 'eager'); // Força o navegador a carregar o jogo com prioridade máxima
+gameIframe.setAttribute('loading', 'eager');
 
-// Evita clique direito na tela do jogo
-gameScreen.oncontextmenu = function () { return false; };
+gameScreen.oncontextmenu = () => false;
 
-// Renderiza a imagem e o nome do jogo do índice atual
 function updateCarousel() {
     gamesSlider.innerHTML = "";
-    
     if (activeGames.length === 0) {
         gamesSlider.innerHTML = "<p>Nenhum jogo ativo configurado.</p>";
         return;
@@ -69,117 +62,82 @@ function updateCarousel() {
 
     const game = activeGames[currentIndex];
     
-    // Container do card (segura a foto e o texto juntos)
     const gameContainer = document.createElement('div');
     gameContainer.className = 'game-card-container';
-    gameContainer.style.cursor = 'pointer';
-    gameContainer.style.textAlign = 'center';
-    gameContainer.style.display = 'inline-block';
 
-    // Criação dinâmica da imagem usando o ID
     const gameImg = document.createElement('img');
     gameImg.src = `./games/${game.id}.png`; 
     gameImg.alt = game.title;
     gameImg.className = 'game-image-preview';
-    
-    // Estilos Inline básicos (Substitua ou complemente no seu arquivo CSS)
-    gameImg.style.width = '200px'; 
-    gameImg.style.height = 'auto';
-    gameImg.style.display = 'block';
-    gameImg.style.marginBottom = '10px';
-    gameImg.style.borderRadius = '8px';
-    gameImg.style.boxShadow = '0 4px 8px rgba(0,0,0,0.2)';
 
-    // Fallback: Se a imagem por ID não existir, exibe um placeholder ou caixa vazia estilizada
+    // Fallback se a foto sumir ou falhar
     gameImg.onerror = function() {
-        this.src = 'https://via.placeholder.com/200x120/222/fff?text=Sem+Imagem';
+        this.src = 'https://via.placeholder.com/180x120/222/fff?text=Sem+Imagem';
     };
 
-    // Criação do texto com o nome do jogo
     const gameTitle = document.createElement('div');
     gameTitle.className = 'game-card-title';
     gameTitle.textContent = game.title;
-    gameTitle.style.fontWeight = 'bold';
-    gameTitle.style.color = '#fff'; // Altere conforme o esquema de cores do seu app
 
-    // Monta o elemento agrupando imagem e texto
     gameContainer.appendChild(gameImg);
     gameContainer.appendChild(gameTitle);
     
-    // O clique no card inteiro abre a gameplay
     gameContainer.addEventListener('click', () => openGame(game.link));
-    
     gamesSlider.appendChild(gameContainer);
 }
 
-// Passar para o próximo jogo
 document.getElementById('nextBtn').addEventListener('click', () => {
     if (activeGames.length === 0) return;
     currentIndex = (currentIndex + 1) % activeGames.length;
     updateCarousel();
 });
 
-// Voltar para o jogo anterior
 document.getElementById('prevBtn').addEventListener('click', () => {
     if (activeGames.length === 0) return;
     currentIndex = (currentIndex - 1 + activeGames.length) % activeGames.length;
     updateCarousel();
 });
 
-// Abre o jogo (Melhorado para evitar perdas de foco ou travamentos de memória)
 function openGame(link) {
-    // Garante foco na janela para controles de teclado funcionarem de primeira no jogo
     window.focus(); 
     gameIframe.src = link;
     menuContainer.classList.add('hidden');
     gameScreen.classList.remove('hidden');
 }
 
-// Botão Back Menu (Voltar para o menu)
 document.getElementById('btnBack').addEventListener('click', () => {
     gameScreen.classList.add('hidden');
     menuContainer.classList.remove('hidden');
-    
-    // Liberar a memória consumida pelo jogo imediatamente ao sair
-    // Isso evita que múltiplos jogos abertos em sequência travem o navegador
-    setTimeout(() => { 
-        gameIframe.src = "about:blank"; 
-    }, 400); 
+    // Limpeza completa de cache/RAM do jogo anterior ao sair (Foco no hardware do A05)
+    setTimeout(() => { gameIframe.src = "about:blank"; }, 100); 
 });
 
-/* ================= LÓGICA DE SAVE / LOAD ================= */
-
-// Salva o progresso no armazenamento interno do navegador
+/* SAVE / LOAD */
 document.getElementById('btnSave').addEventListener('click', () => {
     if (activeGames.length === 0) return;
     const currentGame = activeGames[currentIndex];
-    
     localStorage.setItem('gamesOn_savedIndex', currentIndex);
-    alert(`Progresso salvo! Jogo atual: ${currentGame.title}`);
+    alert(`Salvo: ${currentGame.title}`);
 });
 
-// Carrega o progresso salvo
 document.getElementById('btnLoad').addEventListener('click', () => {
     const savedIndex = localStorage.getItem('gamesOn_savedIndex');
-    
     if (savedIndex !== null) {
         currentIndex = parseInt(savedIndex, 10);
         updateCarousel();
-        alert(`Save carregado com sucesso!`);
+        alert(`Carregado com sucesso!`);
     } else {
-        alert("Nenhum save encontrado no sistema.");
+        alert("Nenhum save encontrado.");
     }
 });
 
-/* ================= CONTROLES EXTRAS ================= */
-
+/* FULLSCREEN */
 btnFullscreen.addEventListener('click', () => {
     if (!document.fullscreenElement) {
         gameScreen.requestFullscreen().then(() => {
             btnFullscreen.textContent = "Sair da Tela Cheia";
-            // Força o foco de volta para o iframe após mudar para tela cheia
             gameIframe.focus(); 
-        }).catch(err => alert(`Erro ao ativar tela cheia: ${err.message}`));
+        }).catch(err => alert(`Erro: ${err.message}`));
     } else {
         document.exitFullscreen();
     }
@@ -197,5 +155,4 @@ document.getElementById('btnCloseWeb').addEventListener('click', () => {
     window.location.href = "about:blank"; 
 });
 
-// Inicialização do Carrossel
 updateCarousel();

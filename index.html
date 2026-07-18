@@ -2,42 +2,39 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- user-scalable=no impede zoom acidental ao clicar rápido nos jogos no A05 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Games On</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- CONTAINER PRINCIPAL: MENU DE SELEÇÃO -->
+    <!-- MENU PRINCIPAL -->
     <div id="menuContainer" class="container">
         <h1>Games-On</h1>
         
-        <!-- Área do Carrossel (Imagens e Botões de Navegação) -->
         <div class="carousel-wrapper">
             <button id="prevBtn" class="nav-btn">&#10094;</button>
             <div id="gamesSlider">
-                <!-- O JavaScript vai injetar a imagem e o título aqui dentro -->
+                <!-- Injetado dinamicamente pelo JS -->
             </div>
             <button id="nextBtn" class="nav-btn">&#10095;</button>
         </div>
 
-        <!-- Controles de Salvar, Carregar e Sair -->
         <div class="menu-controls">
-            <button id="btnSave" class="control-btn">Salvar Progresso</button>
-            <button id="btnLoad" class="control-btn">Carregar Progresso</button>
+            <button id="btnSave" class="control-btn">Salvar</button>
+            <button id="btnLoad" class="control-btn">Carregar</button>
             <button id="btnCloseWeb" class="control-btn btn-danger">Sair</button>
         </div>
     </div>
 
-    <!-- CONTAINER DA JOGABILIDADE: TELA DO JOGO (Escondida por padrão) -->
+    <!-- TELA DE GAMEPLAY -->
     <div id="gameScreen" class="container hidden">
-        <!-- Barra superior de ferramentas durante a gameplay -->
         <div class="game-bar">
             <button id="btnBack" class="game-btn">Voltar ao Menu</button>
             <button id="btnFullscreen" class="game-btn">Tela Cheia</button>
         </div>
         
-        <!-- Área de renderização do jogo -->
         <div class="iframe-container">
             <iframe id="gameIframe" src="about:blank"></iframe>
         </div>
