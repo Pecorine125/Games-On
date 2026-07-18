@@ -39,8 +39,8 @@ const gamesList = [
     { id: 37, link: "https://lwdbase2.com/heiss-ward-14-20260707/", title: "Games 37" }
 ];
 
-// Filtra apenas os jogos válidos que possuem link preenchido
-const activeGames = gamesList.filter(=> game.link.trim() !== "");
+// CORRIGIDO: Adicionado o parâmetro 'game' dentro da arrow function do filter
+const activeGames = gamesList.filter(game => game.link.trim() !== "");
 
 let currentIndex = 0; // Controla qual jogo está ativo na tela
 
@@ -62,7 +62,8 @@ function updateCarousel() {
         return;
     }
 
-    const = activeGames[currentIndex];
+    // CORRIGIDO: Nomeada a variável que recebe o jogo atual para 'game'
+    const game = activeGames[currentIndex];
     
     // Cria o elemento como um botão interativo de texto puro
     const gameButton = document.createElement('button');
@@ -107,7 +108,8 @@ document.getElementById('btnBack').addEventListener('click', () => {
 // Salva o progresso no armazenamento interno do navegador
 document.getElementById('btnSave').addEventListener('click', () => {
     if (activeGames.length === 0) return;
-    const current= activeGames[currentIndex];
+    // CORRIGIDO: Nomeada a variável temporária de salvamento para 'currentGame'
+    const currentGame = activeGames[currentIndex];
     
     localStorage.setItem('gamesOn_savedIndex', currentIndex);
     alert(`Progresso salvo! Jogo atual: ${currentGame.title}`);
