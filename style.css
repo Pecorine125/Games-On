@@ -1,6 +1,183 @@
-/* ================= TRAVA DE ORIENTAÇÃO (HORIZONTAL) ================= */
+/* CONFIGURAÇÕES GERAIS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-/* Tela de aviso escondida por padrão */
+body {
+    background-color: #121214;
+    color: #ffffff;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    overflow-x: hidden;
+    width: 100vw;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    padding: 20px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #ff4757;
+}
+
+/* CARROSSEL RESPONSIVO */
+.carousel-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    width: 100%;
+    max-width: 95%;
+}
+
+#gamesSlider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-card-container {
+    background: #202024;
+    padding: 16px;
+    border-radius: 12px;
+    border: 2px solid #323238;
+    text-align: center;
+    width: 100%;
+    max-width: 632px; /* 600px da imagem + padding lateral */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* Tamanho solicitado: 600 de largura por 300 de altura */
+.game-image-preview {
+    width: 100%;
+    max-width: 600px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.game-image-preview:hover {
+    transform: scale(1.02);
+}
+
+.game-card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 14px;
+    color: #ffffff;
+    width: 100%;
+    max-width: 600px;
+    min-height: 44px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;   
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-wrap: break-word;   
+    text-align: center;
+}
+
+/* BOTÕES DE NAVEGAÇÃO DO CARROSSEL */
+.nav-btn {
+    background: #29292e;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    padding: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.nav-btn:hover {
+    background: #ff4757;
+}
+
+/* CONTROLES DO MENU */
+.menu-controls {
+    display: flex;
+    gap: 15px;
+}
+
+.control-btn {
+    background: #29292e;
+    border: 1px solid #323238;
+    color: white;
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.control-btn:hover {
+    background: #323238;
+}
+
+.btn-danger {
+    background: #3a1a1a;
+    border-color: #ff4757;
+    color: #ff4757;
+}
+
+.btn-danger:hover {
+    background: #ff4757;
+    color: white;
+}
+
+/* TELA DE GAMEPLAY E IFRAME */
+.game-bar {
+    width: 100%;
+    max-width: 95%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.game-btn {
+    background: #29292e;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.iframe-container {
+    width: 100%;
+    height: calc(100vh - 80px);
+    background: #000;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#gameIframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* ================= BARREIRA VISUAL: TRAVA HORIZONTAL ================= */
 #rotateWarning {
     display: none;
     position: fixed;
@@ -8,39 +185,84 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: #121214;
-    z-index: 9999;
-    color: white;
+    background: radial-gradient(circle at center, #1a1b22 0%, #0d0e12 100%);
+    z-index: 99999;
+    color: #ffffff;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 20px;
 }
 
 .warning-content {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 40px 30px;
+    border-radius: 24px;
+    max-width: 290px;
+    width: 85%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
 }
 
-.phone-icon {
-    font-size: 3rem;
-    animation: rotateAnimation 2s infinite ease-in-out;
+.phone-icon-css {
+    width: 44px;
+    height: 80px;
+    border: 3px solid #ff4757;
+    border-radius: 8px;
+    position: relative;
+    animation: rotateConsole 2.4s infinite ease-in-out;
+    background: rgba(255, 71, 87, 0.1);
+    box-shadow: 0 0 20px rgba(255, 71, 87, 0.2);
 }
 
-@keyframes rotateAnimation {
-    0% { transform: rotate(0deg); }
-    50% { transform: rotate(-90deg); }
-    100% { transform: rotate(0deg); }
+.phone-icon-css::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #ff4757;
 }
 
-/* DETECÇÃO DO SAMSUNG A05 EM PÉ: Se a altura for maior que a largura, bloqueia! */
+.warning-content p {
+    font-size: 1.05rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #e1e1e6;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+.warning-content p span {
+    color: #ff4757;
+    font-weight: 600;
+    display: block;
+    margin-top: 5px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+@keyframes rotateConsole {
+    0% { transform: rotate(0deg); border-color: #ff4757; }
+    40%, 70% { transform: rotate(-90deg); border-color: #00d2d3; background: rgba(0, 210, 211, 0.1); box-shadow: 0 0 20px rgba(0, 210, 211, 0.2); }
+    100% { transform: rotate(0deg); border-color: #ff4757; }
+}
+
+/* SE TELA EM PÉ (PORTRAIT): Ativa bloqueio de segurança */
 @media (orientation: portrait) {
     #rotateWarning {
-        display: flex; /* Mostra o aviso */
+        display: flex;
     }
     #menuContainer, #gameScreen {
-        display: none !important; /* Esconde o site completamente */
+        display: none !important;
     }
 }
