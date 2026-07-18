@@ -5,7 +5,7 @@ const gamesData = [
     { title: "Tias Path Home", image: "https://data.lewdspot.com/img/thumbs/tias-path-home.webp", url: "https://lewdspot.com/play?mob=0&url=https://lwdbase3.com/tias-path-home/&fixedwidth=0&gameid=10840&pageid=tias-path-home" },
     { title: "The Girl Who Confessed to Me", image: "https://data.lewdspot.com/img/thumbs/the-girl-who-confessed-to-me.webp", url: "https://lwdbase2.com/the-girl-who-confessed-to-me" },
     { title: "Call of Nature", image: "https://gamcore.com/f/w/c/call_of_nature.webp", url: "https://call_of_nature_v_ch_2_p2_v0_9_1.fgn.cdn.serverable.com/common/flashes/nf/call_of_nature/v_ch.2_p2_v0.9.1/index.html?d=20260628002952" },
-    { title: "", image: "", url: "" },
+    { title: "From Wife to Wench", image: "https://data.lewdspot.com/img/thumbs/from-wife-to-wench.webp", url: "https://lwdbase3.com/from-wife-to-wench/" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" },
