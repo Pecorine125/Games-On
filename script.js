@@ -10,7 +10,7 @@ const gamesList = [
     { id: 8, link: "https://cdn77.gamesofdesire.com/files/html5_new/salacious-sakura/index.html", title: "Jogo 8" },
     { id: 9, link: "https://cdn77.gamesofdesire.com/files/html5_new/ochako-s-secret-full-version/index.html", title: "Ochaco Uraraka" },
     { id: 10, link: "https://cdn77.gamesofdesire.com/files/html5_new/from-wife-to-wench-ch-5/index.html", title: "De esposa a mulher de vida fácil" },
-    { id: 11, link: "https://cdn77.gamesofdesire.com/files/html5_new/step-sis-is-kinda-horny/index.html", title: "Jogo 11" },
+    { id: 11, link: "https://cdn77.gamesofdesire.com/files/html5_new/step-sis-is-kinda-horny/index.html", title: "minha meia-irmã está meio excitada" },
     { id: 12, link: "https://cdn77.gamesofdesire.com/files/html5_new/orange-smash-0-8-2/index.html", title: "Jogo 12" },
     { id: 13, link: "https://cdn77.gamesofdesire.com/files/html5_new/milfust/index.html", title: "Jogo 13" },
     { id: 14, link: "https://cdn77.gamesofdesire.com/files/html5_new/perfect-family-a-family-of-perverts/index.html", title: "Jogo 14" },
