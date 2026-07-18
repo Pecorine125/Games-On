@@ -98,11 +98,19 @@ document.getElementById('prevBtn').addEventListener('click', () => {
     updateCarousel();
 });
 
+// Abre o jogo e tenta forçar o bloqueio de rotação do sistema
 function openGame(link) {
     window.focus(); 
     gameIframe.src = link;
     menuContainer.classList.add('hidden');
     gameScreen.classList.remove('hidden');
+    
+    // Tenta travar automaticamente na horizontal se o navegador permitir
+    if (screen.orientation && screen.orientation.lock) {
+        screen.orientation.lock('landscape').catch(err => {
+            console.log("Trava automática requer tela cheia ativa.");
+        });
+    }
 }
 
 document.getElementById('btnBack').addEventListener('click', () => {
@@ -131,22 +139,31 @@ document.getElementById('btnLoad').addEventListener('click', () => {
     }
 });
 
-/* FULLSCREEN */
+/* FULLSCREEN COM BLOQUEIO DE TELA HORIZONTAL */
 btnFullscreen.addEventListener('click', () => {
     if (!document.fullscreenElement) {
         gameScreen.requestFullscreen().then(() => {
             btnFullscreen.textContent = "Sair da Tela Cheia";
             gameIframe.focus(); 
+            
+            // Ativa o bloqueio rígido na horizontal (Landscape) ao entrar em tela cheia
+            if (screen.orientation && screen.orientation.lock) {
+                screen.orientation.lock('landscape-primary').catch(err => console.log(err));
+            }
         }).catch(err => alert(`Erro: ${err.message}`));
     } else {
         document.exitFullscreen();
     }
 });
 
+// Libera a orientação se sair da tela cheia
 document.addEventListener('fullscreenchange', () => {
     if (!document.fullscreenElement) {
         btnFullscreen.textContent = "Tela Cheia";
         gameIframe.focus();
+        if (screen.orientation && screen.orientation.unlock) {
+            screen.orientation.unlock();
+        }
     }
 });
 
