@@ -62,6 +62,7 @@ h1 {
     justify-content: center;
     align-items: center;
     flex: 1;
+    width: 100%;
 }
 
 .game-card-container {
@@ -70,7 +71,8 @@ h1 {
     border-radius: 16px;
     border: 1px solid rgba(255, 255, 255, 0.08);
     text-align: center;
-    width: 600px; /* Garante que o card tenha o tamanho da imagem */
+    width: 100%;
+    max-width: 600px; /* Define o tamanho máximo horizontal solicitado */
     box-shadow: 0 20px 40px rgba(0,0,0,0.6);
     overflow: hidden;
     transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s, box-shadow 0.3s;
@@ -82,28 +84,31 @@ h1 {
     box-shadow: 0 0 30px rgba(255, 71, 87, 0.25), 0 20px 40px rgba(0,0,0,0.8);
 }
 
-/* Força estritamente os 600x300 solicitados */
+/* CONTAINER COM PROPORÇÃO 2:1 RESPONSIVA (600x300) */
 .game-image-wrapper {
-    width: 600px;
-    height: 300px;
+    width: 100%;
+    max-width: 600px;
+    aspect-ratio: 2 / 1; /* Mantém a proporção exata de 600 de largura por 300 de altura */
     overflow: hidden;
     position: relative;
     cursor: pointer;
+    background-color: #0d0d10; /* Fundo neutro caso a imagem original tenha outra proporção */
 }
 
+/* IMAGEM REDIMENSIONÁVEL E SEM CORTES */
 .game-image-preview {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain; /* Ajusta a imagem inteira na tela sem cortar nenhuma borda */
     display: block;
     transition: transform 0.5s ease;
 }
 
 .game-card-container:hover .game-image-preview {
-    transform: scale(1.04);
+    transform: scale(1.03); /* Zoom elegante sem estourar os limites do card */
 }
 
-/* Titulo embaixo do jogo */
+/* TITULO EMBAIXO DO JOGO */
 .game-card-title {
     font-size: 1.25rem;
     font-weight: 700;
@@ -129,6 +134,7 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
+    user-select: none;
     transition: all 0.2s ease;
 }
 
@@ -307,7 +313,7 @@ h1 {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* FILTRO DE ORIENTAÇÃO EM PÉ */
+/* FILTRO DE ORIENTAÇÃO EM PÉ (PORTRAIT) */
 @media (orientation: portrait) {
     #rotateWarning {
         display: flex;
