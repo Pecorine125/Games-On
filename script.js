@@ -19,7 +19,19 @@ const gamesData = [
     { title: "Klee Prank Adventure", image: "https://img.itch.zone/aW1hZ2UvMTIyODUzMy83MTY1MDU2LnBuZw==/347x500/%2Fr3FJ7.png", url: "https://cdn77.gamesofdesire.com/files/html5_new/klee-prank-adventure-1-15/index.html" },
     { title: "Ochakos Secret", image: "https://gamcore.com/f/w/o/ochakos_secret-4.webp", url: "https://ochakos_secret.fgn.cdn.serverable.com/common/flashes/nf/ochakos_secret/index.html?d=20251123012330" },
     { title: "My State Sponsored Catgirl", image: "https://gamcore.com/f/w/m/my_state_sponsored_catgirl-2.webp", url: "https://my_state_sponsored_catgirl_v_0_98.fgn.cdn.serverable.com/common/flashes/nf/my_state_sponsored_catgirl/v_0.98/index.html?d=20260623011605" },
-    { title: "PokeLewd: For Waifus", image: "https://gamcore.com/f/w/p/pokelewd_for_waifus-9.webp", url: "https://pokelewd_for_waifus_v_0_9d.fgn.cdn.serverable.com/common/flashes/nf/pokelewd_for_waifus/v_0.9d/index.html?d=20260602003334" }
+    { title: "PokeLewd: For Waifus", image: "https://gamcore.com/f/w/p/pokelewd_for_waifus-9.webp", url: "https://pokelewd_for_waifus_v_0_9d.fgn.cdn.serverable.com/common/flashes/nf/pokelewd_for_waifus/v_0.9d/index.html?d=20260602003334" },
+    { title: "", image: "", url: "" },
+    { title: "", image: "", url: "" },
+    { title: "", image: "", url: "" },
+    { title: "", image: "", url: "" },
+    { title: "", image: "", url: "" },
+    { title: "", image: "", url: "" },
+    { title: "", image: "", url: "" },
+    { title: "", image: "", url: "" },
+    { title: "", image: "", url: "" },
+    { title: "", image: "", url: "" },
+    { title: "", image: "", url: "" },
+    { title: "", image: "", url: "" }
 ];
 
 let currentIndex = 0;
