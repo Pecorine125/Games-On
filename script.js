@@ -61,7 +61,7 @@ const gamesData = [
     { title: "Maiden Trainer", image: "https://cdn77.gamesofdesire.com/files/img/maiden-trainer-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5/maiden-trainer/index.html" },
     { title: "BDSM Apocalypse", image: "https://cdn77.gamesofdesire.com/files/img/bdsm-apocalypse-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/bdsm-apocalypse/index.html" },
     { title: "Erosion", image: "https://cdn77.gamesofdesire.com/files/img/erosion-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/erosion/index.html" },
-    { title: "", image: "", url: "" },
+    { title: "My Girlfriend's Friends", image: "https://cdn77.gamesofdesire.com/files/img/my-girlfriend-s-friends-3.webp", url: "https://cdn77.gamesofdesire.com/files/html5/my-girlfriend-s-friends/index.html" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" },
