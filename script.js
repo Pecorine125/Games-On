@@ -55,7 +55,7 @@ const gamesData = [
     { title: "The void club ", image: "https://cdn77.gamesofdesire.com/files/img/the-voic-club-ch-5-2-0-pokemon-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/the-voic-club-ch-5-2-0-pokemon/index.html" },
     { title: "Manic Pixie Waifus Update", image: "https://cdn77.gamesofdesire.com/files/img/manic-pixie-waifus-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/manic-pixie-waifus/index.html" },
     { title: "Monster Girl 1,000", image: "https://cdn77.gamesofdesire.com/files/img/monster-girl-1-000-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/monster-girl-1-000/index.html" },
-    { title: "", image: "", url: "" },
+    { title: "Peerless Lust", image: "https://cdn77.gamesofdesire.com/files/img/peerless-lust-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/peerless-lust/index.html" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" },
