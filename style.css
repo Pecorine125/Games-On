@@ -14,9 +14,8 @@ body {
     background-size: 100% 100%, 30px 30px, 30px 30px;
     color: #ffffff;
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    overflow: hidden;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    min-height: 100vh;
 }
 
 .container {
@@ -25,7 +24,7 @@ body {
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     padding: 20px;
     animation: fadeIn 0.5s ease-out;
 }
@@ -44,9 +43,10 @@ h1 {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     filter: drop-shadow(0 2px 10px rgba(255, 71, 87, 0.3));
+    text-align: center;
 }
 
-/* CARROSSEL RESPONSIVO */
+/* CARROSSEL RESPONSIVO (SEM LIMITES DE LARGURA) */
 .carousel-wrapper {
     display: flex;
     align-items: center;
@@ -54,7 +54,6 @@ h1 {
     gap: 25px;
     margin-bottom: 35px;
     width: 100%;
-    max-width: 850px;
 }
 
 #gamesSlider {
@@ -72,7 +71,6 @@ h1 {
     border: 1px solid rgba(255, 255, 255, 0.08);
     text-align: center;
     width: 100%;
-    max-width: 600px; /* Define o tamanho máximo horizontal solicitado */
     box-shadow: 0 20px 40px rgba(0,0,0,0.6);
     overflow: hidden;
     transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s, box-shadow 0.3s;
@@ -84,31 +82,29 @@ h1 {
     box-shadow: 0 0 30px rgba(255, 71, 87, 0.25), 0 20px 40px rgba(0,0,0,0.8);
 }
 
-/* CONTAINER COM PROPORÇÃO 2:1 RESPONSIVA (600x300) */
+/* CONTAINER DA IMAGEM (SEM PROPORÇÃO FIXA OU LIMITE) */
 .game-image-wrapper {
     width: 100%;
-    max-width: 600px;
-    aspect-ratio: 2 / 1; /* Mantém a proporção exata de 600 de largura por 300 de altura */
     overflow: hidden;
     position: relative;
     cursor: pointer;
-    background-color: #0d0d10; /* Fundo neutro caso a imagem original tenha outra proporção */
+    background-color: #0d0d10;
 }
 
-/* IMAGEM REDIMENSIONÁVEL E SEM CORTES */
+/* IMAGEM TOTALMENTE LIVRE E FLUIDA */
 .game-image-preview {
     width: 100%;
-    height: 100%;
-    object-fit: contain; /* Ajusta a imagem inteira na tela sem cortar nenhuma borda */
+    height: auto;
+    object-fit: cover;
     display: block;
     transition: transform 0.5s ease;
 }
 
 .game-card-container:hover .game-image-preview {
-    transform: scale(1.03); /* Zoom elegante sem estourar os limites do card */
+    transform: scale(1.03);
 }
 
-/* TITULO EMBAIXO DO JOGO */
+/* TÍTULO EMBAIXO DO JOGO */
 .game-card-title {
     font-size: 1.25rem;
     font-weight: 700;
@@ -136,6 +132,7 @@ h1 {
     justify-content: center;
     user-select: none;
     transition: all 0.2s ease;
+    flex-shrink: 0;
 }
 
 .nav-btn:hover {
@@ -153,6 +150,8 @@ h1 {
 .menu-controls {
     display: flex;
     gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .control-btn {
@@ -190,7 +189,6 @@ h1 {
 /* GAMEPLAY E IFRAME */
 .game-bar {
     width: 100%;
-    max-width: 95%;
     display: flex;
     justify-content: space-between;
     margin-bottom: 12px;
@@ -228,97 +226,13 @@ h1 {
     border: none;
 }
 
-/* TRAVA DE ROTAÇÃO HORIZONTAL */
+/* TELA DE AVISO DESATIVADA */
 #rotateWarning {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: radial-gradient(circle at center, #1a1b22 0%, #0d0e12 100%);
-    z-index: 99999;
-    color: #ffffff;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    display: none !important;
 }
 
-.warning-content {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    padding: 40px 30px;
-    border-radius: 24px;
-    max-width: 290px;
-    width: 85%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-}
-
-.phone-icon-css {
-    width: 44px;
-    height: 80px;
-    border: 3px solid #ff4757;
-    border-radius: 8px;
-    position: relative;
-    animation: rotateConsole 2.4s infinite ease-in-out;
-    background: rgba(255, 71, 87, 0.1);
-    box-shadow: 0 0 20px rgba(255, 71, 87, 0.2);
-}
-
-.phone-icon-css::after {
-    content: '';
-    position: absolute;
-    bottom: 4px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: #ff4757;
-}
-
-.warning-content p {
-    font-size: 1.05rem;
-    font-weight: 500;
-    line-height: 1.5;
-    color: #e1e1e6;
-    margin: 0;
-    letter-spacing: 0.5px;
-}
-
-.warning-content p span {
-    color: #ff4757;
-    font-weight: 600;
-    display: block;
-    margin-top: 5px;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-@keyframes rotateConsole {
-    0% { transform: rotate(0deg); border-color: #ff4757; }
-    40%, 70% { transform: rotate(-90deg); border-color: #00d2d3; background: rgba(0, 210, 211, 0.1); box-shadow: 0 0 20px rgba(0, 210, 211, 0.2); }
-    100% { transform: rotate(0deg); border-color: #ff4757; }
-}
-
+/* ANIMAÇÃO DE ENTRADA */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
-}
-
-/* FILTRO DE ORIENTAÇÃO EM PÉ (PORTRAIT) */
-@media (orientation: portrait) {
-    #rotateWarning {
-        display: flex;
-    }
-    #menuContainer, #gameScreen {
-        display: none !important;
-    }
 }
