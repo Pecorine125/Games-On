@@ -42,6 +42,15 @@ const gamesData = [
     { title: "The Fixer", image: "https://cdn77.gamesofdesire.com/files/img/the-fixer-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/the-fixer-v0-3-3-21/index.html" },
     { title: "Perfect Family: A Family of Perverts", image: "https://cdn77.gamesofdesire.com/files/img/perfect-family-a-family-of-perverts-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/perfect-family-a-family-of-perverts/index.html" },
     { title: "Welcome to Nicest", image: "https://cdn77.gamesofdesire.com/files/img/welcome-to-nicest-3.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/welcome-to-nicest-0-4/index.html" },
+    { title: "Lust Legion", image: "https://cdn77.gamesofdesire.com/files/img/lust-legion-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/lust-legion/index.html" },
+    { title: "", image: "", url: "" },
+    { title: "", image: "", url: "" },
+    { title: "", image: "", url: "" },
+    { title: "", image: "", url: "" },
+    { title: "", image: "", url: "" },
+    { title: "", image: "", url: "" },
+    { title: "", image: "", url: "" },
+    { title: "", image: "", url: "" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" }
 ];
