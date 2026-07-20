@@ -15,7 +15,7 @@ const gamesData = [
     { title: "Brewing Curves", image: "https://data.lewdspot.com/img/thumbs/brewing-curves.webp", url: "https://lwdbase3.com/brewing-curves/" },
     { title: "My Life With 4 Succubus", image: "https://data.lewdspot.com/img/thumbs/my-life-with-4-succubus.webp", url: "https://lwdbase3.com/my-life-with-4-succubus/" },
     { title: "Shogun Trainer", image: "https://data.lewdspot.com/img/thumbs/shogun-trainer.webp", url: "https://lwdbase2.com/shogun-trainer/" },
-    { title: "Klee Prank Adventure", image: "https://img.itch.zone/aW1hZ2UvMTIyODUzMy83MTY1MDU2LnBuZw==/347x500/%2Fr3FJ7.png", url: "https://cdn77.gamesofdesire.com/files/html5_new/klee-prank-adventure-1-15/index.html" },
+    { title: "Klee Prank Adventure", image: "https://cdn77.gamesofdesire.com/files/img/klee-prank-adventure-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/klee-prank-adventure-1-15/index.html" },
     { title: "Ochakos Secret", image: "https://cdn77.gamesofdesire.com/files/img/s1/ochako-s-secret-1.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/ochako-s-secret-full-version/index.html" },
     { title: "My State Sponsored Catgirl", image: "https://cdn77.gamesofdesire.com/files/img/s1/my-state-sponsored-catgirl-1.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/my-state-sponsored-catgirl-0-97/index.html" },
     { title: "World Tamer", image: "https://img.itch.zone/aW1nLzI4NDA5OTY2LmdpZg==/315x250%23c/Du2eLG.gif", url: "https://html-classic.itch.zone/html/13491748/index.html?v=1782254084" },
@@ -51,7 +51,7 @@ const gamesData = [
     { title: "Goblin Waifu", image: "https://cdn77.gamesofdesire.com/files/img/goblin-waifu-3.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/goblin-waifu/index.html" },
     { title: "Isekai Incubus", image: "https://cdn77.gamesofdesire.com/files/img/isekai-incubus-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/isekai-incubus-1-3/index.html" },
     { title: "MonGirl Sexpedition", image: "https://cdn77.gamesofdesire.com/files/img/mongirl-sexpedition-3.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/mongirl-sexpedition/index.html" },
-    { title: "", image: "", url: "" },
+    { title: "Surrendering to My Crush", image: "https://cdn77.gamesofdesire.com/files/img/surrendering-to-my-crush-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/surrendering-to-my-crush-1-11/index.html" },
     { title: "", image: "", url: "" }
 ];
 
