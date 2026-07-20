@@ -67,9 +67,9 @@ const gamesData = [
     { title: "Milfy Cummy: Gloria Returns", image: "https://cdn77.gamesofdesire.com/files/img/milfy-cummy-gloria-returns-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5/milfy-cummy-gloria-returns/index.html" },
     { title: "Nano-control", image: "https://cdn77.gamesofdesire.com/files/img/nano-control-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5/nano-control-v1-0c/index.html" },
     { title: "Teens Do Porn", image: "https://cdn77.gamesofdesire.com/files/img/teens-do-porn-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5/teens-do-porn/index.html" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
+    { title: "Happy NEET Raising Guide", image: "https://vnpocket.com/resources/game/2026-04/d55460870e268d8b09537a2eb01e69fe41b4f08c3fa74ea4e3783d00b5fd3672.webp", url: "https://vnpocket.com/resources/games/rpgmakermv/1842fa3e-fccf-43a5-bbea-071750ac3d0a/e3fafd4d-71d8-4c57-b0b9-2fb83bd1c3b8/index.html" },
+    { title: "Winter Memories", image: "https://vnpocket.com/resources/game/2026-04/b3e8cb7f39b5d9cb07861dabd908f079aba4adf9cc28b81dc03d6b67c08a6a7a.webp", url: "https://vnpocket.com/resources/games/rpgmakermv/813b9cf0-60f9-4315-bc68-3fb9c181b2da/3bbdf1fc-1750-40cc-9ec8-c5e4cf097973/www/index.html" },
+    { title: "Summer Memories", image: "https://vnpocket.com/resources/game/2026-04/0682b306fcb7c9c06d123b79fc39c29efda1b1a235d0af99382ab6d4a8db9020.webp", url: "https://vnpocket.com/resources/games/rpgmakermv/d1ff36c2-7aca-45e3-ac6b-6c116e4235a9/ba5cbb8f-3b44-484d-a888-4398e045d2e5/www/index.html" },
     { title: "", image: "", url: "" }
 ]
 
