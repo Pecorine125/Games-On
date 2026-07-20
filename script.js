@@ -36,7 +36,7 @@ const gamesData = [
     { title: "The After Hours: Office Predators", image: "https://cdn77.gamesofdesire.com/files/img/the-after-hours-office-predators-1.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/the-after-hours-office-predators/index.html" },
     { title: "Step Sis Is Kinda Horny?!", image: "https://cdn77.gamesofdesire.com/files/img/step-sis-is-kinda-horny-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/step-sis-is-kinda-horny/index.html" },
     { title: "My New Paranormal Life", image: "https://cdn77.gamesofdesire.com/files/img/my-new-paranormal-life-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/my-new-paranormal-life/index.html" },
-    { title: "", image: "", url: "" },
+    { title: "Lost Lagoon", image: "https://cdn77.gamesofdesire.com/files/img/lost-lagoon-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/lost-lagoon-0-3-3/index.html" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" },
