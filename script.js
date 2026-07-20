@@ -48,9 +48,9 @@ const gamesData = [
     { title: "My Hero Rising", image: "https://cdn77.gamesofdesire.com/files/img/my-hero-rising-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/my-hero-rising-0-76/index.html" },
     { title: "My Sweet Home", image: "https://cdn77.gamesofdesire.com/files/img/my-sweet-home-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/my-sweet-home/index.html" },
     { title: "Meet'N'Fuck : Grandma Boobitch", image: "https://cdn77.gamesofdesire.com/files/img/meet-n-fuck-grandma-boobitch-free-full-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/meet-n-fuck-grandma-boobitch-free-full/index.html" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
+    { title: "Goblin Waifu", image: "https://cdn77.gamesofdesire.com/files/img/goblin-waifu-3.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/goblin-waifu/index.html" },
+    { title: "Isekai Incubus", image: "https://cdn77.gamesofdesire.com/files/img/isekai-incubus-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/isekai-incubus-1-3/index.html" },
+    { title: "MonGirl Sexpedition", image: "https://cdn77.gamesofdesire.com/files/img/mongirl-sexpedition-3.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/mongirl-sexpedition/index.html" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" }
 ];
