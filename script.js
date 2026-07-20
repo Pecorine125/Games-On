@@ -52,7 +52,7 @@ const gamesData = [
     { title: "Isekai Incubus", image: "https://cdn77.gamesofdesire.com/files/img/isekai-incubus-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/isekai-incubus-1-3/index.html" },
     { title: "MonGirl Sexpedition", image: "https://cdn77.gamesofdesire.com/files/img/mongirl-sexpedition-3.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/mongirl-sexpedition/index.html" },
     { title: "Surrendering to My Crush", image: "https://cdn77.gamesofdesire.com/files/img/surrendering-to-my-crush-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/surrendering-to-my-crush-1-11/index.html" },
-    { title: "", image: "", url: "" },
+    { title: "The void club ", image: "https://cdn77.gamesofdesire.com/files/img/the-voic-club-ch-5-2-0-pokemon-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/the-voic-club-ch-5-2-0-pokemon/index.html" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" },
