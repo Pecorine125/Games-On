@@ -59,6 +59,8 @@ const gamesData = [
     { title: "My Family Farm", image: "https://cdn77.gamesofdesire.com/files/img/my-family-farm-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/my-family-farm/index.html" },
     { title: "", image: "", url: "" },
 
+]
+
 let currentIndex = 0;
 
 // Elementos do DOM
