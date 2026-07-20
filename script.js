@@ -72,7 +72,7 @@ const gamesData = [
     { title: "Summer Memories", image: "https://vnpocket.com/resources/game/2026-04/0682b306fcb7c9c06d123b79fc39c29efda1b1a235d0af99382ab6d4a8db9020.webp", url: "https://vnpocket.com/resources/games/rpgmakermv/d1ff36c2-7aca-45e3-ac6b-6c116e4235a9/ba5cbb8f-3b44-484d-a888-4398e045d2e5/www/index.html" },
     { title: "Daily Lives of My Countryside", image: "https://vnpocket.com/resources/game/2026-04/ecadd0db43eb10567324527db1f0c53f493b6802f9790f70e7e3e76915b2a0ce.webp", url: "https://vnpocket.com/resources/games/rpgmakermv/d2d83a14-217c-454b-a892-a031d94e5fd2/09143087-d79c-48e2-b6ad-e67a67000283/www/index.html" },
     { title: "Daily Board Game Life with a Summoned Outer Deity Female", image: "https://vnpocket.com/resources/game/2026-04/e840266cc628a98aab44d77c91580b5fa15203a10ae6f210328aaa3e36ae3bdd.webp", url: "https://vnpocket.com/resources/games/renpy/5aaf9803-a868-4c73-b63d-9e8a00cec121/2b458638-b508-4af2-817c-156c1181e21d/index.html" },
-    { title: "", image: "", url: "" },
+    { title: "Life With a Slave -Teaching Feeling", image: "https://vnpocket.com/resources/game/2026-04/99c1f1e64a7a3778a27423b5e6dc2c5791e74e240ce69e13a02e79c75412c42c.webp", url: "https://vnpocket.com/resources/games/tyrano/d95050a6-5b9c-49c3-8fa6-fc8239f89115/62a95d40-5fd3-4f1d-bb2c-b2a25a2831e5/resources/app/index.html" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" },
