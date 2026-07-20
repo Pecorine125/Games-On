@@ -38,10 +38,10 @@ const gamesData = [
     { title: "My New Paranormal Life", image: "https://cdn77.gamesofdesire.com/files/img/my-new-paranormal-life-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/my-new-paranormal-life/index.html" },
     { title: "Lost Lagoon", image: "https://cdn77.gamesofdesire.com/files/img/lost-lagoon-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/lost-lagoon-0-3-3/index.html" },
     { title: "Demon's Servant", image: "https://cdn77.gamesofdesire.com/files/img/demon-s-servant-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/demon-s-servant/index.html" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
+    { title: "Milfust", image: "https://cdn77.gamesofdesire.com/files/img/milfust-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/milfust/index.html" },
+    { title: "The Fixer", image: "https://cdn77.gamesofdesire.com/files/img/the-fixer-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/the-fixer-v0-3-3-21/index.html" },
+    { title: "Perfect Family: A Family of Perverts", image: "https://cdn77.gamesofdesire.com/files/img/perfect-family-a-family-of-perverts-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/perfect-family-a-family-of-perverts/index.html" },
+    { title: "Welcome to Nicest", image: "https://cdn77.gamesofdesire.com/files/img/welcome-to-nicest-3.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/welcome-to-nicest-0-4/index.html" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" }
 ];
