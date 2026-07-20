@@ -23,7 +23,7 @@ const gamesData = [
     { title: "Naughty Principal", image: "https://cdn77.gamesofdesire.com/files/img/naughty-principal-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/naughty-principal-full-game/index.html" },
     { title: "Idle Waifu", image: "https://cdn77.gamesofdesire.com/files/img/idle-waifu-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/idle-waifu/index.html" },
     { title: "Strip Blackjack French Maid", image: "https://cdn77.gamesofdesire.com/files/img/strip-blackjack-french-maid-2.webp", url: "https://www.gamesofdesire.com/ruffle.php?id=200" },
-    { title: "", image: "", url: "" },
+    { title: "Lust for Wealth", image: "https://cdn77.gamesofdesire.com/files/img/lust-for-wealth-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/lust-for-wealth/index.html" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" },
