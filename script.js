@@ -66,17 +66,7 @@ const gamesData = [
     { title: "Paprika Trainer", image: "https://cdn77.gamesofdesire.com/files/img/paprika-trainer-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/paprika-trainer-1-2-0-0/index.html" },
     { title: "Milfy Cummy: Gloria Returns", image: "https://cdn77.gamesofdesire.com/files/img/milfy-cummy-gloria-returns-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5/milfy-cummy-gloria-returns/index.html" },
     { title: "Nano-control", image: "https://cdn77.gamesofdesire.com/files/img/nano-control-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5/nano-control-v1-0c/index.html" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
+    { title: "Teens Do Porn", image: "https://cdn77.gamesofdesire.com/files/img/teens-do-porn-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5/teens-do-porn/index.html" }
 ]
 
 let currentIndex = 0;
