@@ -24,7 +24,7 @@ const gamesData = [
     { title: "Idle Waifu", image: "https://cdn77.gamesofdesire.com/files/img/idle-waifu-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/idle-waifu/index.html" },
     { title: "Strip Blackjack French Maid", image: "https://cdn77.gamesofdesire.com/files/img/strip-blackjack-french-maid-2.webp", url: "https://www.gamesofdesire.com/ruffle.php?id=200" },
     { title: "Lust for Wealth", image: "https://cdn77.gamesofdesire.com/files/img/lust-for-wealth-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/lust-for-wealth/index.html" },
-    { title: "", image: "", url: "" },
+    { title: "Lotte's Red Chair", image: "https://cdn77.gamesofdesire.com/files/img/lotte-s-red-chair-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/lotte-s-red-chair-full-version/index.html" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" },
