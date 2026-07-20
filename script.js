@@ -22,7 +22,7 @@ const gamesData = [
     { title: "Tales of Divinity: The Lewdest Journey of Rodinka Called Squirrel", image: "https://cdn77.gamesofdesire.com/files/img/tales-of-divinity-the-lewdest-journey-of-rodinka-called-squirrel-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/tales-of-divinity-the-lewdest-journey-of-rodinka-called-squirrel-v0-07/index.html" },
     { title: "Naughty Principal", image: "https://cdn77.gamesofdesire.com/files/img/naughty-principal-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/naughty-principal-full-game/index.html" },
     { title: "Idle Waifu", image: "https://cdn77.gamesofdesire.com/files/img/idle-waifu-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/idle-waifu/index.html" },
-    { title: "", image: "https://cdn77.gamesofdesire.com/files/img/strip-blackjack-french-maid-2.webp", url: "https://www.gamesofdesire.com/ruffle.php?id=200" },
+    { title: "Strip Blackjack French Maid", image: "https://cdn77.gamesofdesire.com/files/img/strip-blackjack-french-maid-2.webp", url: "https://www.gamesofdesire.com/ruffle.php?id=200" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" },
