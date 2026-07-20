@@ -71,7 +71,7 @@ const gamesData = [
     { title: "Winter Memories", image: "https://vnpocket.com/resources/game/2026-04/b3e8cb7f39b5d9cb07861dabd908f079aba4adf9cc28b81dc03d6b67c08a6a7a.webp", url: "https://vnpocket.com/resources/games/rpgmakermv/813b9cf0-60f9-4315-bc68-3fb9c181b2da/3bbdf1fc-1750-40cc-9ec8-c5e4cf097973/www/index.html" },
     { title: "Summer Memories", image: "https://vnpocket.com/resources/game/2026-04/0682b306fcb7c9c06d123b79fc39c29efda1b1a235d0af99382ab6d4a8db9020.webp", url: "https://vnpocket.com/resources/games/rpgmakermv/d1ff36c2-7aca-45e3-ac6b-6c116e4235a9/ba5cbb8f-3b44-484d-a888-4398e045d2e5/www/index.html" },
     { title: "Daily Lives of My Countryside", image: "https://vnpocket.com/resources/game/2026-04/ecadd0db43eb10567324527db1f0c53f493b6802f9790f70e7e3e76915b2a0ce.webp", url: "https://vnpocket.com/resources/games/rpgmakermv/d2d83a14-217c-454b-a892-a031d94e5fd2/09143087-d79c-48e2-b6ad-e67a67000283/www/index.html" },
-    { title: "", image: "", url: "" },
+    { title: "Daily Board Game Life with a Summoned Outer Deity Female", image: "https://vnpocket.com/resources/game/2026-04/e840266cc628a98aab44d77c91580b5fa15203a10ae6f210328aaa3e36ae3bdd.webp", url: "https://vnpocket.com/resources/games/renpy/5aaf9803-a868-4c73-b63d-9e8a00cec121/2b458638-b508-4af2-817c-156c1181e21d/index.html" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" },
