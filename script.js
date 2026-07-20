@@ -37,7 +37,7 @@ const gamesData = [
     { title: "Step Sis Is Kinda Horny?!", image: "https://cdn77.gamesofdesire.com/files/img/step-sis-is-kinda-horny-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/step-sis-is-kinda-horny/index.html" },
     { title: "My New Paranormal Life", image: "https://cdn77.gamesofdesire.com/files/img/my-new-paranormal-life-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/my-new-paranormal-life/index.html" },
     { title: "Lost Lagoon", image: "https://cdn77.gamesofdesire.com/files/img/lost-lagoon-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/lost-lagoon-0-3-3/index.html" },
-    { title: "", image: "", url: "" },
+    { title: "Demon's Servant", image: "https://cdn77.gamesofdesire.com/files/img/demon-s-servant-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/demon-s-servant/index.html" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" },
