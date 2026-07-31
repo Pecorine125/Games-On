@@ -21,9 +21,9 @@
         <h1>Games On</h1>
         
         <div class="carousel-wrapper">
-            <button id="prevBtn" class="nav-btn">&#10094;</button>
+            <button id="prevBtn" class="nav-btn" aria-label="Jogo Anterior">&#10094;</button>
             <div id="gamesSlider"></div>
-            <button id="nextBtn" class="nav-btn">&#10095;</button>
+            <button id="nextBtn" class="nav-btn" aria-label="Próximo Jogo">&#10095;</button>
         </div>
 
         <div class="menu-controls">
@@ -41,7 +41,12 @@
         </div>
         
         <div class="iframe-container">
-            <iframe id="gameIframe" src="about:blank"></iframe>
+            <iframe 
+                id="gameIframe" 
+                src="about:blank" 
+                allow="fullscreen; gamepad; autoplay; accelerometer; gyroscope"
+                allowfullscreen>
+            </iframe>
         </div>
     </div>
 
