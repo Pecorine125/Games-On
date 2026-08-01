@@ -8,8 +8,8 @@
 </head>
 <body>
 
-    <!-- AVISO DE ORIENTAÇÃO ESTILO GAME UI -->
-    <div id="rotateWarning">
+    <!-- AVISO DE ORIENTAÇÃO PARA MOBILE -->
+    <div id="rotateWarning" class="hidden">
         <div class="warning-content">
             <div class="phone-icon-css"></div>
             <p>Gire o dispositivo <span>Modo Horizontal Obrigatório</span></p>
@@ -40,7 +40,7 @@
             <button id="btnFullscreen" class="game-btn">Tela Cheia</button>
         </div>
         
-        <div class="iframe-container">
+        <div class="iframe-container" id="iframeContainer">
             <iframe 
                 id="gameIframe" 
                 src="about:blank" 

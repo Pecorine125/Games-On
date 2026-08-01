@@ -1,35 +1,71 @@
-// sw.js - Service Worker para Cache Dinâmico por Jogo
-const CACHE_NAME = 'games-launcher-cache-v1';
+// sw.js - Service Worker para Cache Dinâmico
+const CACHE_NAME = 'games-launcher-cache-v2';
 
-// Intercepta todas as requisições de rede (incluindo as feitas dentro do iframe)
+// Instalação do SW: Ativação imediata sem esperar o fechar das abas
+self.addEventListener('install', (event) => {
+  self.skipWaiting();
+});
+
+// Limpeza de caches antigos quando a versão do CACHE_NAME muda
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames.map((cache) => {
+          if (cache !== CACHE_NAME) {
+            console.log('[SW] Apagando cache antigo:', cache);
+            return caches.delete(cache);
+          }
+        })
+      );
+    }).then(() => self.clients.claim())
+  );
+});
+
+// Intercepta requisições
 self.addEventListener('fetch', (event) => {
-  // Ignora requisições que não sejam GET
-  if (event.request.method !== 'GET') return;
+  const request = event.request;
+
+  // Aceita apenas requisições GET
+  if (request.method !== 'GET') return;
+
+  // Ignora extensões de navegação do Chrome/Browser para evitar exceções
+  if (request.url.startsWith('chrome-extension://')) return;
 
   event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
+    caches.match(request).then((cachedResponse) => {
+      // 1. Retorna do Cache se já existir
       if (cachedResponse) {
-        // Se já está no cache, retorna o arquivo salvo (carregamento instantâneo)
         return cachedResponse;
       }
 
-      // Se não está no cache, faz o download e armazena uma cópia
-      return fetch(event.request).then((networkResponse) => {
-        // Valida se a resposta é válida antes de armazenar
-        if (!networkResponse || networkResponse.status !== 200 || networkResponse.type === 'opaque') {
+      // 2. Tenta buscar da rede
+      return fetch(request)
+        .then((networkResponse) => {
+          // Validação flexibilizada:
+          // Permite status 200 (mesmo domínio) OU type 'opaque' (status 0 para CDNs externas)
+          const isValidResponse = networkResponse && (
+            networkResponse.status === 200 || 
+            networkResponse.type === 'opaque'
+          );
+
+          if (!isValidResponse) {
+            return networkResponse;
+          }
+
+          // Clona a resposta e armazena no cache
+          const responseToCache = networkResponse.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(request, responseToCache);
+          });
+
           return networkResponse;
-        }
-
-        const responseToCache = networkResponse.clone();
-        caches.open(CACHE_NAME).then((cache) => {
-          cache.put(event.request, responseToCache);
+        })
+        .catch((err) => {
+          console.warn('[SW] Falha ao buscar recurso offline:', request.url, err);
+          // Retorna fallback ou nada se estiver offline e não houver cache
+          return cachedResponse;
         });
-
-        return networkResponse;
-      }).catch(() => {
-        // Caso esteja offline e não haja cache
-        return cachedResponse;
-      });
     })
   );
 });

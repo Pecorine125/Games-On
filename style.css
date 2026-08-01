@@ -201,7 +201,7 @@ h1 {
 }
 
 /* ==========================================
-   GAMEPLAY E TELA CHEIA (OTIMIZADO MOBILE/DESKTOP)
+   GAMEPLAY E TELA CHEIA
    ========================================== */
 .game-bar {
     width: 100%;
@@ -245,7 +245,6 @@ h1 {
     display: block;
 }
 
-/* TELA CHEIA TOTAL: Força a remoção de bordas e margens do sistema */
 :is(.iframe-container, #gameScreen):fullscreen,
 :is(.iframe-container, #gameScreen):-webkit-full-screen {
     width: 100vw !important;
@@ -266,10 +265,45 @@ h1 {
 }
 
 /* ==========================================
-   UTILITÁRIOS E ANIMAÇÕES
+   AVISO DE ROTAÇÃO (APENAS EM PORTRAIT MOBILE)
    ========================================== */
 #rotateWarning {
-    display: none !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(10, 10, 12, 0.98);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.warning-content p {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.warning-content span {
+    display: block;
+    color: #ff4757;
+    font-weight: 800;
+    margin-top: 6px;
+    text-transform: uppercase;
+}
+
+@media (orientation: portrait) and (max-width: 768px) {
+    #rotateWarning {
+        display: flex !important;
+    }
+}
+
+@media (orientation: landscape) {
+    #rotateWarning {
+        display: none !important;
+    }
 }
 
 @keyframes fadeIn {

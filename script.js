@@ -1,4 +1,4 @@
-// REGISTRO DO SERVICE WORKER (Adicione no início do seu arquivo JS)
+// REGISTRO DO SERVICE WORKER
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('./sw.js')
@@ -85,7 +85,7 @@ const gamesData = [
     { title: "Broken Sky", image: "https://data.mopoga.com/img/thumbs/broken-sky.webp", url: "https://mopoga.com/embed/broken-sky/" },
     { title: "Brothel Slop", image: "https://data.mopoga.com/img/thumbs/brothel-slop.webp", url: "https://mopoga.com/embed/brothel-slop/" },
     { title: "Chasing Memories", image: "https://data.mopoga.com/img/thumbs/chasing-memories.webp", url: "https://mopoga.com/embed/chasing-memories-042-2026-07-31/" },
-    { title: "Complex Society", image: "https://data.mopoga.com/img/thumbs/complex-society.webp", url: "https://mopoga.com/embed/complex-society/" }
+    { title: "Complex Society", image: "https://data.mopoga.com/img/thumbs/complex-society.webp", url: "https://mopoga.com/embed/complex-society/" }, // <--- VÍRGULA ADICIONADA AQUI!
     { title: "Cursed Forest Quest", image: "https://data.mopoga.com/img/thumbs/cursed-forest-quest.webp", url: "https://mopoga.com/embed/cursed-forest-quest/" },
     { title: "D20 Magic Dice", image: "https://data.mopoga.com/img/thumbs/d20-magic-dice.webp", url: "https://mopoga.com/embed/d20-magic-dice-101-2026-07-30/" },
     { title: "Edgefield", image: "https://data.mopoga.com/img/thumbs/edgefield.webp", url: "https://mopoga.com/embed/edgefield/" },
@@ -111,9 +111,9 @@ const gameIframe = document.getElementById('gameIframe');
 const btnBack = document.getElementById('btnBack');
 const btnFullscreen = document.getElementById('btnFullscreen');
 
-// Otimização para Mobile: Configura permissões essenciais do Iframe
-gameIframe.setAttribute('allow', 'fullscreen; autoplay; payment');
-gameIframe.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-forms allow-popups');
+// Permissões otimizadas do iframe (incluindo allow-downloads para saves)
+gameIframe.setAttribute('allow', 'fullscreen; autoplay; payment; gamepad; accelerometer; gyroscope');
+gameIframe.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-forms allow-popups allow-downloads');
 
 function renderCard(index) {
     const game = gamesData[index];
@@ -147,22 +147,26 @@ function openGame(link) {
     gameScreen.classList.remove('hidden');
 }
 
-// Limpeza de RAM do IFRAME (Sem apagar o Cache mantido pelo Service Worker)
+// Limpeza de RAM do IFRAME
 btnBack.addEventListener('click', () => {
     gameIframe.src = "about:blank"; 
     
     gameScreen.classList.add('hidden');
     menuContainer.classList.remove('hidden');
     
-    if (document.fullscreenElement) {
-        document.exitFullscreen().catch(() => {});
+    if (document.fullscreenElement || document.webkitFullscreenElement) {
+        if (document.exitFullscreen) {
+            document.exitFullscreen().catch(() => {});
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        }
     }
 });
 
-// Fullscreen Dinâmico ajustado para Android / Chrome
+// Fullscreen Dinâmico (Compatível com Android/Chrome/Safari)
 btnFullscreen.addEventListener('click', async () => {
     try {
-        if (!document.fullscreenElement) {
+        if (!document.fullscreenElement && !document.webkitFullscreenElement) {
             if (gameScreen.requestFullscreen) {
                 await gameScreen.requestFullscreen();
             } else if (gameScreen.webkitRequestFullscreen) {
@@ -180,6 +184,8 @@ btnFullscreen.addEventListener('click', async () => {
         } else {
             if (document.exitFullscreen) {
                 await document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+                await document.webkitExitFullscreen();
             }
         }
     } catch (err) {
