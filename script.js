@@ -84,11 +84,11 @@ const gamesData = [
     { title: "Booty Hunter", image: "https://data.mopoga.com/img/thumbs/booty-hunter.webp", url: "https://mopoga.com/embed/booty-hunter-0140-2026-05-21/" },
     { title: "Broken Sky", image: "https://data.mopoga.com/img/thumbs/broken-sky.webp", url: "https://mopoga.com/embed/broken-sky/" },
     { title: "Brothel Slop", image: "https://data.mopoga.com/img/thumbs/brothel-slop.webp", url: "https://mopoga.com/embed/brothel-slop/" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" }
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
+    { title: "Chasing Memories", image: "https://data.mopoga.com/img/thumbs/chasing-memories.webp", url: "https://mopoga.com/embed/chasing-memories-042-2026-07-31/" },
+    { title: "Complex Society", image: "https://data.mopoga.com/img/thumbs/complex-society.webp", url: "https://mopoga.com/embed/complex-society/" }
+    { title: "Cursed Forest Quest", image: "https://data.mopoga.com/img/thumbs/cursed-forest-quest.webp", url: "https://mopoga.com/embed/cursed-forest-quest/" },
+    { title: "D20 Magic Dice", image: "https://data.mopoga.com/img/thumbs/d20-magic-dice.webp", url: "https://mopoga.com/embed/d20-magic-dice-101-2026-07-30/" },
+    { title: "Edgefield", image: "https://data.mopoga.com/img/thumbs/edgefield.webp", url: "https://mopoga.com/embed/edgefield/" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" }
