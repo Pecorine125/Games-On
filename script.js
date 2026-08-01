@@ -74,7 +74,7 @@ const gamesData = [
     { title: "Paprika Trainer", image: "https://cdn77.gamesofdesire.com/files/img/paprika-trainer-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/paprika-trainer-1-2-0-0/index.html" },
     { title: "Milfy Cummy: Gloria Returns", image: "https://cdn77.gamesofdesire.com/files/img/milfy-cummy-gloria-returns-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5/milfy-cummy-gloria-returns/index.html" },
     { title: "Teens Do Porn", image: "https://cdn77.gamesofdesire.com/files/img/teens-do-porn-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5/teens-do-porn/index.html" },
-    { title: "Happy NEET Raising Guide", image: "https://vnpocket.com/resources/game/2026-04/d55460870e268d8b09537a2eb01e69fe41b4f08c3fa74ea4e3783d00b5fd3672.webp", url: "https://vnpocket.com/resources/games/rpgmakermv/1842fa3e-fccf-43a5-bbea-071750ac3d0a/e3fafd4d-71d8-4c57-b0b9-2fb83bd1c3b8/index.html" },
+    { title: "", image: "", url: "" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" },
