@@ -96,24 +96,7 @@ const gamesData = [
     { title: "Futa Academy of Sex", image: "https://data.mopoga.com/img/thumbs/futa-academy-of-sex.webp", url: "https://mopoga.com/embed/futa-academy-of-sex/" },
     { title: "Garden of Venus", image: "https://data.mopoga.com/img/thumbs/garden-of-venus.webp", url: "https://mopoga.com/embed/garden-of-venus/" },
     { title: "Harem Residence", image: "https://data.mopoga.com/img/thumbs/harem-residence.webp", url: "https://mopoga.com/embed/harem-residence/" },
-    { title: "Hero's Harem Guild", image: "https://data.mopoga.com/img/thumbs/heros-harem-guild.webp", url: "https://mopoga.com/embed/heros-harem-guild_0.1.2.3b-public_2026-06-22/" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" }
+    { title: "Hero's Harem Guild", image: "https://data.mopoga.com/img/thumbs/heros-harem-guild.webp", url: "https://mopoga.com/embed/heros-harem-guild_0.1.2.3b-public_2026-06-22/" }
 ];
 
 let currentIndex = 0;
