@@ -77,7 +77,7 @@ const gamesData = [
     { title: "Galactic Love Utopia Arrival", image: "https://wetpussygames.com/images/games/180x135/galactic-love-utopia-arrival200.jpg", url: "https://blogofsex.com/files/games2/galactic-love-utopia-arrival" },
     { title: "Academy Live", image: "https://data.mopoga.com/img/thumbs/academy-live.webp", url: "https://mopoga.com/embed/academy-live/" },
     { title: "18Titans", image: "https://data.mopoga.com/img/thumbs/18titans.webp", url: "https://mopoga.com/embed/18titans-167-2026-0707/" },
-    { title: "", image: "", url: "" },
+    { title: "AIRevolution", image: "https://data.mopoga.com/img/thumbs/airevolution.webp", url: "https://mopoga.com/embed/airevolution/" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" },
