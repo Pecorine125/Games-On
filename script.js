@@ -85,7 +85,7 @@ const gamesData = [
     { title: "Broken Sky", image: "https://data.mopoga.com/img/thumbs/broken-sky.webp", url: "https://mopoga.com/embed/broken-sky/" },
     { title: "Brothel Slop", image: "https://data.mopoga.com/img/thumbs/brothel-slop.webp", url: "https://mopoga.com/embed/brothel-slop/" },
     { title: "Chasing Memories", image: "https://data.mopoga.com/img/thumbs/chasing-memories.webp", url: "https://mopoga.com/embed/chasing-memories-042-2026-07-31/" },
-    { title: "Complex Society", image: "https://data.mopoga.com/img/thumbs/complex-society.webp", url: "https://mopoga.com/embed/complex-society/" }, // <--- VÍRGULA ADICIONADA AQUI!
+    { title: "Complex Society", image: "https://data.mopoga.com/img/thumbs/complex-society.webp", url: "https://mopoga.com/embed/complex-society/" },
     { title: "Cursed Forest Quest", image: "https://data.mopoga.com/img/thumbs/cursed-forest-quest.webp", url: "https://mopoga.com/embed/cursed-forest-quest/" },
     { title: "D20 Magic Dice", image: "https://data.mopoga.com/img/thumbs/d20-magic-dice.webp", url: "https://mopoga.com/embed/d20-magic-dice-101-2026-07-30/" },
     { title: "Edgefield", image: "https://data.mopoga.com/img/thumbs/edgefield.webp", url: "https://mopoga.com/embed/edgefield/" },
@@ -108,10 +108,11 @@ const nextBtn = document.getElementById('nextBtn');
 const menuContainer = document.getElementById('menuContainer');
 const gameScreen = document.getElementById('gameScreen');
 const gameIframe = document.getElementById('gameIframe');
+const iframeContainer = document.querySelector('.iframe-container');
 const btnBack = document.getElementById('btnBack');
 const btnFullscreen = document.getElementById('btnFullscreen');
 
-// Permissões otimizadas do iframe (incluindo allow-downloads para saves)
+// Permissões otimizadas do iframe
 gameIframe.setAttribute('allow', 'fullscreen; autoplay; payment; gamepad; accelerometer; gyroscope');
 gameIframe.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-forms allow-popups allow-downloads');
 
@@ -163,48 +164,51 @@ btnBack.addEventListener('click', () => {
     }
 });
 
-// Fullscreen Dinâmico (Compatível com Android/Chrome/Safari)
-btnFullscreen.addEventListener('click', async () => {
-    try {
-        if (!document.fullscreenElement && !document.webkitFullscreenElement) {
-            if (gameScreen.requestFullscreen) {
-                await gameScreen.requestFullscreen();
-            } else if (gameScreen.webkitRequestFullscreen) {
-                await gameScreen.webkitRequestFullscreen();
-            }
+// Fullscreen Corrigido para Mobile (Samsung Galaxy A05)
+btnFullscreen.addEventListener('click', () => {
+    // Definimos o elemento a expandir como a container do iframe em vez da tela toda
+    const targetElement = iframeContainer || gameIframe;
 
-            btnFullscreen.textContent = "Sair da Tela Cheia";
-            gameIframe.focus(); 
+    const isFullscreen = document.fullscreenElement || document.webkitFullscreenElement;
 
-            if (screen.orientation && screen.orientation.lock) {
-                await screen.orientation.lock('landscape-primary').catch(() => {
-                    return screen.orientation.lock('landscape');
-                }).catch(err => console.log("Erro de orientação ignorado:", err));
-            }
-        } else {
-            if (document.exitFullscreen) {
-                await document.exitFullscreen();
-            } else if (document.webkitExitFullscreen) {
-                await document.webkitExitFullscreen();
-            }
+    if (!isFullscreen) {
+        // Tenta travar a orientação em Landscape imediatamente no toque
+        if (screen.orientation && screen.orientation.lock) {
+            screen.orientation.lock('landscape').catch(() => {});
         }
-    } catch (err) {
-        console.warn("Falha no modo tela cheia:", err);
+
+        // Entrar em fullscreen
+        if (targetElement.requestFullscreen) {
+            targetElement.requestFullscreen();
+        } else if (targetElement.webkitRequestFullscreen) {
+            targetElement.webkitRequestFullscreen();
+        }
+    } else {
+        // Sair do fullscreen
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        }
     }
 });
 
+// Evento disparado quando o estado da tela muda
 document.addEventListener('fullscreenchange', handleFullscreenChange);
 document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
 
 function handleFullscreenChange() {
-    if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+    const isFullscreen = document.fullscreenElement || document.webkitFullscreenElement;
+
+    if (isFullscreen) {
+        btnFullscreen.textContent = "Sair da Tela Cheia";
+    } else {
         btnFullscreen.textContent = "Tela Cheia";
-        gameIframe.focus();
-        
         if (screen.orientation && screen.orientation.unlock) {
             screen.orientation.unlock();
         }
     }
+    gameIframe.focus();
 }
 
 // Renderização inicial
