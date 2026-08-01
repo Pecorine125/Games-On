@@ -67,21 +67,19 @@ const gamesData = [
     { title: "Peerless Lust", image: "https://cdn77.gamesofdesire.com/files/img/peerless-lust-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/peerless-lust/index.html" },
     { title: "My Family Farm", image: "https://cdn77.gamesofdesire.com/files/img/my-family-farm-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/my-family-farm/index.html" },
     { title: "Emilia & Joseph: Exploited Innocence", image: "https://cdn77.gamesofdesire.com/files/img/emilia-joseph-exploited-innocence-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/emilia-joseph-exploited-innocence/index.html" },
-    { title: "Maiden Trainer", image: "https://cdn77.gamesofdesire.com/files/img/maiden-trainer-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5/maiden-trainer/index.html" },
     { title: "BDSM Apocalypse", image: "https://cdn77.gamesofdesire.com/files/img/bdsm-apocalypse-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/bdsm-apocalypse/index.html" },
     { title: "Erosion", image: "https://cdn77.gamesofdesire.com/files/img/erosion-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/erosion/index.html" },
     { title: "My Girlfriend's Friends", image: "https://cdn77.gamesofdesire.com/files/img/my-girlfriend-s-friends-3.webp", url: "https://cdn77.gamesofdesire.com/files/html5/my-girlfriend-s-friends/index.html" },
     { title: "Breaking The Lust", image: "https://cdn77.gamesofdesire.com/files/img/breaking-the-lust-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5/breaking-the-lust/index.html" },
     { title: "Paprika Trainer", image: "https://cdn77.gamesofdesire.com/files/img/paprika-trainer-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5_new/paprika-trainer-1-2-0-0/index.html" },
     { title: "Milfy Cummy: Gloria Returns", image: "https://cdn77.gamesofdesire.com/files/img/milfy-cummy-gloria-returns-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5/milfy-cummy-gloria-returns/index.html" },
-    { title: "Nano-control", image: "https://cdn77.gamesofdesire.com/files/img/nano-control-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5/nano-control-v1-0c/index.html" },
     { title: "Teens Do Porn", image: "https://cdn77.gamesofdesire.com/files/img/teens-do-porn-2.webp", url: "https://cdn77.gamesofdesire.com/files/html5/teens-do-porn/index.html" },
     { title: "Happy NEET Raising Guide", image: "https://vnpocket.com/resources/game/2026-04/d55460870e268d8b09537a2eb01e69fe41b4f08c3fa74ea4e3783d00b5fd3672.webp", url: "https://vnpocket.com/resources/games/rpgmakermv/1842fa3e-fccf-43a5-bbea-071750ac3d0a/e3fafd4d-71d8-4c57-b0b9-2fb83bd1c3b8/index.html" },
-    { title: "Winter Memories", image: "https://vnpocket.com/resources/game/2026-04/b3e8cb7f39b5d9cb07861dabd908f079aba4adf9cc28b81dc03d6b67c08a6a7a.webp", url: "https://vnpocket.com/resources/games/rpgmakermv/813b9cf0-60f9-4315-bc68-3fb9c181b2da/3bbdf1fc-1750-40cc-9ec8-c5e4cf097973/www/index.html" },
-    { title: "Summer Memories", image: "https://vnpocket.com/resources/game/2026-04/0682b306fcb7c9c06d123b79fc39c29efda1b1a235d0af99382ab6d4a8db9020.webp", url: "https://vnpocket.com/resources/games/rpgmakermv/d1ff36c2-7aca-45e3-ac6b-6c116e4235a9/ba5cbb8f-3b44-484d-a888-4398e045d2e5/www/index.html" },
-    { title: "Daily Lives of My Countryside", image: "https://vnpocket.com/resources/game/2026-04/ecadd0db43eb10567324527db1f0c53f493b6802f9790f70e7e3e76915b2a0ce.webp", url: "https://vnpocket.com/resources/games/rpgmakermv/d2d83a14-217c-454b-a892-a031d94e5fd2/09143087-d79c-48e2-b6ad-e67a67000283/www/index.html" },
-    { title: "Daily Board Game Life with a Summoned Outer Deity Female", image: "https://vnpocket.com/resources/game/2026-04/e840266cc628a98aab44d77c91580b5fa15203a10ae6f210328aaa3e36ae3bdd.webp", url: "https://vnpocket.com/resources/games/renpy/5aaf9803-a868-4c73-b63d-9e8a00cec121/2b458638-b508-4af2-817c-156c1181e21d/index.html" },
-    { title: "Life With a Slave -Teaching Feeling", image: "https://vnpocket.com/resources/game/2026-04/99c1f1e64a7a3778a27423b5e6dc2c5791e74e240ce69e13a02e79c75412c42c.webp", url: "https://vnpocket.com/resources/games/tyrano/d95050a6-5b9c-49c3-8fa6-fc8239f89115/62a95d40-5fd3-4f1d-bb2c-b2a25a2831e5/resources/app/index.html" }
+    { title: "", image: "", url: "" },
+    { title: "", image: "", url: "" },
+    { title: "", image: "", url: "" },
+    { title: "", image: "", url: "" },
+    { title: "", image: "", url: "" }
 ];
 
 let currentIndex = 0;
