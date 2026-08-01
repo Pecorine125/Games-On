@@ -75,7 +75,7 @@ const gamesData = [
     { title: "Foxgirl Cassidy", image: "https://porngames.com/img/foxgirl-cassidy.jpg", url: "https://collegesexgames.com/swf/cdn/1384/" },
     { title: "the-goblin-girl-i-met-on-the-farm", image: "https://wetpussygames.com/images/games/180x135/the-goblin-girl-i-met-on-the-farm200.jpg", url: "https://blogofsex.com/files/games2/the-goblin-girl-i-met-on-the-farm" },
     { title: "Galactic Love Utopia Arrival", image: "https://wetpussygames.com/images/games/180x135/galactic-love-utopia-arrival200.jpg", url: "https://blogofsex.com/files/games2/galactic-love-utopia-arrival" },
-    { title: "Academy Live", image: "", url: "" },
+    { title: "Academy Live", image: "https://data.mopoga.com/img/thumbs/academy-live.webp", url: "https://mopoga.com/embed/academy-live/" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" },
