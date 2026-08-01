@@ -11,7 +11,6 @@ if ('serviceWorker' in navigator) {
 const gamesData = [
     { title: "Heiss Ward", image: "https://data.lewdspot.com/img/thumbs/heiss-ward.png", url: "https://lwdbase2.com/heiss-ward-14-20260707/" },
     { title: "Renryuu Ascension", image: "https://data.lewdspot.com/img/thumbs/renryuu-ascension.webp", url: "https://lewdspot.com/embed/renryuu-ascension_26.05.06_2026-06-04/" },
-    { title: "Tias Path Home", image: "https://data.lewdspot.com/img/thumbs/tias-path-home.webp", url: "https://lewdspot.com/play?mob=0&url=https://lwdbase3.com/tias-path-home/&fixedwidth=0&gameid=10840&pageid=tias-path-home" },
     { title: "The Girl Who Confessed to Me", image: "https://data.lewdspot.com/img/thumbs/the-girl-who-confessed-to-me.webp", url: "https://lwdbase2.com/the-girl-who-confessed-to-me" },
     { title: "From Wife to Wench", image: "https://data.lewdspot.com/img/thumbs/from-wife-to-wench.webp", url: "https://lwdbase3.com/from-wife-to-wench/" },
     { title: "Margarets Sin", image: "https://data.lewdspot.com/img/thumbs/margarets-sin.webp", url: "https://lwdbase2.com/margarets-sin/" },
