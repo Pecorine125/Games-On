@@ -76,7 +76,7 @@ const gamesData = [
     { title: "the-goblin-girl-i-met-on-the-farm", image: "https://wetpussygames.com/images/games/180x135/the-goblin-girl-i-met-on-the-farm200.jpg", url: "https://blogofsex.com/files/games2/the-goblin-girl-i-met-on-the-farm" },
     { title: "Galactic Love Utopia Arrival", image: "https://wetpussygames.com/images/games/180x135/galactic-love-utopia-arrival200.jpg", url: "https://blogofsex.com/files/games2/galactic-love-utopia-arrival" },
     { title: "Academy Live", image: "https://data.mopoga.com/img/thumbs/academy-live.webp", url: "https://mopoga.com/embed/academy-live/" },
-    { title: "", image: "", url: "" },
+    { title: "18Titans", image: "https://data.mopoga.com/img/thumbs/18titans.webp", url: "https://mopoga.com/embed/18titans-167-2026-0707/" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" },
