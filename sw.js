@@ -1,19 +1,34 @@
-// sw.js - Service Worker para Cache Dinâmico
-const CACHE_NAME = 'games-launcher-cache-v2';
+// sw.js - Service Worker Otimizado para Launcher de Jogos
+const CACHE_NAME = 'games-launcher-v3';
 
-// Instalação do SW: Ativação imediata sem esperar o fechar das abas
+// Arquivos do App Shell a serem pré-carregados no Install
+const APP_SHELL = [
+  './',
+  './index.html',
+  './style.css',
+  './script.js',
+  './manifest.json'
+];
+
+// 1. INSTALAÇÃO: Pré-carrega o App Shell
 self.addEventListener('install', (event) => {
   self.skipWaiting();
+  event.waitUntil(
+    caches.open(CACHE_NAME).then((cache) => {
+      console.log('[SW] Pré-carregando App Shell');
+      return cache.addAll(APP_SHELL);
+    })
+  );
 });
 
-// Limpeza de caches antigos quando a versão do CACHE_NAME muda
+// 2. ATIVAÇÃO: Limpa caches antigos
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cache) => {
           if (cache !== CACHE_NAME) {
-            console.log('[SW] Apagando cache antigo:', cache);
+            console.log('[SW] Removendo cache antigo:', cache);
             return caches.delete(cache);
           }
         })
@@ -22,50 +37,65 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// Intercepta requisições
+// 3. INTERCEPTAÇÃO DE REQUISIÇÕES
 self.addEventListener('fetch', (event) => {
   const request = event.request;
+  const url = new URL(request.url);
 
-  // Aceita apenas requisições GET
+  // Filtro 1: Aceita apenas requisições GET
   if (request.method !== 'GET') return;
 
-  // Ignora extensões de navegação do Chrome/Browser para evitar exceções
-  if (request.url.startsWith('chrome-extension://')) return;
+  // Filtro 2: Ignora extensões do navegador e requisições chrome-extension
+  if (url.protocol === 'chrome-extension:') return;
 
-  event.respondWith(
-    caches.match(request).then((cachedResponse) => {
-      // 1. Retorna do Cache se já existir
-      if (cachedResponse) {
-        return cachedResponse;
-      }
+  // Filtro 3: Ignora requisições dentro do IFRAME dos jogos (Evita estouro de memória/quota)
+  // Se a requisição for para páginas/assets de terceiros que não sejam imagens de capa, deixa a rede carregar direto
+  const isImageRequest = request.destination === 'image' || url.pathname.match(/\.(png|jpg|jpeg|webp|gif|svg)$/i);
+  const isSameOrigin = url.origin === self.location.origin;
 
-      // 2. Tenta buscar da rede
-      return fetch(request)
-        .then((networkResponse) => {
-          // Validação flexibilizada:
-          // Permite status 200 (mesmo domínio) OU type 'opaque' (status 0 para CDNs externas)
+  // Se for navegação de iframe ou recurso externo que NÃO seja imagem, passa direto sem salvar no Cache
+  if (!isSameOrigin && !isImageRequest) {
+    return; // O navegador cuida do carregamento padrão via rede
+  }
+
+  // ESTRATÉGIA A: Imagens de Capa e CDNs (Cache-First com Fallback de Rede)
+  if (isImageRequest) {
+    event.respondWith(
+      caches.match(request).then((cachedResponse) => {
+        if (cachedResponse) return cachedResponse;
+
+        return fetch(request).then((networkResponse) => {
           const isValidResponse = networkResponse && (
-            networkResponse.status === 200 || 
-            networkResponse.type === 'opaque'
+            networkResponse.status === 200 || networkResponse.type === 'opaque'
           );
 
-          if (!isValidResponse) {
-            return networkResponse;
+          if (isValidResponse) {
+            const responseToCache = networkResponse.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(request, responseToCache));
           }
-
-          // Clona a resposta e armazena no cache
-          const responseToCache = networkResponse.clone();
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(request, responseToCache);
-          });
-
           return networkResponse;
-        })
-        .catch((err) => {
-          console.warn('[SW] Falha ao buscar recurso offline:', request.url, err);
-          // Retorna fallback ou nada se estiver offline e não houver cache
-          return cachedResponse;
+        }).catch(() => {
+          // Imagem offline indisponível
+          return new Response('', { status: 404, statusText: 'Offline Image Unavailable' });
         });
+      })
+    );
+    return;
+  }
+
+  // ESTRATÉGIA B: App Shell Local (Stale-While-Revalidate)
+  // Serve do cache imediatamente e atualiza silenciosamente pela rede para a próxima visita
+  event.respondWith(
+    caches.match(request).then((cachedResponse) => {
+      const fetchPromise = fetch(request).then((networkResponse) => {
+        if (networkResponse && networkResponse.status === 200) {
+          const responseToCache = networkResponse.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(request, responseToCache));
+        }
+        return networkResponse;
+      }).catch(() => cachedResponse);
+
+      return cachedResponse || fetchPromise;
     })
   );
 });

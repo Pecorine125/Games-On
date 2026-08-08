@@ -99,7 +99,8 @@ const gamesData = [
     { title: "Hero's Harem Guild", image: "https://data.mopoga.com/img/thumbs/heros-harem-guild.webp", url: "https://mopoga.com/embed/heros-harem-guild_0.1.2.3b-public_2026-06-22/" }
 ];
 
-let currentIndex = 0;
+// Otimização 1: Restaura o último índice visitado pelo usuário
+let currentIndex = parseInt(localStorage.getItem('last_game_index'), 10) || 0;
 
 // Elementos do DOM
 const gamesSlider = document.getElementById('gamesSlider');
@@ -118,6 +119,8 @@ gameIframe.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-forms 
 
 function renderCard(index) {
     const game = gamesData[index];
+    localStorage.setItem('last_game_index', index);
+
     gamesSlider.innerHTML = `
         <div class="game-card-container">
             <div class="game-image-wrapper" id="cardClickArea">
@@ -128,18 +131,47 @@ function renderCard(index) {
     `;
     
     document.getElementById('cardClickArea').addEventListener('click', () => openGame(game.url));
+
+    // Otimização 3: Pré-carrega a imagem do próximo item para navegação instantânea
+    const nextIndex = (index + 1) % gamesData.length;
+    const preloadImg = new Image();
+    preloadImg.src = gamesData[nextIndex].image;
 }
 
-// Controles do Carrossel
-prevBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex === 0) ? gamesData.length - 1 : currentIndex - 1;
+// Navegação do Carrossel
+function navigateCarousel(direction) {
+    if (direction === 'next') {
+        currentIndex = (currentIndex === gamesData.length - 1) ? 0 : currentIndex + 1;
+    } else {
+        currentIndex = (currentIndex === 0) ? gamesData.length - 1 : currentIndex - 1;
+    }
     renderCard(currentIndex);
-});
+}
 
-nextBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex === gamesData.length - 1) ? 0 : currentIndex + 1;
-    renderCard(currentIndex);
-});
+prevBtn.addEventListener('click', () => navigateCarousel('prev'));
+nextBtn.addEventListener('click', () => navigateCarousel('next'));
+
+// Otimização 2: Suporte a Gestos (Swipe/Touch)
+let touchStartX = 0;
+let touchEndX = 0;
+
+gamesSlider.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+}, { passive: true });
+
+gamesSlider.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+}, { passive: true });
+
+function handleSwipe() {
+    const threshold = 50; // distância mínima de movimento em px
+    if (touchEndX < touchStartX - threshold) {
+        navigateCarousel('next');
+    } else if (touchEndX > touchStartX + threshold) {
+        navigateCarousel('prev');
+    }
+}
 
 // Abrir Jogo
 function openGame(link) {
@@ -148,7 +180,7 @@ function openGame(link) {
     gameScreen.classList.remove('hidden');
 }
 
-// Limpeza de RAM do IFRAME
+// Limpeza de RAM do IFRAME ao voltar
 btnBack.addEventListener('click', () => {
     gameIframe.src = "about:blank"; 
     
@@ -164,36 +196,38 @@ btnBack.addEventListener('click', () => {
     }
 });
 
-// Fullscreen Corrigido para Mobile (Samsung Galaxy A05)
-btnFullscreen.addEventListener('click', () => {
-    // Definimos o elemento a expandir como a container do iframe em vez da tela toda
+// Otimização 4: Fullscreen e bloqueio de orientação combinados de forma assíncrona
+async function toggleFullscreen() {
     const targetElement = iframeContainer || gameIframe;
-
     const isFullscreen = document.fullscreenElement || document.webkitFullscreenElement;
 
     if (!isFullscreen) {
-        // Tenta travar a orientação em Landscape imediatamente no toque
-        if (screen.orientation && screen.orientation.lock) {
-            screen.orientation.lock('landscape').catch(() => {});
-        }
-
-        // Entrar em fullscreen
-        if (targetElement.requestFullscreen) {
-            targetElement.requestFullscreen();
-        } else if (targetElement.webkitRequestFullscreen) {
-            targetElement.webkitRequestFullscreen();
+        try {
+            if (targetElement.requestFullscreen) {
+                await targetElement.requestFullscreen();
+            } else if (targetElement.webkitRequestFullscreen) {
+                await targetElement.webkitRequestFullscreen();
+            }
+            
+            // Aplica a trava de orientação somente APÓS garantir a entrada em tela cheia
+            if (screen.orientation && screen.orientation.lock) {
+                await screen.orientation.lock('landscape').catch(() => {});
+            }
+        } catch (err) {
+            console.warn("Erro ao acionar tela cheia:", err);
         }
     } else {
-        // Sair do fullscreen
         if (document.exitFullscreen) {
             document.exitFullscreen();
         } else if (document.webkitExitFullscreen) {
             document.webkitExitFullscreen();
         }
     }
-});
+}
 
-// Evento disparado quando o estado da tela muda
+btnFullscreen.addEventListener('click', toggleFullscreen);
+
+// Evento disparado quando o estado de tela cheia altera
 document.addEventListener('fullscreenchange', handleFullscreenChange);
 document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
 
