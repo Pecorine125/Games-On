@@ -1,0 +1,22 @@
+{
+  "name": "Games Launcher PWA",
+  "short_name": "Games",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "display_override": ["fullscreen", "standalone"],
+  "orientation": "landscape",
+  "background_color": "#0d0d11",
+  "theme_color": "#0d0d11",
+  "icons": [
+    {
+      "src": "https://data.lewdspot.com/img/thumbs/heiss-ward.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://data.lewdspot.com/img/thumbs/heiss-ward.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,13 +1,13 @@
-// REGISTRO DO SERVICE WORKER
+// 1. REGISTRO DO SERVICE WORKER
 if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js')
-            .then(reg => console.log('Service Worker de Cache ativo!', reg.scope))
-            .catch(err => console.warn('Erro ao registrar Service Worker:', err));
-    });
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js')
+      .then(reg => console.log('SW Ativo:', reg.scope))
+      .catch(err => console.warn('Erro no SW:', err));
+  });
 }
 
-// BANCO DE DADOS LOCAL DOS JOGOS
+// 2. BANCO DE DADOS DOS JOGOS
 const gamesData = [
     { title: "Heiss Ward", image: "https://data.lewdspot.com/img/thumbs/heiss-ward.png", url: "https://lwdbase2.com/heiss-ward-14-20260707/" },
     { title: "Renryuu Ascension", image: "https://data.lewdspot.com/img/thumbs/renryuu-ascension.webp", url: "https://lewdspot.com/embed/renryuu-ascension_26.05.06_2026-06-04/" },
@@ -99,151 +99,148 @@ const gamesData = [
     { title: "Hero's Harem Guild", image: "https://data.mopoga.com/img/thumbs/heros-harem-guild.webp", url: "https://mopoga.com/embed/heros-harem-guild_0.1.2.3b-public_2026-06-22/" }
 ];
 
-// Otimização 1: Restaura o último índice visitado pelo usuário
+// Salva a posição anterior do carrossel no LocalStorage
 let currentIndex = parseInt(localStorage.getItem('last_game_index'), 10) || 0;
 
-// Elementos do DOM
+// ELEMENTOS DOM
 const gamesSlider = document.getElementById('gamesSlider');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
 const menuContainer = document.getElementById('menuContainer');
 const gameScreen = document.getElementById('gameScreen');
-const gameIframe = document.getElementById('gameIframe');
-const iframeContainer = document.querySelector('.iframe-container');
+const iframeContainer = document.getElementById('iframeContainer');
 const btnBack = document.getElementById('btnBack');
 const btnFullscreen = document.getElementById('btnFullscreen');
 
-// Permissões otimizadas do iframe
-gameIframe.setAttribute('allow', 'fullscreen; autoplay; payment; gamepad; accelerometer; gyroscope');
-gameIframe.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-forms allow-popups allow-downloads');
-
+// 3. RENDERIZAÇÃO DO CARD
 function renderCard(index) {
-    const game = gamesData[index];
-    localStorage.setItem('last_game_index', index);
+  const game = gamesData[index];
+  localStorage.setItem('last_game_index', index);
 
-    gamesSlider.innerHTML = `
-        <div class="game-card-container">
-            <div class="game-image-wrapper" id="cardClickArea">
-                <img src="${game.image}" alt="${game.title}" class="game-image-preview" loading="lazy">
-            </div>
-            <div class="game-card-title">${game.title}</div>
-        </div>
-    `;
-    
-    document.getElementById('cardClickArea').addEventListener('click', () => openGame(game.url));
+  gamesSlider.innerHTML = `
+    <div class="game-card-container">
+      <div class="game-image-wrapper" id="cardClickArea">
+        <img src="${game.image}" alt="${game.title}" class="game-image-preview" loading="lazy">
+      </div>
+      <div class="game-card-title">${game.title}</div>
+    </div>
+  `;
 
-    // Otimização 3: Pré-carrega a imagem do próximo item para navegação instantânea
-    const nextIndex = (index + 1) % gamesData.length;
-    const preloadImg = new Image();
-    preloadImg.src = gamesData[nextIndex].image;
+  document.getElementById('cardClickArea').addEventListener('click', () => openGame(game.url));
+
+  // Pré-carregamento da próxima capa para navegação fluida
+  const nextIdx = (index + 1) % gamesData.length;
+  const imgPreload = new Image();
+  imgPreload.src = gamesData[nextIdx].image;
 }
 
-// Navegação do Carrossel
-function navigateCarousel(direction) {
-    if (direction === 'next') {
-        currentIndex = (currentIndex === gamesData.length - 1) ? 0 : currentIndex + 1;
-    } else {
-        currentIndex = (currentIndex === 0) ? gamesData.length - 1 : currentIndex - 1;
-    }
-    renderCard(currentIndex);
+// NAVEGAÇÃO
+function navigate(direction) {
+  if (direction === 'next') {
+    currentIndex = (currentIndex === gamesData.length - 1) ? 0 : currentIndex + 1;
+  } else {
+    currentIndex = (currentIndex === 0) ? gamesData.length - 1 : currentIndex - 1;
+  }
+  renderCard(currentIndex);
 }
 
-prevBtn.addEventListener('click', () => navigateCarousel('prev'));
-nextBtn.addEventListener('click', () => navigateCarousel('next'));
+prevBtn.addEventListener('click', () => navigate('prev'));
+nextBtn.addEventListener('click', () => navigate('next'));
 
-// Otimização 2: Suporte a Gestos (Swipe/Touch)
+// SUPORTE A GESTOS (TOUCH/SWIPE NO CELULAR)
 let touchStartX = 0;
 let touchEndX = 0;
 
 gamesSlider.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
+  touchStartX = e.changedTouches[0].screenX;
 }, { passive: true });
 
 gamesSlider.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    handleSwipe();
+  touchEndX = e.changedTouches[0].screenX;
+  if (touchEndX < touchStartX - 50) navigate('next');
+  if (touchEndX > touchStartX + 50) navigate('prev');
 }, { passive: true });
 
-function handleSwipe() {
-    const threshold = 50; // distância mínima de movimento em px
-    if (touchEndX < touchStartX - threshold) {
-        navigateCarousel('next');
-    } else if (touchEndX > touchStartX + threshold) {
-        navigateCarousel('prev');
-    }
+// 4. ABRIR JOGO COM CRIAÇÃO DINÂMICA DE IFRAME
+function openGame(url) {
+  iframeContainer.innerHTML = ''; // Limpa qualquer resto prévio
+
+  const iframe = document.createElement('iframe');
+  iframe.className = 'game-iframe';
+  iframe.id = 'gameIframe';
+  iframe.setAttribute('allow', 'fullscreen; autoplay; payment; gamepad; accelerometer; gyroscope');
+  iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-forms allow-popups allow-downloads');
+  iframe.src = url;
+
+  iframeContainer.appendChild(iframe);
+
+  menuContainer.classList.add('hidden');
+  gameScreen.classList.remove('hidden');
+
+  // Solicita travamento em modo deitado se disponível
+  if (screen.orientation && screen.orientation.lock) {
+    screen.orientation.lock('landscape').catch(() => {});
+  }
 }
 
-// Abrir Jogo
-function openGame(link) {
-    gameIframe.src = link;
-    menuContainer.classList.add('hidden');
-    gameScreen.classList.remove('hidden');
-}
-
-// Limpeza de RAM do IFRAME ao voltar
+// 5. FECHAR JOGO COM LIMPEZA RIGOROSA DE MEMÓRIA RAM
 btnBack.addEventListener('click', () => {
-    gameIframe.src = "about:blank"; 
-    
-    gameScreen.classList.add('hidden');
-    menuContainer.classList.remove('hidden');
-    
-    if (document.fullscreenElement || document.webkitFullscreenElement) {
-        if (document.exitFullscreen) {
-            document.exitFullscreen().catch(() => {});
-        } else if (document.webkitExitFullscreen) {
-            document.webkitExitFullscreen();
-        }
-    }
+  const iframe = document.getElementById('gameIframe');
+  
+  if (iframe) {
+    iframe.src = 'about:blank'; // Força desalocação da memória no browser
+    iframe.remove();
+  }
+
+  gameScreen.classList.add('hidden');
+  menuContainer.classList.remove('hidden');
+
+  if (document.fullscreenElement || document.webkitFullscreenElement) {
+    if (document.exitFullscreen) document.exitFullscreen().catch(() => {});
+    else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+  }
+
+  if (screen.orientation && screen.orientation.unlock) {
+    screen.orientation.unlock();
+  }
 });
 
-// Otimização 4: Fullscreen e bloqueio de orientação combinados de forma assíncrona
+// 6. TRATAMENTO DE TELA CHEIA
 async function toggleFullscreen() {
-    const targetElement = iframeContainer || gameIframe;
-    const isFullscreen = document.fullscreenElement || document.webkitFullscreenElement;
+  const isFullscreen = document.fullscreenElement || document.webkitFullscreenElement;
 
-    if (!isFullscreen) {
-        try {
-            if (targetElement.requestFullscreen) {
-                await targetElement.requestFullscreen();
-            } else if (targetElement.webkitRequestFullscreen) {
-                await targetElement.webkitRequestFullscreen();
-            }
-            
-            // Aplica a trava de orientação somente APÓS garantir a entrada em tela cheia
-            if (screen.orientation && screen.orientation.lock) {
-                await screen.orientation.lock('landscape').catch(() => {});
-            }
-        } catch (err) {
-            console.warn("Erro ao acionar tela cheia:", err);
-        }
-    } else {
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-        } else if (document.webkitExitFullscreen) {
-            document.webkitExitFullscreen();
-        }
+  if (!isFullscreen) {
+    try {
+      if (iframeContainer.requestFullscreen) {
+        await iframeContainer.requestFullscreen();
+      } else if (iframeContainer.webkitRequestFullscreen) {
+        await iframeContainer.webkitRequestFullscreen();
+      }
+
+      if (screen.orientation && screen.orientation.lock) {
+        await screen.orientation.lock('landscape').catch(() => {});
+      }
+    } catch (e) {
+      console.warn('Fullscreen negado ou não suportado:', e);
     }
+  } else {
+    if (document.exitFullscreen) document.exitFullscreen();
+    else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+  }
 }
 
 btnFullscreen.addEventListener('click', toggleFullscreen);
 
-// Evento disparado quando o estado de tela cheia altera
-document.addEventListener('fullscreenchange', handleFullscreenChange);
-document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+document.addEventListener('fullscreenchange', handleFSChange);
+document.addEventListener('webkitfullscreenchange', handleFSChange);
 
-function handleFullscreenChange() {
-    const isFullscreen = document.fullscreenElement || document.webkitFullscreenElement;
-
-    if (isFullscreen) {
-        btnFullscreen.textContent = "Sair da Tela Cheia";
-    } else {
-        btnFullscreen.textContent = "Tela Cheia";
-        if (screen.orientation && screen.orientation.unlock) {
-            screen.orientation.unlock();
-        }
-    }
-    gameIframe.focus();
+function handleFSChange() {
+  const isFS = document.fullscreenElement || document.webkitFullscreenElement;
+  btnFullscreen.textContent = isFS ? "Sair da Tela Cheia" : "Tela Cheia";
+  
+  const iframe = document.getElementById('gameIframe');
+  if (iframe) iframe.focus();
 }
 
-// Renderização inicial
+// RENDER INICIAL
 renderCard(currentIndex);

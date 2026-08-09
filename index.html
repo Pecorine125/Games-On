@@ -1,64 +1,48 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Games On</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Launcher de Jogos</title>
+  
+  <!-- Configurações PWA -->
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#000000">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+  <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 
-    <!-- AVISO DE ORIENTAÇÃO PARA MOBILE -->
-    <div id="rotateWarning" class="hidden">
-        <div class="warning-content">
-            <div class="phone-icon-css"></div>
-            <p>Gire o dispositivo <span>Modo Horizontal Obrigatório</span></p>
-        </div>
+  <!-- AVISO DE ROTAÇÃO (MOBILE) -->
+  <div id="rotateWarning" class="hidden">
+    <p>Gire o dispositivo para o modo Paisagem (Deitado)</p>
+  </div>
+
+  <!-- MENU PRINCIPAL / CARROSSEL -->
+  <main id="menuContainer" class="menu-container">
+    <h1 class="app-title">Web Games Launcher</h1>
+    
+    <div class="carousel-wrapper">
+      <button id="prevBtn" class="nav-btn" aria-label="Jogo Anterior">&#10094;</button>
+      <div id="gamesSlider" class="games-slider"></div>
+      <button id="nextBtn" class="nav-btn" aria-label="Próximo Jogo">&#10095;</button>
     </div>
+  </main>
 
-    <!-- MENU PRINCIPAL -->
-    <div id="menuContainer" class="container">
-        <h1>Games On</h1>
-        
-        <div class="carousel-wrapper">
-            <button id="prevBtn" class="nav-btn" aria-label="Jogo Anterior">&#10094;</button>
-            <div id="gamesSlider"></div>
-            <button id="nextBtn" class="nav-btn" aria-label="Próximo Jogo">&#10095;</button>
-        </div>
-
-        <div class="menu-controls">
-            <button id="btnSave" class="control-btn">Salvar</button>
-            <button id="btnLoad" class="control-btn">Carregar</button>
-            <button id="btnCloseWeb" class="control-btn btn-danger">Sair</button>
-        </div>
+  <!-- TELA DO JOGO (IFRAME) -->
+  <section id="gameScreen" class="game-screen hidden">
+    <div class="game-controls">
+      <button id="btnBack" class="ctrl-btn">Voltar ao Menu</button>
+      <button id="btnFullscreen" class="ctrl-btn">Tela Cheia</button>
     </div>
-
-    <!-- TELA DE GAMEPLAY -->
-    <div id="gameScreen" class="container hidden">
-        <div class="game-bar">
-            <button id="btnBack" class="game-btn">Voltar ao Menu</button>
-            <button id="btnFullscreen" class="game-btn">Tela Cheia</button>
-        </div>
-        
-        <div class="iframe-container" id="iframeContainer">
-            <iframe 
-                id="gameIframe" 
-                src="about:blank" 
-                allow="fullscreen; gamepad; autoplay; accelerometer; gyroscope"
-                allowfullscreen>
-            </iframe>
-        </div>
+    
+    <div class="iframe-container" id="iframeContainer">
+      <!-- O iframe é gerado dinamicamente via JS para economizar memória RAM -->
     </div>
+  </section>
 
-    <script src="script.js"></script>
-    <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./service-worker.js')
-          .then((reg) => console.log('Service Worker ativo com sucesso!'))
-          .catch((err) => console.error('Erro ao ativar Service Worker:', err));
-      });
-    }
-  </script>
+  <script src="./script.js"></script>
 </body>
 </html>
