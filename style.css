@@ -25,6 +25,34 @@ html, body {
   display: none !important;
 }
 
+/* SELETOR DE IDIOMAS */
+.lang-selector {
+  position: absolute;
+  top: max(15px, env(safe-area-inset-top));
+  right: max(15px, env(safe-area-inset-right));
+  display: flex;
+  gap: 8px;
+  z-index: 100;
+}
+
+.lang-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.lang-btn:active {
+  background: rgba(0, 210, 255, 0.4);
+  border-color: #00d2ff;
+}
+
 /* AVISO DE ROTAÇÃO */
 #rotateWarning {
   position: fixed;

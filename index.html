@@ -22,6 +22,12 @@
 
   <!-- MENU PRINCIPAL / CARROSSEL -->
   <main id="menuContainer" class="menu-container">
+    <!-- SELETOR DE IDIOMA -->
+    <div class="lang-selector">
+      <button onclick="i18n.setLang('pt')" class="lang-btn">PT 🇧🇷</button>
+      <button onclick="i18n.setLang('en')" class="lang-btn">EN 🇺🇸</button>
+    </div>
+
     <h1 class="app-title">Web Games Launcher</h1>
     
     <div class="carousel-wrapper">
@@ -43,6 +49,7 @@
     </div>
   </section>
 
+  <script src="./i18n.js"></script>
   <script src="./script.js"></script>
 </body>
 </html>
