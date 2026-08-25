@@ -9,14 +9,14 @@ if ('serviceWorker' in navigator) {
 
 // 2. BANCO DE DADOS DOS JOGOS
 const gamesData = [
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
-    { title: "", image: "", url: "" },
+    { title: "harem-residence", image: "", url: "https://mopoga.com/embed/harem-residence/" },
+    { title: "garden-of-venus", image: "", url: "https://mopoga.com/embed/garden-of-venus/" },
+    { title: "my-family-farm", image: "", url: "https://cdn77.gamesofdesire.com/files/html5_new/my-family-farm/index.html" },
+    { title: "klee-prank-adventure", image: "", url: "https://cdn77.gamesofdesire.com/files/html5_new/klee-prank-adventure-1-15/index.html" },
+    { title: "fall-of-the-angels", image: "", url: "https://lwdbase3.com/fall-of-the-angels/" },
+    { title: "my-life-with-4-succubus", image: "", url: "https://lwdbase3.com/my-life-with-4-succubus/" },
+    { title: "18-titans", image: "", url: "https://mopoga.com/embed/18titans-167-2026-0707/" },
+    { title: "complex-society", image: "", url: "https://mopoga.com/embed/complex-society/" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" },
