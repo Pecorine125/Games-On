@@ -9,14 +9,14 @@ if ('serviceWorker' in navigator) {
 
 // 2. BANCO DE DADOS DOS JOGOS
 const gamesData = [
-    { title: "harem-residence", image: "", url: "https://mopoga.com/embed/harem-residence/" },
-    { title: "garden-of-venus", image: "", url: "https://mopoga.com/embed/garden-of-venus/" },
-    { title: "my-family-farm", image: "", url: "https://cdn77.gamesofdesire.com/files/html5_new/my-family-farm/index.html" },
-    { title: "klee-prank-adventure", image: "", url: "https://cdn77.gamesofdesire.com/files/html5_new/klee-prank-adventure-1-15/index.html" },
-    { title: "fall-of-the-angels", image: "", url: "https://lwdbase3.com/fall-of-the-angels/" },
-    { title: "my-life-with-4-succubus", image: "", url: "https://lwdbase3.com/my-life-with-4-succubus/" },
-    { title: "18-titans", image: "", url: "https://mopoga.com/embed/18titans-167-2026-0707/" },
-    { title: "complex-society", image: "", url: "https://mopoga.com/embed/complex-society/" },
+    { title: "harem-residence", image: "https://img.itch.zone/aW1nLzgyMzM5MDEuanBn/original/w4dWJr.jpg", url: "https://mopoga.com/embed/harem-residence/" },
+    { title: "garden-of-venus", image: "https://newgamesbox.com/wp-content/uploads/2025/09/Garden-of-Venus-Download-Free-PC-Game-Direct-Link.jpg", url: "https://mopoga.com/embed/garden-of-venus/" },
+    { title: "my-family-farm", image: "https://img.itch.zone/aW1nLzk4ODE5ODcucG5n/original/H3AtOM.png", url: "https://cdn77.gamesofdesire.com/files/html5_new/my-family-farm/index.html" },
+    { title: "klee-prank-adventure", image: "https://img.itch.zone/aW1hZ2UvMTIyODUzMy85MjY0Nzk4LmdpZg==/original/LZ65Ih.gif", url: "https://cdn77.gamesofdesire.com/files/html5_new/klee-prank-adventure-1-15/index.html" },
+    { title: "fall-of-the-angels", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlFhqhK8nBkgV1YS9msrSW1rZqgnvhgEhDOjjbTCoeVJLdJkSqAaaeIEuR&s=10", url: "https://lwdbase3.com/fall-of-the-angels/" },
+    { title: "my-life-with-4-succubus", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2fBq0dJRatV81OyCl5TykTY6rVbCWKVMjEw8nA0jp-zxbkSkgU90htx4H&s=10", url: "https://lwdbase3.com/my-life-with-4-succubus/" },
+    { title: "18-titans", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeU5IK-aazAzPnW4tzBCMV2zjhxYUPgTDql9OFgblsjf0h0mBjwKwd5xY&s=10", url: "https://mopoga.com/embed/18titans-167-2026-0707/" },
+    { title: "complex-society", image: "https://img.itch.zone/aW1hZ2UvODEyODU2LzIyMTM3NzcxLnBuZw==/original/yz1Xhx.png", url: "https://mopoga.com/embed/complex-society/" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" },
     { title: "", image: "", url: "" },
